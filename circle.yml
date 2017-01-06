@@ -1,0 +1,16 @@
+machine:
+  environment:
+    FILENAME: project
+
+dependencies:
+  override:
+    - sudo apt-get update
+    - |
+      sudo apt-get install -y texlive texlive-xetex texlive-latex-extra pandoc lmodern
+
+test:
+  override:
+    - |
+      pandoc --variable=geometry:a4paper --highlight-style pygments --mathjax \
+             --latex-engine=xelatex "$FILENAME.tex" -o "$FILENAME.pdf"
+    - cp -r *.pdf $CIRCLE_ARTIFACTS/
