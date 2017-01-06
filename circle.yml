@@ -1,0 +1,12 @@
+dependencies:
+  override:
+    - sudo apt-get update
+    - |
+      sudo apt-get install -y texlive texlive-latex-extra pandoc lmodern
+
+test:
+  override:
+    - |
+      pandoc --variable=geometry:a4paper --highlight-style pygments --mathjax \
+             --latex-engine=xelatex report.tex -o report.pdf
+    - cp -r report.pdf $CIRCLE_ARTIFACTS/
