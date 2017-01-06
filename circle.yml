@@ -6,7 +6,7 @@ dependencies:
   override:
     - sudo apt-get update
     - |
-      sudo apt-get install -y texlive-full texlive-latex-extra pandoc lmodern
+      sudo apt-get install -y texlive texlive-xetex texlive-latex-extra pandoc lmodern
 
 test:
   override:
