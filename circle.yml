@@ -1,7 +1,3 @@
-machine:
-  environment:
-    FILENAME: project
-
 dependencies:
   override:
     - sudo apt-get update
@@ -13,5 +9,5 @@ dependencies:
 test:
   override:
     - |
-      make report
-      cp -r report.pdf $CIRCLE_ARTIFACTS/
+      make project
+      cp -r project.pdf $CIRCLE_ARTIFACTS/

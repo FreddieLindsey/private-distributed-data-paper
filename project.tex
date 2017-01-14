@@ -1,5 +1,90 @@
-\documentclass{report}
+%------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%------------------------------------------------------------------------------
+
+\documentclass[twoside, a4paper, titlepage]{report}
+
+\input{dependencies}
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+% Sans Serif Font
+\renewcommand{\familydefault}{\sfdefault}
+
+% Line spacing
+\linespread{1.1}
+
+% Images
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.5pt}
+
+% Set up the header and footer
+\pagestyle{fancy}
+% \lhead{\docAuthorName} % Top left header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parskip{1.2em} % Space between paragraphs
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%------------------------------------------------------------------------------
+%	TITLE PAGE
+%------------------------------------------------------------------------------
 
 \begin{document}
-	Project
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+
+        \vspace{0.5cm}
+				\Large{Blockchain-mediated Layered Access to Data}
+
+        \vspace{1.5cm}
+
+        \large{
+	        \textbf{
+	        	Frederick Lindsey
+					}
+				}
+
+        \vfill
+
+        \large{Supervised by William Knottenbelt}
+
+        \vspace{0.8cm}
+
+        Department of Computing\\
+				Imperial College\\
+        UK\\
+        19th June 2017
+
+    \end{center}
+\end{titlepage}
+
+%------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%------------------------------------------------------------------------------
+
+\tableofcontents
+\newpage
+
+%------------------------------------------------------------------------------
+% CONTENT
+%------------------------------------------------------------------------------
+
+\input{chapters/introduction}
+
+%------------------------------------------------------------------------------
+
 \end{document}
