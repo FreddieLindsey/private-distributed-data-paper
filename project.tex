@@ -2,7 +2,7 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %------------------------------------------------------------------------------
 
-\documentclass[twoside, a4paper, titlepage]{report}
+\documentclass[twoside, a4paper, titlepage]{article}
 
 \input{dependencies}
 
@@ -13,6 +13,9 @@
 \textwidth=6.5in
 \textheight=9.0in
 \headsep=0.25in
+
+% Numbering
+% \setcounter{secnumdepth}{-1}
 
 % Sans Serif Font
 \renewcommand{\familydefault}{\sfdefault}
@@ -44,19 +47,15 @@
 \begin{document}
 
 \begin{titlepage}
-    \begin{center}
+    \centering
         \vspace*{1cm}
 
         \vspace{0.5cm}
-				\Large{Blockchain-mediated Layered Access to Data}
+		\Large{\textbf{Blockchain-mediated Layered Access to Data}}
 
         \vspace{1.5cm}
 
-        \large{
-	        \textbf{
-	        	Frederick Lindsey
-					}
-				}
+        \large{Frederick Lindsey}
 
         \vfill
 
@@ -65,11 +64,9 @@
         \vspace{0.8cm}
 
         Department of Computing\\
-				Imperial College\\
+		Imperial College\\
         UK\\
         19th June 2017
-
-    \end{center}
 \end{titlepage}
 
 %------------------------------------------------------------------------------
@@ -83,7 +80,11 @@
 % CONTENT
 %------------------------------------------------------------------------------
 
-\input{chapters/introduction}
+\include{chapters/project_description}
+
+\include{chapters/introduction}
+
+\include{appendices/bibliography}
 
 %------------------------------------------------------------------------------
 
