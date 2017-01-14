@@ -1,10 +1,32 @@
 %------------------------------------------------------------------------------
-%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%	DOCUMENT CONFIGURATION
 %------------------------------------------------------------------------------
 
 \documentclass[twoside, a4paper, titlepage]{article}
 
-\input{dependencies}
+%------------------------------------------------------------------------------
+%	PACKAGES
+%------------------------------------------------------------------------------
+
+\usepackage[
+  maxcitenames=3,
+  maxbibnames=100
+]{biblatex}
+\bibliography{sources}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{rotating} % Required for sideways figure
+\usepackage{parskip} % Required for paragraph styling
+\usepackage{float} % For having figures inline
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref} % For links
+\usepackage{blindtext}
+
+%------------------------------------------------------------------------------
 
 % Margins
 \topmargin=-0.45in
