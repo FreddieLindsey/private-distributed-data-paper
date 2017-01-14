@@ -5,7 +5,6 @@ dependencies:
 
 test:
   override:
-    - |
-      make project
-      cp -r project.pdf $CIRCLE_ARTIFACTS/
-      python deploy_to_dropbox.py
+    - make project
+    - cp -r project.pdf $CIRCLE_ARTIFACTS/
+    - python deploy_to_dropbox.py
