@@ -5,7 +5,7 @@ all: clean project
 
 project: project.tex
 	latex -file-line-error -interaction=nonstopmode -synctex=1 $^
-	biber $@
+	biber project
 	pdflatex -file-line-error -interaction=nonstopmode -synctex=1 $^
 	pdflatex -file-line-error -interaction=nonstopmode -synctex=1 $^
 	pdflatex -file-line-error -interaction=nonstopmode -synctex=1 $^

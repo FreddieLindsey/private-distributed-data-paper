@@ -8,11 +8,16 @@
 %	PACKAGES
 %------------------------------------------------------------------------------
 
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{csquotes} % Recommended
+
 \usepackage[
+  backend=biber,
   maxcitenames=3,
   maxbibnames=100
 ]{biblatex}
-\bibliography{sources}
+\addbibresource{sources.bib}
 
 \usepackage{fancyhdr} % Required for custom headers
 \usepackage{lastpage} % Required to determine the last page for the footer
@@ -40,7 +45,7 @@
 % \setcounter{secnumdepth}{-1}
 
 % Sans Serif Font
-\renewcommand{\familydefault}{\sfdefault}
+\renewcommand\rmdefault{cmss}
 
 % Line spacing
 \linespread{1.1}
@@ -102,7 +107,7 @@
 % CONTENT
 %------------------------------------------------------------------------------
 
-\include{chapters/project_description}
+\include{chapters/_abstract}
 
 \include{chapters/introduction}
 

@@ -1,7 +1,7 @@
 dependencies:
   override:
     - sudo apt-get update
-    - sudo apt-get install -y make texlive texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
+    - sudo apt-get install -y make texlive texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra biber
 
 test:
   override:
