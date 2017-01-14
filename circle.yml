@@ -3,20 +3,15 @@ machine:
     FILENAME: project
 
 dependencies:
-  cache_directories:
-    - "~/.apt-cache"
-  pre:
-    - |
-      sudo rm -rf /var/cache/apt/archives && \
-      sudo ln -s ~/.apt-cache /var/cache/apt/archives && \
-      mkdir -p ~/.apt-cache/partial
   override:
     - sudo apt-get update
-    - sudo apt-get install -y texlive texlive-xetex texlive-latex-extra pandoc lmodern
-
+    - |
+      sudo apt-get install -y \
+        make texlive \
+        texlive-latex-base texlive-latex-extra \
+        texlive-fonts-recommended texlive-fonts-extra
 test:
   override:
     - |
-      pandoc --variable=geometry:a4paper --highlight-style pygments --mathjax \
-             --latex-engine=xelatex "$FILENAME.tex" -o "$FILENAME.pdf"
-    - cp -r *.pdf $CIRCLE_ARTIFACTS/
+      make report
+      cp -r report.pdf $CIRCLE_ARTIFACTS/
