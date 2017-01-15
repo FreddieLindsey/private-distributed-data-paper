@@ -1,5 +1,118 @@
-\documentclass{report}
+%------------------------------------------------------------------------------
+%  DOCUMENT CONFIGURATION
+%------------------------------------------------------------------------------
+
+\documentclass[twoside, a4paper, titlepage]{article}
+
+%------------------------------------------------------------------------------
+%  PACKAGES
+%------------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{csquotes} % Recommended
+
+\usepackage[
+  backend=biber,
+  maxcitenames=3,
+  maxbibnames=100
+]{biblatex}
+\addbibresource{sources.bib}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{rotating} % Required for sideways figure
+\usepackage{parskip} % Required for paragraph styling
+\usepackage{float} % For having figures inline
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref} % For links
+\usepackage{blindtext}
+
+%------------------------------------------------------------------------------
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+% Numbering
+% \setcounter{secnumdepth}{-1}
+
+% Sans Serif Font
+\renewcommand\rmdefault{cmss}
+
+% Line spacing
+\linespread{1.1}
+
+% Images
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.5pt}
+
+% Set up the header and footer
+\pagestyle{fancy}
+% \lhead{\docAuthorName} % Top left header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parskip{1.2em} % Space between paragraphs
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%------------------------------------------------------------------------------
+% TITLE PAGE
+%------------------------------------------------------------------------------
 
 \begin{document}
-	Project
+
+\begin{titlepage}
+  \centering
+  \vspace*{1cm}
+
+  \vspace{0.5cm}
+  \Large{\textbf{Blockchain-mediated Layered Access to Data}}
+
+  \vspace{1.5cm}
+
+  \large{Frederick Lindsey}
+
+  \vfill
+
+  \large{Supervised by William Knottenbelt}
+
+  \vspace{0.8cm}
+
+  Department of Computing\\
+  Imperial College\\
+  UK\\
+  19th June 2017
+\end{titlepage}
+
+%------------------------------------------------------------------------------
+% TABLE OF CONTENTS
+%------------------------------------------------------------------------------
+
+\tableofcontents
+\newpage
+
+%------------------------------------------------------------------------------
+% CONTENT
+%------------------------------------------------------------------------------
+
+\include{chapters/_abstract}
+
+\include{chapters/introduction}
+
+\include{appendices/bibliography}
+
+%------------------------------------------------------------------------------
+
 \end{document}
