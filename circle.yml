@@ -12,4 +12,4 @@ deployment:
   production:
     branch: master
     commands:
-      - python deploy_to_dropbox.py
+      - python deployment/deploy_to_dropbox.py
