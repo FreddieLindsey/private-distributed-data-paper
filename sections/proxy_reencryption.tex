@@ -6,4 +6,6 @@
   In a proxy re-encryption scheme a semi-trusted proxy converts a ciphertext for Alice into a ciphertext for Bob without seeing the underlying plaintext
 }\autocite{greenateniese:2006:article}
 
+There are many different ways to implement proxy re-encryption, with differing level of ease, complexity, and, most importantly, security. One must consider whether a unidirectional scheme or a bidirectional scheme is preferred. One must also consider that a proxy is, by definition of re-encryption without exposing the underlying data, a semi-trusted entity; we allow the proxy to manipulate the encrypted data we pass to it, without full control of seeing or sharing the data further than we wish.
+
 \subsection{Applying Proxy Re-Encryption to layered-access}
