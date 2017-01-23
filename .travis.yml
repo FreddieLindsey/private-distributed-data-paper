@@ -1,5 +1,7 @@
 sudo: false
+
 dist: trusty
+
 addons:
   apt:
     packages:
@@ -11,16 +13,20 @@ addons:
     - texlive-fonts-extra
     - texlive-bibtex-extra
     - biber
+
 script:
-- make project
+  - make project
+
 before_deploy:
-- pip install -r requirements.txt
+  - pip install -r requirements.txt
+
 deploy:
   provider: script
   skip_cleanup: true
   script: python deploy_to_dropbox.py
   on:
     branch: deploy/travis
+
 env:
   global:
     secure: cLNe5r2YFWSF28XuMYhA0S8WVs7pbbQRTIWvWMp3vAb+Glnbh5IfpJVMU0MjQHCFKGZOfoWKcajz7quueD76KUSZ3ScxMIR4k7gFdpEb47dzrdeiFjro0z/HHbPEWto5IJFRYPMRdsmNULxP7NzmXbuVOKjBuvagKkOw4Hu6QzYLX2PYSo16vPBxGlxPYXUEe0wf/25kMip4ZDJbtQVmo8+eBod+fUYnXstCZs5m1yGjDpag+Ygc+Hfgj8X3lYoT2vIXxWsa+RJihwjw8FaUnHA5daq+IVteY/OCckQhjRlZPdjV344G/w8AlxMWWYtKxQnnUXOeP/rJakoG8a+alvYCqxx/jXjM19To+tI3iwDqMgx8/eKJw7wdAaSxWNdpDMSBUgy0nLGHPC8wMKfJufPg+cuSybDivI6z0Te8hcrU8eu1PEEyvK92ltE9Dp5RDu+2FS0Y2dAFsz2jhoFieNJrn8sSBFJ8hSq8e42bAOYbFhZS+Mi3e2mQJrH7HIrC48ni/vB9iNyqQPJ+yQyl0EBr8+0zG0DhW33lZmFjhI72Z5VB0XVBhcIlf+eqElfvnJy2JFJY+Q8PeWUXdq6mvenhbnlOSZjccW7x8/dTRoMkpsr7/nAwi18rL9ZR+IF2SiiYshKvfr0R4qjMc1oZDdkCes0JCnilfvwLrsi4em4=
