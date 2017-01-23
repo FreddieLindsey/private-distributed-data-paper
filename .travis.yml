@@ -14,9 +14,12 @@ addons:
 script:
   - make project
 
+before_deploy:
+  - pip install -r requirements.txt
+
 deploy:
   provider: script
   skip_cleanup: true
-  script: python deployment/deploy_to_dropbox.py
+  script: python deploy_to_dropbox.py
   on:
     branch: master
