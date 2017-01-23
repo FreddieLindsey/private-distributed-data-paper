@@ -25,4 +25,4 @@ deploy:
   skip_cleanup: true
   script: python deploy_to_dropbox.py
   on:
-    branch: master
+    branch: deploy/travis
