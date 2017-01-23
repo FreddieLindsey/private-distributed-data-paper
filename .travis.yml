@@ -11,7 +11,7 @@ addons:
     - texlive-latex-extra
     - texlive-fonts-recommended
     - texlive-fonts-extra
-    - biber
+    # - biber
 
 script:
   - make project
