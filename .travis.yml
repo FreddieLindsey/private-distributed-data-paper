@@ -11,6 +11,7 @@ addons:
     - texlive-latex-extra
     - texlive-fonts-recommended
     - texlive-fonts-extra
+    - texlive-bibtex-extra
     - biber
 
 script:
