@@ -6,7 +6,7 @@ all: project.pdf interim.pdf
 
 %.pdf: %.tex cleanish
 	pdflatex -file-line-error -interaction=nonstopmode -synctex=1 $^
-	biber project
+	biber *.bcf
 	pdflatex -file-line-error -interaction=nonstopmode -synctex=1 $^
 	pdflatex -file-line-error -interaction=nonstopmode -synctex=1 $^
 
