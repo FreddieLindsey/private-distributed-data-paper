@@ -1,1 +1,23 @@
 \section{Technical Architecture}
+
+Upload a file:
+
+Encrypt file locally ->
+Send to lambda ->
+Lambda puts it on S3
+
+Get a file:
+
+Request data blob(s) (lambda) ->
+Check access ->
+
+
+\subsection{Authentication of sessions}
+
+\subsubsection{Randomly chosen tokens}
+
+\subsubsection{Cryptographically-signed messages}
+
+\subsubsection{}
+
+Given the cutting-edge nature of the project, a suitably cutting edge form of authentication seemed appropriate. We use asymmetric authentication for creating and reading
