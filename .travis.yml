@@ -15,7 +15,8 @@ addons:
     - biber
 
 script:
-  - make project
+  - make interim.pdf
+  - make project.pdf
 
 before_deploy:
   - pip install -r requirements.txt
