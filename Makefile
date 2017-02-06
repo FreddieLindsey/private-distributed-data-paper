@@ -1,9 +1,10 @@
 DOCKER_TAG = freddielindsey/latex:$(shell date +%Y-%m-%d)
 DOCKER_LATEST = freddielindsey/latex
 
-all: cleanish project
+all: project.pdf interim.pdf
+	make cleanish
 
-project: project.tex
+%.pdf: %.tex cleanish
 	pdflatex -file-line-error -interaction=nonstopmode -synctex=1 $^
 	biber project
 	pdflatex -file-line-error -interaction=nonstopmode -synctex=1 $^
@@ -14,7 +15,7 @@ cleanish:
 	$(RM) -r *.aux *.bbl *.bcf *.blg *.dvi *.lof *.lot *.log *.run.xml *.synctex.gz *.toc *.out
 
 clean: cleanish
-	$(RM) -r project.pdf
+	$(RM) project.pdf interim.pdf
 
 docker:
 	docker build -t $(DOCKER_TAG) .

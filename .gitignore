@@ -180,4 +180,4 @@ TSWLatexianTemp*
 *~[0-9]*
 
 # Output
-project.pdf
+*.pdf
