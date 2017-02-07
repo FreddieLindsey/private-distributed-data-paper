@@ -4,12 +4,16 @@
 
 \blockquote{In a proxy re-encryption scheme a semi-trusted proxy converts a ciphertext for Alice into a ciphertext for Bob without seeing the underlying plaintext}\autocite{greenateniese:2006:article}
 
-Fundamentally, proxy re-encryption is the process of taking a message $M_a$, encrypted by a party $P_a$, and re-encrypting it to be passed as message $M_b$, such that it is only readable by party $P_b$, without decrypting $M_a$. This process relies on the functional relationship between ciphertexts encrypted by different keys.
+Fundamentally, proxy re-encryption is the process of taking a message $M_a$, encrypted by a party $P_a$, and re-encrypting it to be passed to party $P_b$. The message is then represented by $M_b$, such that it is only readable by party $P_b$. Through the re-encryption process, the message is never actually decrypted, such that the data is never revealed to any non-trusted parties (including the proxy itself). This process relies on the functional relationship between the two ciphertexts, with the characteristics of the proxy re-encryption processed determined by the topology of this function.
+
+
 
 \input{tikz/proxy_re_encryption_example}
 
 There are many different ways to implement proxy re-encryption, with differing level of ease, complexity, and, most importantly, security. One must consider whether a unidirectional scheme or a bidirectional scheme is preferred. One must also consider that a proxy is, by definition of re-encryption without exposing the underlying data, a semi-trusted entity; we allow the proxy to manipulate the encrypted data we pass to it, without full control of seeing or sharing the data further than we wish.
 
 \subsection{Applying Proxy Re-Encryption}
+
+
 
 \subsection{ZeroDB}
