@@ -1,7 +1,7 @@
 DOCKER_TAG = freddielindsey/latex:$(shell date +%Y-%m-%d)
 DOCKER_LATEST = freddielindsey/latex
 
-all: project.pdf interim.pdf
+all: interim.pdf
 	make cleanish
 
 %.pdf: %.tex cleanish

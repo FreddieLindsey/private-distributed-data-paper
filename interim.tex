@@ -14,7 +14,7 @@
 
 \usepackage[
   backend=biber,
-  style=numeric-verb,
+  style=authoryear-ibid,
   maxcitenames=3,
   maxbibnames=100
 ]{biblatex}
@@ -31,6 +31,8 @@
 \usepackage{amssymb}
 \usepackage{hyperref} % For links
 \usepackage{blindtext}
+
+\usepackage{tikz}
 
 %------------------------------------------------------------------------------
 
@@ -63,6 +65,15 @@
 %------------------------------------------------------------------------------
 
 \begin{document}
+
+% Definition of blocks:
+\tikzset{%
+  block/.style    = {draw, thick, rectangle, minimum height = 3em,
+    minimum width = 3em},
+  sum/.style      = {draw, circle, node distance = 2cm}, % Adder
+  input/.style    = {coordinate}, % Input
+  output/.style   = {coordinate} % Output
+}
 
 \pagestyle{empty}
 
