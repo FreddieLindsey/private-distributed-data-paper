@@ -8,7 +8,16 @@ Fundamentally, proxy re-encryption is the process of taking a message $M_a$, enc
 
 \input{tikz/proxy_re_encryption_example}
 
-There are many different ways to implement proxy re-encryption, with differing level of ease, complexity, and, most importantly, security. One must consider whether a unidirectional scheme or a bidirectional scheme is preferred. One must also consider that a proxy is, by definition of re-encryption without exposing the underlying data, a semi-trusted entity; we allow the proxy to manipulate the encrypted data we pass to it, without full control of seeing or sharing the data further than we wish.
+In the above figure, it is demonstrated where the data is held or being manipulated by a fully trusted entity or not, using green/blue and red lines respectively.
+
+The encrypted message $M_a$ is passed to the semi-trusted proxy along with the re-encryption key (expressed as $f(E_a, e_b)$\footnote{$E_x$ represents the private key of a party $x$, $e_x$ represents the public key of a party $x$,})
+
+% Delegation – allows a message recipient (keyholder) to generate a re-encryption key based on his secret key and the key of the delegated user. This re-encryption key is used by the proxy as input to the re-encryption function, which is executed by the proxy to translate ciphertexts to the delegated user's key. Asymmetric proxy re-encryption schemes come in bi-directional and uni-directional varieties.
+
+% - In a bi-directional scheme, the re-encryption scheme is reversible—that is, the re-encryption key can be used to translate messages from Bob to Charlie, as well as from Charlie to Bob. This can have various security consequences, depending on the application. One notable characteristic of bi-directional schemes is that both the delegator and delegated party (e.g., Charlie and Bob) must combine their secret keys to produce the re-encryption key.
+% - A uni-directional scheme is effectively one-way; messages can be re-encrypted from Bob to Charlie, but not the reverse. Uni-directional schemes can be constructed such that the delegated party need not reveal its secret key. For example, Bob could delegate to Charlie by combining his secret key with Charlie's public key.
+
+% Transitivity – Transitive proxy re-encryption schemes allow for a ciphertext to be re-encrypted an unlimited number of times. For example, a ciphertext might be re-encrypted from Bob to Charlie, and then again from Charlie to David and so on. Non-transitive schemes allow for only one (or a limited number) of re-encryptions on a given ciphertext. Currently, there is no known uni-directional, transitive proxy re-encryption scheme. It is an open problem as to whether such constructions are possible.
 
 \subsubsection{Applying Proxy Re-Encryption}
 
