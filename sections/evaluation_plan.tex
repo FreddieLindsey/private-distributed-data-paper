@@ -8,36 +8,38 @@ Further to agreeing this, I have received input from an industry specialist, Dr.
 
 The core criteria that this project must adhere to are:
 
-\begin{itemize}
-  \item{
-    Secure distributed storage
-  }
-  \item{
-    Time-based access
-  }
-  \item{
-    Transparent, public logging
-  }
-  \item{
-    Secure access and access management
-  }
-\end{itemize}
+\begin{outline}
+  \1 Secure distributed storage
+  \1 Time-based access
+  \1 Transparent, public logging
+  \1 Secure access and access management
+\end{outline}
 
 Below, I have applied the use-case to the above criteria to outline the most significant output criteria to determine the project's success.
 
 \subsection{Secure Distributed Storage}
 
-\begin{itemize}
-  \item{Store data in an encrypted manner such that it is only readable by it's owner}
-  \item{Allow the transfer of data to nominated 3rd parties (including institutions) which remains encrypted from end-to-end}
-  \item{Ensure the accessing of data is logged in a transparent and public manner, but such that only the true owner of the data is able to see and verify all logs}
-  \item{Verify that the accessing of a user's account maliciously does not allow the attacker to read a user's data}
-  \item{Show the transmission of data from a PACS server using an API}
-\end{itemize}
+\begin{outline}
+  \1 Store data in an encrypted manner such that it is only readable by it's owner
+  \1 Data input and output should never be decrypted - this should be provable
+  \1 Verify that the accessing of a user's account maliciously does not allow the attacker to read a user's data
+  \1 Show the transmission of data from a PACS server using an API
+\end{outline}
 
 \subsection{Time-based Access}
 
+\begin{outline}
+  \1 Allow the transfer of data to nominated 3rd parties (including institutions)
+  \1 Access to data is time-dependent using two inputs:
+    \2 Set remaining time period
+    \2 Set access termination date
+\end{outline}
+
 \subsection{Transparent and Public Logging}
+
+\begin{outline}
+  \1 Ensure the accessing of data is logged in a transparent and public manner, but such that only the true owner of the data is able to see and verify all logs
+\end{outline}
 
 \subsection{Secure Access and Access Management}
 
