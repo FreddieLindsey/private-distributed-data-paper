@@ -25,7 +25,7 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: python ./travis/deploy_to_dropbox.py
+  script: python .travis/deploy_to_dropbox.py
   on:
     branch: master
 
