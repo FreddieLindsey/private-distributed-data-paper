@@ -5,10 +5,10 @@ all: interim.pdf
 	make cleanish
 
 %.pdf: %.tex cleanish
-	pdflatex -file-line-error -interaction=nonstopmode -synctex=1 $^
-	biber *.bcf
-	pdflatex -file-line-error -interaction=nonstopmode -synctex=1 $^
-	pdflatex -file-line-error -interaction=nonstopmode -synctex=1 $^
+	pdflatex -file-line-error -interaction=nonstopmode -synctex=1 $(word 1, $^)
+	biber $@
+	pdflatex -file-line-error -interaction=nonstopmode -synctex=1 $(word 1, $^)
+	pdflatex -file-line-error -interaction=nonstopmode -synctex=1 $(word 1, $^)
 
 cleanish:
 	$(RM) -r **/*.aux **/*.bbl **/*.bcf **/*.blg **/*.dvi **/*.lof **/*.lot **/*.log **/*.run.xml **/*.synctex.gz **/*.toc .texpadtmp **/*.out
