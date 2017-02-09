@@ -87,17 +87,15 @@
 \include{sections/title_page}
 
 %------------------------------------------------------------------------------
-% TABLE OF CONTENTS
-%------------------------------------------------------------------------------
-
-\tableofcontents
-
-%------------------------------------------------------------------------------
 % CONTENT
 %------------------------------------------------------------------------------
 
 % Identify key points including result of project
 \include{sections/abstract}
+
+% Acknowledge those who've technically or otherwise helped with completing the project
+\renewcommand{\abstractname}{Acknowledgements}
+\include{sections/acknowledgements}
 
 % Set up the header and footer
 \pagestyle{fancy}
@@ -109,6 +107,12 @@
 \rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
 \renewcommand\headrulewidth{0.4pt} % Size of the header rule
 \renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+%------------------------------------------------------------------------------
+% TABLE OF CONTENTS
+%------------------------------------------------------------------------------
+
+\tableofcontents
 
 %------------------------------------------------------------------------------
 % INTRODUCTION AND PREFACE
