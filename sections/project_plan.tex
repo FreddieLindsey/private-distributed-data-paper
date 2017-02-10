@@ -21,6 +21,12 @@ Below, I explain the desired timeline of the project and indicate when I intend 
     \textbf{5th March}     & First working prototype \\
                            & A basic working prototype must include the ability to read and write data at a basic level \\
                            [4ex]
+    \textbf{7th May}       & Second working prototype \\
+                           & A second working prototype should be made by this point. It must include basic desktop functionality and the ability to use multiple accounts to access 3rd party data (at different levels). \\
+                           [4ex]
+    \textbf{15th May}      & Project Health Checkup \\
+                           & Given the length of time between here and the working prototype having been demonstrated to the supervisor in March, by this point some evaluation should be done in terms of reconsidering what the final goals are for the project in the remaining month. \\
+                           [4ex]
     \textbf{19th June}     & Final Report Due \\
                            [4ex]
     \textbf{26th June}     & Submission of Project Archive
@@ -31,27 +37,3 @@ Below, I explain the desired timeline of the project and indicate when I intend 
   }
   \label{table:project_plan}
 \end{table}
-
-% PARTY A
-% Private (unencrypted?) data
-% Private key / Public key pair
-
-% PARTY B
-% Private (unencrypted?) data
-% Private key / Public key pair
-
-% PROXY
-% Public keys for all users / institutions (verifies the identity of a party and allows re-encryption)
-% Re-encryption keys for each API access (requires the 3rd party to read data)
-% Encrypted data (using owner's private key - not readable by anyone else)
-
-% No private keys nor unencrypted data is shared in the network
-% Upon granting access, the user's device generates the re-encryption key locally (potentially multiple keys whereby the data is readable by anyone but the data is verified to be encrypted by a particular device??)
-% This would require the use of proxy-reencryption such that any data uploaded by any device could be re-encrypted to be decrypted by any of the user's devices
-
-% User passes private and encrypted data to proxy
-% User sends the re-encryption key and access
-% Access logs are encrypted with the user's public key as blobs on blockchain - only readable by the user themselves
-% Who owns data - where do we store data that is written by party a but belongs to party b?
-
-% What about if you used IPFS across public hardware - individuals etc. to create the world's biggest network of file storage stations, the mining being the storage of files, paid for by people using the network to store encrypted data. Filecoin?

@@ -21,6 +21,8 @@ The encrypted message $M_a$ is passed to the semi-trusted proxy along with the r
 
 \subsubsection{Applying Proxy Re-Encryption}
 
+The core part of the project relates to how you encrypt and distribute data without negatively impacting the ownership of the data. Furthermore, other parts of the project specification need to be maintained. Proxy reencryption will therefore provide the backbone of the project, albeit in various states.
 
+We start with taking parties $P_a$ and $P_b$. These are two separate parties who wish to use the implementation. $P_a$ wants to share some data with $P_b$. $P_a$ encrypts data $D_a$ with their public key such that the data is now only readable by $P_a$ using $P_a$'s private key, $E_a$.
 
 \subsubsection{ZeroDB}
