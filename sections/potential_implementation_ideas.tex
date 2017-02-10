@@ -5,15 +5,17 @@ Since the core requirements of the project are architecture-independent to some 
 At current, a potential implementation utilises the following technologies:
 
 \begin{outline}
-  \1 AWS S3
-  \1 AWS EB
-  \1 AWS RDS
-  \1 Ethereum
-  \1 Electron
+  \1 AWS S3 (file/blob storage)
+  \1 AWS EB (scalable application endpoints)
+  \1 AWS RDS (SQL database)
+  \1 Ethereum (Blockchain-based decentralised applications)
+  \1 Electron (desktop application wrapper)
 \end{outline}
+
+Whilst centralised, Amazon Web Services (AWS) provides a solid and stable platform for the deployment of the application. Well-tested and production-ready software such as PostgreSQL, Amazon S3, and Amazon Elastic Beanstalk (running docker) not only provide a durable and dependable deployment solution, but also allow the development and production environments to be mirrored such that development need not take place online.
 
 The application would be distributed such that it could run on desktop operating systems (Mac and Linux (Debian) initially\footnote{Deployment of other packages may incur more overhead unnecessary at this point}). This means that the backend services of the project would be distinct from any front-end, whilst a public API offers the opportunity for third parties to contribute data and encourage user adoption.
 
-The backend services of the project would be fulfilled to some extent by the following architecture:
+The project architecture could be modelled, to some extent, by the following:
 
 \input{tikz/architecture_potential_centralised_compute}
