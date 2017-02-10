@@ -1,0 +1,27 @@
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[scale = 0.5, every node/.style={scale = 0.75}]
+
+  % AWS Architecture
+  \draw (-1, -1) rectangle (11, 11);
+  \draw (0, 0) rectangle (4, 4);
+  \draw (6, 0) rectangle (10, 4);
+  \draw (3, 6) rectangle (7, 10);
+  \draw[dashed, very thick, green] (4.75, 10.5) -- (4.75, 13);
+  \draw[dashed, very thick, green] (5.25, 10.5) -- (5.25, 13);
+
+  % Ethereum
+  \draw (12, -1) rectangle (18, 11);
+  \draw (13.5,  3.5) rectangle (16.5, 6.5);
+
+  % Front-end services
+  \draw (7, 13) rectangle (11, 17);
+
+  \node[align=center] at (2, 2) { RDS\\SQL-based DB };
+
+  \end{tikzpicture}
+  \caption{
+    Potential architecture for backend services to provide proof of concept
+  }
+  \label{fig:arch_potential_1}
+\end{figure}

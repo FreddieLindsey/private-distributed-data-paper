@@ -1,0 +1,19 @@
+\section{Implementation Considerations}
+
+Since the core requirements of the project are architecture-independent to some degree, a simple solution which is not fully decentralised is a good option to begin with.
+
+At current, a potential implementation utilises the following technologies:
+
+\begin{outline}
+  \1 AWS S3
+  \1 AWS EB
+  \1 AWS RDS
+  \1 Ethereum
+  \1 Electron
+\end{outline}
+
+The application would be distributed such that it could run on desktop operating systems (Mac and Linux (Debian) initially\footnote{Deployment of other packages may incur more overhead unnecessary at this point}). This means that the backend services of the project would be distinct from any front-end, whilst a public API offers the opportunity for third parties to contribute data and encourage user adoption.
+
+The backend services of the project would be fulfilled to some extent by the following architecture:
+
+\input{tikz/architecture_potential_centralised_compute}
