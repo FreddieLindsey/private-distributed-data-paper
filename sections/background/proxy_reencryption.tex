@@ -10,7 +10,7 @@ Fundamentally, proxy re-encryption is the process of taking a message $M_a$, enc
 
 In figure \ref{fig:pre_example}, whether data is handled or manipulated by a fully trusted entity or not is indicated using green/blue and red lines respectively.
 
-The encrypted message $M_a$ is passed to the semi-trusted proxy along with the re-encryption key (expressed as $f(E_a, e_b)$\footnote{$E_x$ represents the private key of a party $x$, $e_x$ represents the public key of a party $x$,})
+The encrypted message $M_a$ is passed to the semi-trusted proxy along with the re-encryption key (expressed as $f(E_a, e_b)$\footnote{$E_x$ represents the private key of a party $x$, $e_x$ represents the public key of a party $x$.})
 
 % Delegation – allows a message recipient (keyholder) to generate a re-encryption key based on his secret key and the key of the delegated user. This re-encryption key is used by the proxy as input to the re-encryption function, which is executed by the proxy to translate ciphertexts to the delegated user's key. Asymmetric proxy re-encryption schemes come in bi-directional and uni-directional varieties.
 
@@ -23,6 +23,10 @@ The encrypted message $M_a$ is passed to the semi-trusted proxy along with the r
 
 The core part of the project relates to how you encrypt and distribute data without negatively impacting the ownership of the data. Furthermore, other parts of the project specification need to be maintained. Proxy reencryption will therefore provide the backbone of the project, albeit in various states.
 
-We start with taking parties $P_a$ and $P_b$. These are two separate parties who wish to use the implementation. $P_a$ wants to share some data with $P_b$. $P_a$ encrypts data $D_a$ with their public key such that the data is now only readable by $P_a$ using $P_a$'s private key, $E_a$.
+We start with taking parties $P_a$ and $P_b$. These are two separate parties who wish to use the implementation. $P_a$ wants to share some data with $P_b$. $P_a$ encrypts data $D_a$ with their public key such that the data is now only readable by $P_a$ using $P_a$'s private key, $E_a$. The data is then transmitted through to the backend where it is stored as a master copy. When $P_a$ wants to retrieve the data from online, the private key which corresponds to the data is required.
+
+TODO: Much more detail required here
 
 \subsubsection{ZeroDB}
+
+TODO: Is this relevant?
