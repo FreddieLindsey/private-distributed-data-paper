@@ -31,7 +31,11 @@
 \usepackage{amssymb}
 \usepackage{hyperref} % For links
 \usepackage{blindtext}
+\usepackage{outlines}
 \usepackage{tabularx}
+
+\usepackage{tikz}
+\restylefloat{figure}
 
 %------------------------------------------------------------------------------
 
@@ -65,36 +69,23 @@
 
 \begin{document}
 
+% Definition of blocks:
+\tikzset{%
+  block/.style    = {draw, thick, rectangle, minimum height = 3em,
+    minimum width = 3em},
+  sum/.style      = {draw, circle, node distance = 2cm}, % Adder
+  input/.style    = {coordinate}, % Input
+  output/.style   = {coordinate} % Output
+}
+
 \pagestyle{empty}
 
-\begin{titlepage}
-  \centering
-  \vspace*{1cm}
+\newcommand{\reporttitle}{Blockchain-mediated Layered Access to Data}
+\newcommand{\reportauthor}{Frederick Lindsey}
+\newcommand{\reportsupervisor}{Dr. William Knottenbelt}
+\newcommand{\reporttype}{BEng. Individual Project Report}
 
-  \vspace{0.5cm}
-  \Large{\textbf{Blockchain-mediated Layered Access to Data}}
-
-  \vspace{1.5cm}
-
-  \large{Frederick Lindsey}
-
-  \vfill
-
-  \large{Supervised by William Knottenbelt}
-
-  \vspace{0.8cm}
-
-  Department of Computing\\
-  Imperial College\\
-  UK\\
-  19th June 2017
-\end{titlepage}
-
-%------------------------------------------------------------------------------
-% TABLE OF CONTENTS
-%------------------------------------------------------------------------------
-
-\tableofcontents
+\include{sections/title_page}
 
 %------------------------------------------------------------------------------
 % CONTENT
@@ -102,6 +93,10 @@
 
 % Identify key points including result of project
 \include{sections/abstract}
+
+% Acknowledge those who've technically or otherwise helped with completing the project
+\renewcommand{\abstractname}{Acknowledgements}
+\include{sections/acknowledgements}
 
 % Set up the header and footer
 \pagestyle{fancy}
@@ -114,32 +109,49 @@
 \renewcommand\headrulewidth{0.4pt} % Size of the header rule
 \renewcommand\footrulewidth{0.4pt} % Size of the footer rule
 
+%------------------------------------------------------------------------------
+% TABLE OF CONTENTS
+%------------------------------------------------------------------------------
+
+\tableofcontents
+
+%------------------------------------------------------------------------------
+% INTRODUCTION AND PREFACE
+%------------------------------------------------------------------------------
+
 % Write up understanding what the project is
 \include{sections/introduction}
 
-% The requirements and intended objectives of the project
-% \include{sections/project_objectives}
+%------------------------------------------------------------------------------
+% BACKGROUND
+%------------------------------------------------------------------------------
 
-% What is proxy re-encryption
-% \include{sections/proxy_reencryption}
+\include{sections/background}
 
-% What is means to apply different levels of access to this data using PRE
-% \include{sections/how_does_proxy_reencryption_help}
+%------------------------------------------------------------------------------
+% POTENTIAL IMPLEMENTATION IDEAS
+%------------------------------------------------------------------------------
 
-% What do the user journeys look like from the point of view of the Data Owner and the Requester
-% \include{sections/user_journeys}
+\include{sections/potential_implementation_ideas}
 
-% How does the Blockchain facilitate this in a tamper-proof manner
-% \include{sections/blockchain}
+%------------------------------------------------------------------------------
+% PROJECT PLAN
+%------------------------------------------------------------------------------
 
-% What Blockchain technologies are most appropriate for this
-% \include{sections/blockchain_technologies}
+\include{sections/project_plan}
 
-% Technical architecture of the project and dependencies
-% \include{sections/technical_architecture}
+%------------------------------------------------------------------------------
+% EVALUATION PLAN
+%------------------------------------------------------------------------------
+
+\include{sections/evaluation_plan}
+
+%------------------------------------------------------------------------------
+% BIBLIOGRAPHY AND APPENDICES
+%------------------------------------------------------------------------------
 
 % All sources used for research etc.
-% \include{appendices/bibliography}
+\include{appendices/bibliography}
 
 % Appendix
 \include{appendices/appendix}
