@@ -33,6 +33,7 @@
 \usepackage{blindtext}
 \usepackage{outlines}
 \usepackage{tabularx}
+\usepackage{minted}
 
 \usepackage{tikz}
 \restylefloat{figure}
@@ -85,18 +86,18 @@
 \newcommand{\reportsupervisor}{Dr. William Knottenbelt}
 \newcommand{\reporttype}{BEng. Individual Project Report}
 
-\include{sections/title_page}
+\include{sections/00_a_title_page}
 
 %------------------------------------------------------------------------------
 % CONTENT
 %------------------------------------------------------------------------------
 
 % Identify key points including result of project
-\include{sections/abstract}
+\include{sections/00_b_abstract}
 
 % Acknowledge those who've technically or otherwise helped with completing the project
 \renewcommand{\abstractname}{Acknowledgements}
-\include{sections/acknowledgements}
+\include{sections/00_c_acknowledgements}
 
 % Set up the header and footer
 \pagestyle{fancy}
@@ -122,41 +123,65 @@
 %------------------------------------------------------------------------------
 
 % Write up understanding what the project is
-\include{sections/introduction}
+\include{sections/01_introduction}
 
 %------------------------------------------------------------------------------
 % BACKGROUND
 %------------------------------------------------------------------------------
 
-\include{sections/background}
+\include{sections/02_background}
 
 %------------------------------------------------------------------------------
-% POTENTIAL IMPLEMENTATION IDEAS
+% DESIGN
 %------------------------------------------------------------------------------
 
-\include{sections/potential_implementation_ideas}
+\include{sections/03_design}
 
 %------------------------------------------------------------------------------
-% PROJECT PLAN
+% IMPLEMENTATION
 %------------------------------------------------------------------------------
 
-\include{sections/project_plan}
+\include{sections/04_implementation}
 
 %------------------------------------------------------------------------------
-% EVALUATION PLAN
+% EXPERIMENTATION
 %------------------------------------------------------------------------------
 
-\include{sections/evaluation_plan}
+\include{sections/05_experimentation}
+
+%------------------------------------------------------------------------------
+% OPTIMISATION
+%------------------------------------------------------------------------------
+
+\include{sections/06_optimisation}
+
+%------------------------------------------------------------------------------
+% CONCLUSION
+%------------------------------------------------------------------------------
+
+\include{sections/07_conclusion}
+
+%------------------------------------------------------------------------------
+% EVALUATION
+%------------------------------------------------------------------------------
+
+\include{sections/08_evaluation}
+
+%------------------------------------------------------------------------------
+% FUTURE EXTENSIONS
+%------------------------------------------------------------------------------
+
+\include{sections/09_future_extensions}
 
 %------------------------------------------------------------------------------
 % BIBLIOGRAPHY AND APPENDICES
 %------------------------------------------------------------------------------
 
 % All sources used for research etc.
-\include{appendices/bibliography}
+\include{appendices/01_bibliography}
 
 % Appendix
-\include{appendices/appendix}
+\include{appendices/02_appendix}
 
 %------------------------------------------------------------------------------
 

@@ -12,6 +12,9 @@ In figure \ref{fig:pre_example}, whether data is handled or manipulated by a ful
 
 The encrypted message $M_a$ is passed to the semi-trusted proxy along with the re-encryption key (expressed as $f(E_a, e_b)$\footnote{$E_x$ represents the private key of a party $x$, $e_x$ represents the public key of a party $x$.})
 
+\input{code/demo}
+
+
 % Delegation – allows a message recipient (keyholder) to generate a re-encryption key based on his secret key and the key of the delegated user. This re-encryption key is used by the proxy as input to the re-encryption function, which is executed by the proxy to translate ciphertexts to the delegated user's key. Asymmetric proxy re-encryption schemes come in bi-directional and uni-directional varieties.
 
 % - In a bi-directional scheme, the re-encryption scheme is reversible—that is, the re-encryption key can be used to translate messages from Bob to Charlie, as well as from Charlie to Bob. This can have various security consequences, depending on the application. One notable characteristic of bi-directional schemes is that both the delegator and delegated party (e.g., Charlie and Bob) must combine their secret keys to produce the re-encryption key.
@@ -26,7 +29,3 @@ The core part of the project relates to how you encrypt and distribute data with
 We start with taking parties $P_a$ and $P_b$. These are two separate parties who wish to use the implementation. $P_a$ wants to share some data with $P_b$. $P_a$ encrypts data $D_a$ with their public key such that the data is now only readable by $P_a$ using $P_a$'s private key, $E_a$. The data is then transmitted through to the backend where it is stored as a master copy. When $P_a$ wants to retrieve the data from online, the private key which corresponds to the data is required.
 
 TODO: Much more detail required here
-
-\subsubsection{ZeroDB}
-
-TODO: Is this relevant?
