@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LATEXMK="latexmk -pdf"
+LATEXMK="latexmk -f -pdf"
 
 if [ $# -gt 0 ] && [ $1 == 'clean' ]; then
   $LATEXMK -C
