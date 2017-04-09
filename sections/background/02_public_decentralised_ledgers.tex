@@ -2,9 +2,21 @@
 
 \subsubsection{Introduction to Public De-centralised Ledgers}
 
-A public de-centralised ledger (PDL) is a recent invention which endeavours to make data publicly accessible through a de-centralised system providing no single point of failure. A PDL provides transparency where traditional centralised systems fall short and allow any willing and able party to be a part of the network. Furthermore, a PDL provides no easy way for any network moderator or specific party to control or override the network without the consensus of a significant number of the network's members. Combined, this technology introduces an entirely new way of dealing with transactional data and, as implemented below, indeed any sort of data which has some lifecycle.
+A public de-centralised ledger (PDL) is a recent invention which endeavours to make data publicly accessible through a de-centralised system, thus providing no single point of failure. A PDL provides transparency where traditional centralised systems fall short and allows any willing and able party to be a part of the de-centralised network. Furthermore, a PDL provides no easy way for any network moderator or specific party to control or override the network without the consensus of a significant number of the network's members. Combined, this technology introduces an entirely new way of dealing with transactional data and, as implemented below, indeed any sort of data which has some lifecycle.
 
-\subsubsection{Relevance}
+\subsubsection{Blockchain}
+
+The Blockchain~\footnote{\href{https://www.blockchain.com/}{Blockchain (https://www.blockchain.com)}} is the underlying technology that is used by cryptocurrencies such as Bitcoin~\footnote{\href{https://bitcoin.org/en/}{Bitcoin (https://bitcoin.org)}}. Since Blockchain was the first widely-available public de-centralised ledger, most public de-centralised ledgers since have chosen to adopt the blockchain name to refer to this architecture.
+
+A traditional database is implemented such that it only maintains one current state for a given dataset~\footnote{Some databases have features allowing the user to view state (not transactions) over time (e.g. \href{https://www.postgresql.org/docs/6.3/static/c0503.htm}{PostgreSQL's Time Travel}) but these are not common and often deprecated} rather than transactions. In contrast, a blockchain, as the name would suggest, maintains a 'chain' of blocks that are agreed by the network representing transactions (not state) occurring over the chain's lifetime. These blocks are formed of groups of transactions and are totally ordered across nodes in the network. It follows therefore that every node needs to have the entire history of the network, and that the provenance and origin of any given commodity, the unit of measure of a transaction, is maintained.
+
+Whilst the above summarises the differences in the way a blockchain holds data compared to a traditional database, the differences in transaction ordering are far more fundamental and interesting.
+
+Rather than maintain just a current state of data by providing synchronous abstractions as per traditional databases, blockchain instead maintains a history of transactions applied across the network. It achieves this asynchronously by implementing a distributed peer-to-peer consensus system.
+
+\subsubsection{Ethereum}
+
+
 
 % TODO: Unsure of the relevance of merkel trees for this application
 
@@ -13,11 +25,3 @@ A public de-centralised ledger (PDL) is a recent invention which endeavours to m
 % Merkel Dag is the network of objects, pointing to each other using the hash of each object (Merkel)
 
 % \subsubsection{IPFS}
-
-\subsubsection{Blockchain}
-
-The Blockchain is the underlying technology that is used by cryptocurrencies such as Bitcoin\footnote{\href{https://bitcoin.org/en/}{Bitcoin (https://bitcoin.org)}}.
-
-\subsubsection{Ethereum}
-
-TODO
