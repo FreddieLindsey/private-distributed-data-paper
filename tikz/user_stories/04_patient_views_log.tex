@@ -1,0 +1,28 @@
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[scale = 0.6, every node/.style={scale = 0.85}]
+
+  % Lines
+  \draw (4, 4) -- (4, 20);
+  \draw (8, 4) -- (8, 20);
+  \draw (12, 4) -- (12, 20);
+  \draw (16, 4) -- (16, 20);
+  \draw (20, 4) -- (20, 20);
+  \draw (24, 4) -- (24, 20);
+  \draw (28, 4) -- (28, 20);
+
+  % Headings
+  \node[align = center] at (4, 21) { Patient };
+  \node[align = center] at (8, 21) { Doctor };
+  \node[align = center] at (12, 21) { Hospital };
+  \node[align = center] at (16, 21) { Data Gateway };
+  \node[align = center] at (20, 21) { GMC (etc.) };
+  \node[align = center] at (24, 21) { Patient Chain };
+  \node[align = center] at (28, 21) { Off-chain Storage };
+
+  \end{tikzpicture}
+  \caption{
+    Doctor requests that patient have X-ray taken
+  }
+  \label{fig:user_story_01}
+\end{figure}
