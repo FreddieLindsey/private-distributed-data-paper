@@ -3,19 +3,40 @@
   \begin{tikzpicture}[scale = 0.6, every node/.style={scale = 0.85}]
 
   % Lines
-  \draw (4, 4) -- (4, 15.5);
+  \draw (4, -6) -- (4, -2.5);
+  \draw (4, -1.5) -- (4, 5.5);
+  \draw (4, 6.5) -- (4, 9.5);
+  \draw (4, 10.5) -- (4, 15.5);
   \draw (4, 16.5) -- (4, 20);
-  \draw (8, 4) -- (8, 15.5);
+  \draw (8, -6) -- (8, -2.5);
+  \draw (8, -1.5) -- (8, 5.5);
+  \draw (8, 6.5) -- (8, 9.5);
+  \draw (8, 10.5) -- (8, 15.5);
   \draw (8, 16.5) -- (8, 20);
-  \draw (12, 4) -- (12, 15.5);
+  \draw (12, -6) -- (12, -2.5);
+  \draw (12, -1.5) -- (12, 5.5);
+  \draw (12, 6.5) -- (12, 9.5);
+  \draw (12, 10.5) -- (12, 15.5);
   \draw (12, 16.5) -- (12, 20);
-  \draw (16, 4) -- (16, 15.5);
+  \draw (16, -6) -- (16, -2.5);
+  \draw (16, -1.5) -- (16, 5.5);
+  \draw (16, 6.5) -- (16, 9.5);
+  \draw (16, 10.5) -- (16, 15.5);
   \draw (16, 16.5) -- (16, 20);
-  \draw (20, 4) -- (20, 15.5);
+  \draw (20, -6) -- (20, -2.5);
+  \draw (20, -1.5) -- (20, 5.5);
+  \draw (20, 6.5) -- (20, 9.5);
+  \draw (20, 10.5) -- (20, 15.5);
   \draw (20, 16.5) -- (20, 20);
-  \draw (24, 4) -- (24, 15.5);
+  \draw (24, -6) -- (24, -2.5);
+  \draw (24, -1.5) -- (24, 5.5);
+  \draw (24, 6.5) -- (24, 9.5);
+  \draw (24, 10.5) -- (24, 15.5);
   \draw (24, 16.5) -- (24, 20);
-  \draw (28, 4) -- (28, 15.5);
+  \draw (28, -6) -- (28, -2.5);
+  \draw (28, -1.5) -- (28, 5.5);
+  \draw (28, 6.5) -- (28, 9.5);
+  \draw (28, 10.5) -- (28, 15.5);
   \draw (28, 16.5) -- (28, 20);
 
   % Headings
@@ -53,7 +74,47 @@
   \node[align = center] at (16, 11.5) { ID Valid \checkmark };
   \draw [ -> ] (20, 11) -- (12, 11);
 
-  
+  \draw (4, 10.5) -- (28, 10.5);
+  \node[align = center] at (16, 10) { $\Delta t$ (\textbf{X-ray taken}) };
+  \draw (4, 9.5) -- (28, 9.5);
+
+  \node[align = center] at (14, 8.5) { Log X-ray taken : $ID_{P}$ };
+  \draw [ -> ] (12, 8) -- (16, 8);
+
+  \node[align = center] at (20, 7.5) { Log X-ray taken : $ID_{H}$ };
+  \draw [ -> ] (16, 7) -- (24, 7);
+
+  \draw (4, 6.5) -- (28, 6.5);
+  \node[align = center] at (16, 6) { $\Delta t$ (transaction mined) };
+  \draw (4, 5.5) -- (28, 5.5);
+
+  \node[align = center] at (20, 5) { Log X-ray taken \checkmark };
+  \draw [ -> ] (24, 4) -- (16, 4);
+
+  \node[align = center] at (14, 3.5) { Log X-ray taken \checkmark };
+  \draw [ -> ] (16, 3) -- (12, 3);
+
+  \node[align = center] at (14, 2.5) { Upload X-ray : $X_{ID_{H}}$ };
+  \draw [ -> ] (12, 2) -- (16, 2);
+
+  \node[align = center] at (22, 1.5) { Upload X-ray : $X_{ID_{P}}$ };
+  \draw [ -> ] (16, 1) -- (28, 1);
+
+  \node[align = center] at (22, 0.5) { Stored at $H_{P}$ };
+  \draw [ -> ] (28, 0) -- (16, 0);
+
+  \node[align = center] at (20, -0.5) { X-ray at $H_{P}$ : $ID_{H}$ };
+  \draw [ -> ] (16, -1) -- (24, -1);
+
+  \draw (4, -1.5) -- (28, -1.5);
+  \node[align = center] at (16, -2) { $\Delta t$ (transaction mined) };
+  \draw (4, -2.5) -- (28, -2.5);
+
+  \node[align = center] at (20, -3.5) { X-ray stored \checkmark };
+  \draw [ -> ] (24, -4) -- (16, -4);
+
+  \node[align = center] at (14, -4.5) { X-ray stored \checkmark };
+  \draw [ -> ] (16, -5) -- (12, -5);
 
   \end{tikzpicture}
   \caption{
