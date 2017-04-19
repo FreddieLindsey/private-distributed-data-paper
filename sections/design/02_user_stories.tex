@@ -2,7 +2,20 @@
 
 The below sequence diagrams show the interactions between the different entities. As part of the design process, the way in which these entities interact is fundamental to the implementation. The interactions between the patient and doctor are assumed to be non-digital (e.g. verbal). There is an assumption that the doctor has the ability to communicate with a local hospital for the purposes of referring treatment on a patient's behalf. The hospital has a 'data gateway' representing some host that has the ability to be communicated with via a RESTful API, and communicates with a patient's chain and off-chain storage directly. The 'data gateway' is intended as an extension to a hospital's current systems to allow the integration of modern technologies. The hospital is also assumed to have a direct connection to an authority to verify the validity of medical personnel, which for doctors is the GMC~\footnote{\href{http://www.gmc-uk.org/}{General Medical Council}}.
 
+\subsubsection{Doctor requests X-ray}
+
 \input{tikz/user_stories/01_doctor_requests_xray}
+
+\subsubsection{Patient has X-ray taken}
+
 \input{tikz/user_stories/02_patient_gets_xray}
+
+\subsubsection{Doctor views (and discusses) X-ray}
+
 \input{tikz/user_stories/03_doctor_views_xray}
-\input{tikz/user_stories/04_patient_views_log}
+
+\subsubsection{Patient views their log}
+
+\input{tikz/user_stories/04a_patient_views_log_logged}
+
+\input{tikz/user_stories/04b_patient_views_log_not_logged}
