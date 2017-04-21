@@ -3,20 +3,13 @@
   \begin{tikzpicture}[scale = 0.6, every node/.style={scale = 0.85}, every node/.append style={fill = white, rounded corners = 2pt, inner sep = 2pt, align = center}]
 
   % Lines
-  \draw (4, 6) -- (4, 11.5);
-  \draw (4, 12.5) -- (4, 20);
-  \draw (8, 6) -- (8, 11.5);
-  \draw (8, 12.5) -- (8, 20);
-  \draw (12, 6) -- (12, 11.5);
-  \draw (12, 12.5) -- (12, 20);
-  \draw (16, 6) -- (16, 11.5);
-  \draw (16, 12.5) -- (16, 20);
-  \draw (20, 6) -- (20, 11.5);
-  \draw (20, 12.5) -- (20, 20);
-  \draw (24, 6) -- (24, 11.5);
-  \draw (24, 12.5) -- (24, 20);
-  \draw (28, 6) -- (28, 11.5);
-  \draw (28, 12.5) -- (28, 20);
+  \draw (4, 6) -- (4, 20);
+  \draw (8, 6) -- (8, 20);
+  \draw (12, 6) -- (12, 20);
+  \draw (16, 6) -- (16, 20);
+  \draw (20, 6) -- (20, 20);
+  \draw (24, 6) -- (24, 20);
+  \draw (28, 6) -- (28, 20);
 
   % Headings
   \node at (4, 21) { Patient };
@@ -46,9 +39,8 @@
   \node at (20, 13.5) { Log request : $ID_{D}$, $ID_{H}$ };
   \draw [ -> ] (16, 13) -- (24, 13);
 
-  \draw (4, 12.5) -- (28, 12.5);
+  \draw[fill = white] (4, 12.5) rectangle (28, 11.5);
   \node at (16, 12) { $\Delta t$ (transaction mined) };
-  \draw (4, 11.5) -- (28, 11.5);
 
   \node at (20, 10.5) { Logged \checkmark };
   \draw [ -> ] (24, 10) -- (16, 10);
