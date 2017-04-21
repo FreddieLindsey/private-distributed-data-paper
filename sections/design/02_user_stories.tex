@@ -4,17 +4,19 @@ The below sequence diagrams show the interactions between the different entities
 
 \subsubsection{Doctor requests X-ray}
 
-The first step in the process is assumed to be that the doctor requests that an X-ray because the patient has an ailment. This process involves the doctor making a request to a hospital which sends an authenticated call to a patient's chain to create a request for an X-ray on the doctor's behalf. The data gateway hosts a local version of each patient's chain with the hospital's addresses unlocked (i.e. authenticated to make requests).
+The first step in the process is assumed to be the doctor request for an X-ray, likely because the patient has an ailment. This process involves the doctor making a request to a hospital which sends an authenticated call to a patient's chain to create a request for an X-ray on the doctor's behalf. Furthermore, the doctor's identification is validated before creating any transactions on the patient's chain and their signature. The data gateway hosts a local version of each patient's chain with the hospital's addresses unlocked (i.e. authenticated to make requests).
 
 \input{tikz/user_stories/01_doctor_requests_xray}
 
 \subsubsection{Patient has X-ray taken}
 
-The next step in the process is for the X-ray to be taken. The patient visits the hospital where the doctor referred them and has the X-ray taken, with the data being securely stored in off-chain storage and logged in the patient's chain.
+The next step in the process is for the X-ray to be taken. The patient visits the hospital where the doctor has referred them and has the X-ray taken, with the data being securely stored in off-chain storage and logged in the patient's chain. Note that this portion of the user journey requires the most transactions to be committed and mined.
 
 \input{tikz/user_stories/02_patient_gets_xray}
 
 \subsubsection{Doctor views (and discusses) X-ray}
+
+With the X-ray having been taken, processed, and likely somewhat analysed, the doctor now needs to discuss the X-ray with the patient to communicate any further treatment required etc. Through this part of the process the doctor's access is logged before the data is retrieved.
 
 \input{tikz/user_stories/03_doctor_views_xray}
 
