@@ -181,6 +181,7 @@ TSWLatexianTemp*
 
 # Output
 *.pdf
+*.html
 
 # Research links
 research
