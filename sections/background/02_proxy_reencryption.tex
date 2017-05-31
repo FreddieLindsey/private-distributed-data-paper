@@ -52,22 +52,50 @@ Given these properties, we will assume that asymmetric cryptography is a require
 
 \cite{bbs:1998:book} also discusses the notion of active versus passive proxy schemes distinguishing whether the delegatee has to cooperate or not in the creation of the proxy key. In practice, if the delegatee's public key is made available and is the only requirement from the delegatee then the delegator can delegate without the delegatee present, but otherwise, e.g. if the delegatee's secret key is required, the delegator needs the delegatee's cooperation to generate the proxy key required. Furthermore, in consideration of the delegator and delegatee's personally-identifying information, the proxy key can be distinguished as being transparent, translucent, or opaque depending on the ability of a third party to distinguish the two public keys the proxy is re-encrypting between.
 
-\paragraph{El Gamal Cryptography}
-
 \cite{bbs:1998:book} uses El Gamal encryption~\cite{elgamal:1985:article} as the basis for the proxy cryptography scheme suggested. A brief description of the protocol follows.
+
+\paragraph{El Gamal Cryptography}
 
 The El Gamal scheme includes the following functions:
 
-% TODO: Clarify
 \begin{itemize}
-  \item $Gen(..., g, Zn)$: A generator of keys requiring arbitrary arguments including some $g$, a generator in $Zn$, itself a finite cyclic group of order $n$. Produces some secret key $\alpha$, whereby $0 \le \alpha \le n$, and a public key $g^\alpha$.
-  \item $Encrypt(m, pk)$: Takes a random number, $r$. Encrypts a message $m$ using the shared secret represented by $g^a^r = k$, A's public key to some random power. Outputs the tuple $(g^r, mk mod n)$.
+  \item $Gen(..., g, Z_n^*)$: A generator of keys requiring arbitrary arguments including some $g$, a generator in $Z_n^*$, itself a finite cyclic group of order $n$. Produces some secret key $\alpha$, whereby $0 \le \alpha \le n$, and a public key $g^\alpha$.
+  \item $Encrypt(m, pk)$: Takes a random number, $r \in {0..n}$. Encrypts a message $m$ using the shared secret represented by $g^a^r = k$, A's public key to some random power. Outputs the tuple $(g^r, mk \text{ mod } n)$.
   \item $Decrypt(<pk, c>, sk)$: Decrypts some encrypted message $c$ using the secret key $sk$. Successful only if the message $c$ was encrypted for the owner of the key $sk$.
 \end{itemize}
 
 It is based on the Diffie-Helman protocol and relies on the discrete logarithm problem of $A = g^a$ being difficult.
 
-\subsubsection{Proxy Cryptography Revisited~\cite{ivandodis:2003:inproceedings}}
+\paragraph{BBS Scheme}
+
+Similar to the standard El Gamal scheme, the Blaze, Bleumer, Strauss (BBS) scheme uses the same parameters but uses them to different effect.
+
+As part of key generation, we now take $n$ to be of the form $2q + 1$ with $n$ itself prime. The generator is taken as above, with the secret key $a$ in ${0..n - 1}$, i.e. relatively prime to $n$. The inverse is also required for this scheme, so $a^{-1} \text{ mod } 2q$ is also calculated. The public key (published) is calculated as $g^a \text{ mod } n$. Encryption and decryption differ slightly to the standard El Gamal scheme:
+
+\begin{itemize}
+  \item $Encrypt(m, pk)$: Takes a random number, $r \in Z_{2q}^*$. Encrypts a message $m$ using the shared secret represented by $g^r = k$, A's public key to some random power. Outputs the tuple $(pk^r \text{ mod } n, mg^r \text{ mod } n)$.
+  \item $Decrypt(<pk, c>, sk_a)$: Decrypts some encrypted message $c$ using the secret key $sk_a$. Successful only if the message $c$ was encrypted for the owner of the key $sk_a$, A. Uses the inverse of the secret key to yield $(pk^r \text{ mod } n)^{a^{-1}} = g^r (\text{mod } n)$. Taking the inverse of this result, we have the decryption key for the ciphertext: $mg^r \text{ mod } n(g^r (\text{mod } n))^{-1} = m$
+\end{itemize}
+
+Noting that the actual message is encrypted with some random $r$, this acts as a symmetric key during the encryption / decryption process. When the public key of the recipient is raised by $r$, this yields a result which is only decryptable by the intended recipient. Therefore we need a (proxy) function which is able to achieve the following:
+
+$$
+\begin{align}
+& f(pk_a^r \text{ mod } n, re_{a \rightarrow b}) & &=& pk_b^r \text{ mod } n \\
+\implies & f((g^a)^r \text{ mod } n, re_{a \rightarrow b}) & &=& (g^b)^r \text{ mod } n \\
+\implies & re_{a \rightarrow b} & &=& g^{-a} \times g^{b}
+\end{align}
+$$
+
+Note that the re-encryption process is more efficient than first decrypting the data and then re-encrypting the data with another key, since only one, atomic, exponentiation is required.
+
+Given the reencryption key shown above ($g^{-a} \times g^{b}$), bilateral trust is required. $A$ can learn $B$'s key and vice versa. This is not desirable for this project and so we must look for alternative schemes which do not have this issue.
+
+\subsubsection{Proxy Cryptography Revisited}
+
+\cite{ivandodis:2003:inproceedings} suggested improved schemes which aim to address shortcomings of the original BBS scheme in their paper \textit{Proxy Cryptography Revisited}.
+
+
 
 \subsubsection{Improved Proxy Re-encryption Schemes with Applications to Secure Distributed Storage~\cite{afgh:2006:article}}
 
