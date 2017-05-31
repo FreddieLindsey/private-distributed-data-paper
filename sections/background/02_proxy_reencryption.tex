@@ -18,7 +18,7 @@ Below I discuss the contributions of various authors through the history of prox
 
 \subsubsection{Properties of a proxy re-encryption scheme}
 
-\begin{table}
+\begin{table}[H]
   \centering
   \begin{tabular}{ | l | c | c | c | }
     \hline
@@ -33,6 +33,7 @@ Below I discuss the contributions of various authors through the history of prox
     7. Temporary & \checkmark & \checkmark & \checkmark \\
     8. Non-transitive & & \checkmark & \checkmark \\
     9. Non-transferable & & & \\
+    \hline
   \end{tabular}
   \caption{
     \cite{afgh:2006:article} lists nine desirable properties of a proxy re-encryption scheme. Below is the table created by the author to show the benefits and compromises of the first three schemes discussed below.
@@ -109,7 +110,7 @@ The El Gamal scheme includes the following functions:
 
 \begin{itemize}
   \item $Gen(..., g, Z_n^*)$: A generator of keys requiring arbitrary arguments including some $g$, a generator in $Z_n^*$, itself a finite cyclic group of order $n$. Produces some secret key $\alpha$, whereby $0 \le \alpha \le n$, and a public key $g^\alpha$.
-  \item $Encrypt(m, pk)$: Takes a random number, $r \in {0..n}$. Encrypts a message $m$ using the shared secret represented by $g^a^r = k$, A's public key to some random power. Outputs the tuple $(g^r, mk \text{ mod } n)$.
+  \item $Encrypt(m, pk)$: Takes a random number, $r \in {0..n}$. Encrypts a message $m$ using the shared secret represented by $g^a^r = k$, A\'s public key to some random power. Outputs the tuple $(g^r, mk \text{ mod } n)$.
   \item $Decrypt(<pk, c>, sk)$: Decrypts some encrypted message $c$ using the secret key $sk$. Successful only if the message $c$ was encrypted for the owner of the key $sk$.
 \end{itemize}
 
