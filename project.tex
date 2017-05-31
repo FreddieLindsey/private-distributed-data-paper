@@ -12,14 +12,8 @@
 \usepackage[english]{babel}
 \usepackage{csquotes} % Recommended
 
-\usepackage[
-  backend=biber,
-  style=authortitle,
-  autocite=footnote,
-  maxcitenames=3,
-  maxbibnames=100
-]{biblatex}
-\addbibresource{sources.bib}
+\usepackage{natbib}
+\bibliographystyle{agsm}
 
 \usepackage{fancyhdr} % Required for custom headers
 \usepackage{lastpage} % Required to determine the last page for the footer
@@ -35,6 +29,7 @@
 \usepackage{outlines}
 \usepackage{tabularx}
 \usepackage{minted}
+\usepackage{titlesec} % Used for paragraph subsubsubsection
 
 \usepackage{tikz}
 \restylefloat{figure}
@@ -50,7 +45,11 @@
 \headsep=0.25in
 
 % Numbering
-% \setcounter{secnumdepth}{-1}
+\setcounter{secnumdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
 % Sans Serif Font
 \renewcommand\rmdefault{cmss}
@@ -122,7 +121,7 @@
 % TABLE OF CONTENTS
 %------------------------------------------------------------------------------
 
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{4}
 
 \tableofcontents
 

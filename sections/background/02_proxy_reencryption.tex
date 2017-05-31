@@ -2,18 +2,19 @@
 
 \subsubsection{Introduction to Proxy Re-Encryption}
 
-\blockquote{In a proxy re-encryption scheme a semi-trusted proxy converts a ciphertext for Alice into a ciphertext for Bob without seeing the underlying plaintext}~\autocite{greenateniese:2006:article}
+\begin{displayquote}{
+  \textbf{"In a proxy re-encryption scheme a semi-trusted proxy converts a ciphertext for Alice into a ciphertext for Bob without seeing the underlying plaintext"}~\cite{greenateniese:2006:article}
+}\end{displayquote}
 
-Fundamentally, proxy re-encryption is the process of taking a message $M_a$, encrypted by a party $P_a$, and re-encrypting it to be passed to party $P_b$. The message is then in the form of $M_b$, such that it is only readable by party $P_b$. Through the re-encryption process, the message is never actually decrypted, such that the data is never revealed to any non-trusted parties (including the proxy itself). This process relies on the functional relationship between the two ciphertexts, with the characteristics of the proxy re-encryption processed determined by the topology of this function.
+Introduced as 'atomic proxy cryptography'~\cite{bbs:1998:book}, proxy re-encryption is the process of taking a message $M_a$, encrypted for a party $P_a$, and re-encrypting it such that it is readable by party $P_b$. Through the re-encryption process, the message is never decrypted by the proxy, such that the data is never revealed to any parties (including the proxy) other than the delegator and delegatees. This process relies on the functional relationship between the two ciphertexts, with the characteristics of the proxy re-encryption processed determined by the topology of this function.
 
 \input{tikz/proxy_re_encryption_example}
 
-In figure \ref{fig:pre_example}, whether data is handled or manipulated by a fully trusted entity or not is indicated using green/blue and red lines respectively.
+In figure \ref{fig:pre_example}, whether data is handled or manipulated by a fully trusted entity (a delegator or delegatee) or not is indicated using green/blue and red lines respectively.
 
-The encrypted message $M_a$ is passed to the semi-trusted proxy along with the re-encryption key (expressed as $f(E_a, e_b)$\footnote{$E_x$ represents the private key of a party $x$, $e_x$ represents the public key of a party $x$.})
+The encrypted message $M_a$ is passed to the semi-trusted proxy along with the re-encryption key ( some $f(SK_a, PK_b)$\footnote{$SK_x$ represents the secret (private) key of a party $x$, $PK_x$ represents the public key of a party $x$.})
 
-\input{code/demo}
-
+Below I discuss the contributions of various authors through the history of proxy re-encryption and the available schemes that might be suitable for a project focused on providing secure data sharing and storage.
 
 % Delegation – allows a message recipient (keyholder) to generate a re-encryption key based on his secret key and the key of the delegated user. This re-encryption key is used by the proxy as input to the re-encryption function, which is executed by the proxy to translate ciphertexts to the delegated user's key. Asymmetric proxy re-encryption schemes come in bi-directional and uni-directional varieties.
 
@@ -22,10 +23,52 @@ The encrypted message $M_a$ is passed to the semi-trusted proxy along with the r
 
 % Transitivity – Transitive proxy re-encryption schemes allow for a ciphertext to be re-encrypted an unlimited number of times. For example, a ciphertext might be re-encrypted from Bob to Charlie, and then again from Charlie to David and so on. Non-transitive schemes allow for only one (or a limited number) of re-encryptions on a given ciphertext. Currently, there is no known uni-directional, transitive proxy re-encryption scheme. It is an open problem as to whether such constructions are possible.
 
-\subsubsection{Applying Proxy Re-Encryption}
+\subsubsection{Atomic Proxy Cryptography}
 
-The core part of the project relates to how you encrypt and distribute data without negatively impacting the ownership of the data. Furthermore, other parts of the project specification need to be maintained. Proxy reencryption will therefore provide the backbone of the project, albeit in various states.
+Recognising that it is intuitive to expect any good cryptography scheme to disallow any untrusted party to re-encrypt a ciphertext, \cite{bbs:1998:book} suggests that perhaps it is desirable to allow re-encryption of a ciphertext, but only for specific delegatees. This is subject to doing so atomically, i.e. without revealing the underlying ciphertext, and without knowledge of the delegator or delegatee being exposed in the process. Conceptually this means that a delegator can encrypt once and have semi-trusted proxies re-encrypt for delegatees when desired.
 
-We start with taking parties $P_a$ and $P_b$. These are two separate parties who wish to use the implementation. $P_a$ wants to share some data with $P_b$. $P_a$ encrypts data $D_a$ with their public key such that the data is now only readable by $P_a$ using $P_a$'s private key, $E_a$. The data is then transmitted through to the backend where it is stored as a master copy. When $P_a$ wants to retrieve the data from online, the private key which corresponds to the data is required.
+Let's suppose we have a cryptography scheme whereby the following functions are observed:
 
-TODO: Much more detail required here
+\begin{itemize}
+  \item $Gen(...)$: A generator of keys requiring arbitrary arguments
+  \item $Encrypt(m, k)$: Allows the encryption of a message $m$ using the $k$ such that it is only decryptable by it's counterpart (or itself, if symmetric)
+  \item $Decrypt(m, k)$: Allows the decryption of some encrypted message $m$ using the key $k$. Successful only if the message $m$ was encrypted (and intended for) the owner of the key $k$.
+  \item $\Pi(m, rek_{a \rightarrow b})$: Allows the re-encryption of some encrypted message $m$ intended for the owner of key $a$ such that it is decryptable by the owner of key $b$.
+  \item $ReGen(..., SK_a, PK_b)$: A generator of re-encryption keys requiring arbitrary arguments including keys required to decrypt
+\end{itemize}}
+
+As an example, imagine you wished to share an image privately between several friends. You encrypt this image and generate re-encryption keys for your friends (delegatees). Publishing the image and the keys means any third party (including the friends themselves) are able to re-encrypt the encrypted image such that a delegatee is able to decrypt it and view it.
+
+The importance of the re-encryption function being atomic cannot be understated. The re-encryption function $\Pi$ alters the ciphertext effectively performing $\Pi(m_a, RK_{a \rightarrow b}) = Encrypt(Decrypt(m_a, SK_a), PK_b)$. However, if $\Pi$ were not atomic, the decryption of the message $m_a$ would reveal the plaintext content of the message to the proxy.
+
+The following trust axioms apply to proxy re-encryption (assuming perfect implementation). The latter axiom only applies to symmetric key cryptography. Since the latter axiom is an undesirable property, we seek to only use asymmetric (public-key) cryptography to maintain security (of both parties).
+
+\begin{itemize}
+  \item A (unconditionally) trusts B since B can decrypt on behalf of A
+  \item B trusts A since A can calculate $SK_b$ using the proxy key and $SK_a$. (\textit{Symmetric keys only})
+\end{itemize}}
+
+Given these properties, we will assume that asymmetric cryptography is a requirement of proxy re-encryption going forward.
+
+\cite{bbs:1998:book} also discusses the notion of active versus passive proxy schemes distinguishing whether the delegatee has to cooperate or not in the creation of the proxy key. In practice, if the delegatee's public key is made available and is the only requirement from the delegatee then the delegator can delegate without the delegatee present, but otherwise, e.g. if the delegatee's secret key is required, the delegator needs the delegatee's cooperation to generate the proxy key required. Furthermore, in consideration of the delegator and delegatee's personally-identifying information, the proxy key can be distinguished as being transparent, translucent, or opaque depending on the ability of a third party to distinguish the two public keys the proxy is re-encrypting between.
+
+\paragraph{El Gamal Cryptography}
+
+\cite{bbs:1998:book} uses El Gamal encryption~\cite{elgamal:1985:article} as the basis for the proxy cryptography scheme suggested. A brief description of the protocol follows.
+
+The El Gamal scheme includes the following functions:
+
+% TODO: Clarify
+\begin{itemize}
+  \item $Gen(..., g, Zn)$: A generator of keys requiring arbitrary arguments including some $g$, a generator in $Zn$, itself a finite cyclic group of order $n$. Produces some secret key $\alpha$, whereby $0 \le \alpha \le n$, and a public key $g^\alpha$.
+  \item $Encrypt(m, pk)$: Takes a random number, $r$. Encrypts a message $m$ using the shared secret represented by $g^a^r = k$, A's public key to some random power. Outputs the tuple $(g^r, mk mod n)$.
+  \item $Decrypt(<pk, c>, sk)$: Decrypts some encrypted message $c$ using the secret key $sk$. Successful only if the message $c$ was encrypted for the owner of the key $sk$.
+\end{itemize}
+
+It is based on the Diffie-Helman protocol and relies on the discrete logarithm problem of $A = g^a$ being difficult.
+
+\subsubsection{Proxy Cryptography Revisited~\cite{ivandodis:2003:inproceedings}}
+
+\subsubsection{Improved Proxy Re-encryption Schemes with Applications to Secure Distributed Storage~\cite{afgh:2006:article}}
+
+\subsubsection{Unidirectional Chosen-Ciphertext Secure Proxy Re-Encryption~\cite{lv11:2011:article}}
