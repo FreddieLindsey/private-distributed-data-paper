@@ -14,14 +14,63 @@ In figure \ref{fig:pre_example}, whether data is handled or manipulated by a ful
 
 The encrypted message $M_a$ is passed to the semi-trusted proxy along with the re-encryption key ( some $f(SK_a, PK_b)$\footnote{$SK_x$ represents the secret (private) key of a party $x$, $PK_x$ represents the public key of a party $x$.})
 
-Below I discuss the contributions of various authors through the history of proxy re-encryption and the available schemes that might be suitable for a project focused on providing secure data sharing and storage.
+Below I discuss the contributions of various authors through the history of proxy re-encryption and the available schemes that might be suitable for a project focused on providing secure data sharing and storage. Specific properties of different proxy re-encryption schemes are discussed first to aid in understanding the historical context of each paper.
 
-% Delegation – allows a message recipient (keyholder) to generate a re-encryption key based on his secret key and the key of the delegated user. This re-encryption key is used by the proxy as input to the re-encryption function, which is executed by the proxy to translate ciphertexts to the delegated user's key. Asymmetric proxy re-encryption schemes come in bi-directional and uni-directional varieties.
+\subsubsection{Properties of a proxy re-encryption scheme}
 
-% - In a bi-directional scheme, the re-encryption scheme is reversible—that is, the re-encryption key can be used to translate messages from Bob to Charlie, as well as from Charlie to Bob. This can have various security consequences, depending on the application. One notable characteristic of bi-directional schemes is that both the delegator and delegated party (e.g., Charlie and Bob) must combine their secret keys to produce the re-encryption key.
-% - A uni-directional scheme is effectively one-way; messages can be re-encrypted from Bob to Charlie, but not the reverse. Uni-directional schemes can be constructed such that the delegated party need not reveal its secret key. For example, Bob could delegate to Charlie by combining his secret key with Charlie's public key.
+\begin{table}
+  \centering
+  \begin{tabular}{ | l | c | c | c | }
+    \hline
+    Property & \cite{bbs:1998:book} & \cite{ivandodis:2003:inproceedings} & \cite{afgh:2006:article} \\
+    \hline
+    1. Unidirectional & & \checkmark & \checkmark \\
+    2. Non-interactive & & \checkmark & \checkmark \\
+    3. Proxy invisible & \checkmark & & \checkmark \\
+    4. Original access & \checkmark & \checkmark & \checkmark \\
+    5. Key optimal & \checkmark & & \checkmark \\
+    6. Collusion 'safe' & & & \checkmark \\
+    7. Temporary & \checkmark & \checkmark & \checkmark \\
+    8. Non-transitive & & \checkmark & \checkmark \\
+    9. Non-transferable & & & \\
+  \end{tabular}
+  \caption{
+    \cite{afgh:2006:article} lists nine desirable properties of a proxy re-encryption scheme. Below is the table created by the author to show the benefits and compromises of the first three schemes discussed below.
+  }
+  \label{table:pre_properties}
+\end{table}
 
-% Transitivity – Transitive proxy re-encryption schemes allow for a ciphertext to be re-encrypted an unlimited number of times. For example, a ciphertext might be re-encrypted from Bob to Charlie, and then again from Charlie to David and so on. Non-transitive schemes allow for only one (or a limited number) of re-encryptions on a given ciphertext. Currently, there is no known uni-directional, transitive proxy re-encryption scheme. It is an open problem as to whether such constructions are possible.
+\paragraph{Property Definitions}
+
+\begin{enumerate}
+  \item
+    \textbf{Unidirectional} \\
+    Creating a proxy key $\pi_{a \rightarrow b}$ allows re-encryption $A \rightarrow B$ but not $B \rightarrow A$.
+  \item
+    \textbf{Non-interactive} \\
+    Re-encryption keys can be created with the public key from the delegatee, without the need for an authorised third party or any interaction.
+  \item
+    \textbf{Proxy invisible} \\
+    It is not possible to determine that a proxy has re-encrypted a ciphertext. If a recipient receives a ciphertext that has been re-encrypted but is indistinguishable from a ciphertext which has only been encrypted by the recipient's public key, then the proxy has been invisible.
+  \item
+    \textbf{Original access} \\
+    The delegator of some ciphertext retains the ability to decrypt ciphertexts that have been re-encrypted for a delegatee, thereby retaining the delegator's original access rights.
+  \item
+    \textbf{Key optimal} \\
+    The storage of secret keys remains constant with every extra delegatee.
+  \item
+    \textbf{Collusion 'safe'} \\
+    Should the proxy and the delegatees collude, they will be unable to reveal the secret key of the delegator.
+  \item
+    \textbf{Temporary} \\
+    The delegatee is only able to decrypt messages encrypted by the delegator through a certain time period $i$.
+  \item
+    \textbf{Non-transitive} \\
+    The proxy alone cannot re-delegate decryption rights, i.e. there does not exist a function $f(re_{a \rightarrow b}, re_{b \rightarrow c}) = re_{a \rightarrow c}$.
+  \item
+    \textbf{Non-transferable} \\
+    Some proxy and delegatees are unable to re-delegate encryption rights, i.e. even with $re_{a \rightarrow b}, sk_b, pk_c$ one cannot share data with another party (a non-delegatee and not the delegator). This remains an open problem for proxy re-encryption.
+\end{enumerate}
 
 \subsubsection{Atomic Proxy Cryptography}
 
@@ -35,7 +84,7 @@ Let's suppose we have a cryptography scheme whereby the following functions are 
   \item $Decrypt(m, k)$: Allows the decryption of some encrypted message $m$ using the key $k$. Successful only if the message $m$ was encrypted (and intended for) the owner of the key $k$.
   \item $\Pi(m, rek_{a \rightarrow b})$: Allows the re-encryption of some encrypted message $m$ intended for the owner of key $a$ such that it is decryptable by the owner of key $b$.
   \item $ReGen(..., SK_a, PK_b)$: A generator of re-encryption keys requiring arbitrary arguments including keys required to decrypt
-\end{itemize}}
+\end{itemize}
 
 As an example, imagine you wished to share an image privately between several friends. You encrypt this image and generate re-encryption keys for your friends (delegatees). Publishing the image and the keys means any third party (including the friends themselves) are able to re-encrypt the encrypted image such that a delegatee is able to decrypt it and view it.
 
@@ -83,13 +132,13 @@ $$
 \begin{align}
 & f(pk_a^r \text{ mod } n, re_{a \rightarrow b}) & &=& pk_b^r \text{ mod } n \\
 \implies & f((g^a)^r \text{ mod } n, re_{a \rightarrow b}) & &=& (g^b)^r \text{ mod } n \\
-\implies & re_{a \rightarrow b} & &=& g^{-a} \times g^{b}
+\implies & re_{a \rightarrow b} & &=& g^{a^{-1}} \times g^{b}
 \end{align}
 $$
 
 Note that the re-encryption process is more efficient than first decrypting the data and then re-encrypting the data with another key, since only one, atomic, exponentiation is required.
 
-Given the reencryption key shown above ($g^{-a} \times g^{b}$), bilateral trust is required. $A$ can learn $B$'s key and vice versa. This is not desirable for this project and so we must look for alternative schemes which do not have this issue.
+Given the reencryption key shown above ($g^{a^{-1}} \times g^{b}$), bilateral trust is required. $A$ can learn $B$'s key and vice versa. This is not desirable for this project and so we must look for alternative schemes which do not have this issue.
 
 \subsubsection{Proxy Cryptography Revisited}
 
@@ -97,6 +146,8 @@ Given the reencryption key shown above ($g^{-a} \times g^{b}$), bilateral trust 
 
 
 
-\subsubsection{Improved Proxy Re-encryption Schemes with Applications to Secure Distributed Storage~\cite{afgh:2006:article}}
+\subsubsection{Improved Proxy Re-encryption Schemes with Applications to Secure Distributed Storage}
+
+\cite{afgh:2006:article} offers another take on proxy re-encryption comparing previous schemes and offering improvements.
 
 \subsubsection{Unidirectional Chosen-Ciphertext Secure Proxy Re-Encryption~\cite{lv11:2011:article}}
