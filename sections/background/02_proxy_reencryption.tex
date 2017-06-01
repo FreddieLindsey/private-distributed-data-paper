@@ -75,7 +75,7 @@ Below I discuss the contributions of various authors through the history of prox
 
 \subsubsection{Atomic Proxy Cryptography}
 
-Recognising that it is intuitive to expect any good cryptography scheme to disallow any untrusted party to re-encrypt a ciphertext, \cite{bbs:1998:book} suggests that perhaps it is desirable to allow re-encryption of a ciphertext, but only for specific delegatees. This is subject to doing so atomically, i.e. without revealing the underlying ciphertext, and without knowledge of the delegator or delegatee being exposed in the process. Conceptually this means that a delegator can encrypt once and have semi-trusted proxies re-encrypt for delegatees when desired.
+Recognising that it is intuitive to expect any good cryptography scheme to disallow any untrusted party to re-encrypt a ciphertext, \cite{bbs:1998:book} suggests that perhaps it is desirable to allow re-encryption of a ciphertext, but only for specific delegatees. This is subject to doing so atomically, i.e. without revealing the underlying plaintext, and without knowledge of the delegator or delegatee being exposed in the process. Conceptually this means that a delegator can encrypt once and have semi-trusted proxies re-encrypt for delegatees when desired.
 
 Let's suppose we have a cryptography scheme whereby the following functions are observed:
 
@@ -96,7 +96,7 @@ The following trust axioms apply to proxy re-encryption (assuming perfect implem
 \begin{itemize}
   \item A (unconditionally) trusts B since B can decrypt on behalf of A
   \item B trusts A since A can calculate $SK_b$ using the proxy key and $SK_a$. (\textit{Symmetric keys only})
-\end{itemize}}
+\end{itemize}
 
 Given these properties, we will assume that asymmetric cryptography is a requirement of proxy re-encryption going forward.
 
@@ -110,7 +110,7 @@ The El Gamal scheme includes the following functions:
 
 \begin{itemize}
   \item $Gen(..., g, Z_n^*)$: A generator of keys requiring arbitrary arguments including some $g$, a generator in $Z_n^*$, itself a finite cyclic group of order $n$. Produces some secret key $\alpha$, whereby $0 \le \alpha \le n$, and a public key $g^\alpha$.
-  \item $Encrypt(m, pk)$: Takes a random number, $r \in {0..n}$. Encrypts a message $m$ using the shared secret represented by $g^a^r = k$, A\'s public key to some random power. Outputs the tuple $(g^r, mk \text{ mod } n)$.
+  \item $Encrypt(m, pk)$: Takes a random number, $r \in {0..n}$. Encrypts a message $m$ using the shared secret represented by $g^ar = k$, A's public key to some random power. Outputs the tuple $(g^r, mk \text{ mod } n)$.
   \item $Decrypt(<pk, c>, sk)$: Decrypts some encrypted message $c$ using the secret key $sk$. Successful only if the message $c$ was encrypted for the owner of the key $sk$.
 \end{itemize}
 
@@ -143,12 +143,41 @@ Given the reencryption key shown above ($g^{a^{-1}} \times g^{b}$), bilateral tr
 
 \subsubsection{Proxy Cryptography Revisited}
 
-\cite{ivandodis:2003:inproceedings} suggested improved schemes which aim to address shortcomings of the original BBS scheme in their paper \textit{Proxy Cryptography Revisited}.
+\cite{ivandodis:2003:inproceedings} authored improved schemes which aim to address some of the shortcomings of the original BBS scheme. Crucially, the scheme is unidirectional and non-transitive. The former is important for this project since one of the criteria is to have layered access, implying that some parties will be involved unknown to the delegator individually. Non-transitivity is equally important as it allows the publishing of re-encryption keys without risk of any malicious attacker delegating themselves rights to content for which the original delegator has not delegated access to them.
 
-
+% TODO: Scheme
 
 \subsubsection{Improved Proxy Re-encryption Schemes with Applications to Secure Distributed Storage}
 
-\cite{afgh:2006:article} offers another take on proxy re-encryption comparing previous schemes and offering improvements.
+The proxy re-encryption scheme (AFGH) presented by \cite{afgh:2006:article} offers another take on proxy re-encryption, and is founded upon comparing previous schemes and offering improvements. The AFGH scheme offers all benefits of both previously discussed schemes (BBS and ID) as well as the option of a collusion 'safe' protocol.
 
-\subsubsection{Unidirectional Chosen-Ciphertext Secure Proxy Re-Encryption~\cite{lv11:2011:article}}
+One crucial problem with the scheme presented by \cite{ivandodis:2003:inproceedings} is that it does not yield proxy re-encryption as described. By splitting the private key as shares, apart from the obvious security issues, the delegatee is unable to decrypt the re-encrypted ciphertext with their own private key. Furthermore, the space requirement of two key shares per delegation in a system designed to scale is troubling.
+
+Having attempted to improve the ID scheme by suggesting ways to split the secret keys and secure these to facilitate pseudo proxy re-encryption, the (AFGH) scheme authored by \cite{afgh:2006:article} uses an improved BBS scheme with bilinear maps allowing re-encrypted ciphertexts to be decrypted using a delegatees's normal secret key and improving upon the security of both the BBS and ID schemes.
+
+The paper presents two useful schemes which differ only slightly.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ | l | l | l | }
+    \hline
+    Function & $2^{nd}$ iteration & $3^{rd}$ iteration \\
+    \hline
+    Key Generation & & \\
+    Re-encryption Key Generation & & \\
+    First-level Encryption & & \\
+    Second-level Encryption & & \\
+    Re-encryption & & \\
+    Decryption & & \\
+    \hline
+  \end{tabular}
+  \caption{
+    A comparison of the second and third iterations authored by \cite{afgh:2006:article}
+  }
+  \label{table:afgh_comparison}
+\end{table}
+
+\subsubsection{Unidirectional Chosen-Ciphertext Secure Proxy Re-Encryption}
+
+% TODO
+\cite{lv11:2011:article}
