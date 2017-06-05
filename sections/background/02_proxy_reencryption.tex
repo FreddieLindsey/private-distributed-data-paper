@@ -130,11 +130,11 @@ As part of key generation, we now take $n$ to be of the form $2q + 1$ with $n$ i
 Noting that the actual message is encrypted with some random $r$, this acts as a symmetric key during the encryption / decryption process. When the public key of the recipient is raised by $r$, this yields a result which is only decryptable by the intended recipient. Therefore we need a (proxy) function which is able to achieve the following:
 
 $$
-\begin{align}
+\begin{aligned}
 & f(pk_a^r \text{ mod } n, re_{a \rightarrow b}) & &=& pk_b^r \text{ mod } n \\
 \implies & f((g^a)^r \text{ mod } n, re_{a \rightarrow b}) & &=& (g^b)^r \text{ mod } n \\
 \implies & re_{a \rightarrow b} & &=& g^{a^{-1}} \times g^{b}
-\end{align}
+\end{aligned}
 $$
 
 Note that the re-encryption process is more efficient than first decrypting the data and then re-encrypting the data with another key, since only one, atomic, exponentiation is required.
