@@ -137,7 +137,7 @@ $$
 \end{aligned}
 $$
 
-Note that the re-encryption process is more efficient than first decrypting the data and then re-encrypting the data with another key, since only one, atomic, exponentiation is required.
+Note that the re-encryption process is more efficient than the process of decrypting the data and then re-encrypting the data with another key, since only one, atomic, exponentiation is required.
 
 Given the reencryption key shown above ($g^{a^{-1}} \times g^{b}$), bilateral trust is required. $A$ can learn $B$'s key and vice versa. This is not desirable for this project and so we must look for alternative schemes which do not have this issue.
 
