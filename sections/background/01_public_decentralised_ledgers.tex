@@ -2,24 +2,36 @@
 
 \subsubsection{Introduction to Public De-centralised Ledgers}
 
-A public de-centralised ledger (PDL) is a recent invention which endeavours to make data publicly accessible through a de-centralised system, thus providing no single point of failure. A PDL provides transparency where traditional centralised systems fall short and allows any willing and able party to be a part of the de-centralised network. Furthermore, a PDL provides no easy way for any network moderator or specific party to control or override the network without the consensus of a significant number of the network's members. Combined, this technology introduces an entirely new way of dealing with transactional data and, as implemented below, indeed any sort of data which has some lifecycle.
+A public decentralised ledger (PDL) is a recent invention which endeavours to make data publicly accessible through a decentralised system, thus providing no single point of failure. A PDL provides transparency where traditional centralised systems fall short and allows any willing and able party to be a part of the decentralised network. Furthermore, a PDL provides no easy way for any network moderator or specific party to control or override the network without the consensus of a significant number of the network's members. Combined, this technology introduces an entirely new way of dealing with transactional data and, as implemented below, indeed any sort of data which has some lifecycle.
 
 % TODO: transaction costs / limit
 
 \subsubsection{Blockchain}
 
-The Blockchain~\footnote{\href{https://www.blockchain.com/}{Blockchain (https://www.blockchain.com)}} is the underlying technology that is used by cryptocurrencies such as Bitcoin~\footnote{\href{https://bitcoin.org/en/}{Bitcoin (https://bitcoin.org)}}. Since Blockchain was the first widely-available public de-centralised ledger, most public de-centralised ledgers since have chosen to adopt the blockchain name to refer to this architecture.
+The Blockchain~\footnote{\href{https://www.blockchain.com/}{Blockchain (https://www.blockchain.com)}} is the underlying technology that is used by cryptocurrencies such as Bitcoin~\footnote{\href{https://bitcoin.org/en/}{Bitcoin (https://bitcoin.org)}}. Since Blockchain was the first widely-available public decentralised ledger, most public decentralised ledgers since have chosen to adopt the blockchain name to refer to this architecture.
 
 A traditional database is implemented such that it only maintains one current state for a given dataset~\footnote{Some databases have features allowing the user to view state (not transactions) over time (e.g. \href{https://www.postgresql.org/docs/6.3/static/c0503.htm}{PostgreSQL's Time Travel}) but these are not common and often deprecated} rather than transactions. In contrast, a blockchain, as the name would suggest, maintains a 'chain' of blocks of transactions that are agreed by the network forming a history of the chain's life. These blocks are formed of groups of transactions and are totally ordered across nodes in the network. It follows therefore that every node needs to have the entire history of the network, and that the provenance and origin of any given commodity, the unit of measure of a transaction, is maintained.
 
-Whilst the above summarises the differences in the way a blockchain holds data compared to a traditional database, the differences in transaction ordering are far more fundamental and interesting.
+Whilst the above summarises the differences in the way a blockchain holds data compared to a traditional database, the differences in transaction ordering are far more fundamental and interesting. Consensus is used across a blockchain network to establish the most popular chain of transactions. It is possible for many chain possibilities to exist at any given time, but the longest chain is always assumed to be the main chain. Once a client has accepted a transaction (as part of a block), and it therefore forms part of their chain, it is not possible to choose another chain where this transaction has not been accepted (as part of the same block).
+
+\subsubsection{Blockchain Consensus}
+
+A few of the most popular methods of achieving consensus in a blockchain, and therefore total ordering, are listed below.
 
 \begin{itemize}
-  \item Proof Of Work (PoW)
-  \item Proof Of Stake (PoS)
-  \item Byzantine Agreement (BA)
-  \item Tendermint (TM)
-  \item Stellar Consensus Protocol (SCP)
+  \item
+    \paragraph{Proof Of Work (PoW)}
+    \textit{The majority of compute power in the network is held by honest members.~\footnote{Used by Bitcoin and Ethereum (pre-Serenity). \href{https://en.bitcoin.it/wiki/Proof_of_work}{Bitcoin Wiki}}}
+  \item
+    \paragraph{Proof Of Stake (PoS)}
+    \textit{The majority of stake (currency) in the network is held by honest members.~\footnote{Planned to be used by Ethereum (Serenity and beyond). \href{https://www.cryptocompare.com/coins/guides/the-ethereum-releases-of-frontier-homestead-metropolis-and-serenity/}{Crypto Compare}}}
+
+  % \item
+  %   \paragraph{Byzantine Agreement (BA)}
+  % \item
+  %   \paragraph{Tendermint (TM)}
+  % \item
+  %   \paragraph{Stellar Consensus Protocol (SCP)}
 \end{itemize}
 
 \subsubsection{Ethereum}
@@ -31,5 +43,3 @@ Whilst the above summarises the differences in the way a blockchain holds data c
 % \subsubsection{Merkel Trees}
 
 % Merkel Dag is the network of objects, pointing to each other using the hash of each object (Merkel)
-
-% \subsubsection{IPFS}

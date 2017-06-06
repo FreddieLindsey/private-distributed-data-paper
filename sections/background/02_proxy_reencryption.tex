@@ -102,11 +102,11 @@ Given these properties, we will assume that asymmetric cryptography is a require
 
 \cite{bbs:1998:book} also discusses the notion of active versus passive proxy schemes distinguishing whether the delegatee has to cooperate or not in the creation of the proxy key. In practice, if the delegatee's public key is made available and is the only requirement from the delegatee then the delegator can delegate without the delegatee present, but otherwise, e.g. if the delegatee's secret key is required, the delegator needs the delegatee's cooperation to generate the proxy key required. Furthermore, in consideration of the delegator and delegatee's personally-identifying information, the proxy key can be distinguished as being transparent, translucent, or opaque depending on the ability of a third party to distinguish the two public keys the proxy is re-encrypting between.
 
-\cite{bbs:1998:book} uses Elgamal encryption~\cite{elgamal:1985:article} as the basis for the proxy cryptography scheme suggested. A brief description of the protocol follows.
+\cite{bbs:1998:book} uses ElGamal encryption~\cite{elgamal:1985:article} as the basis for the proxy cryptography scheme suggested. A brief description of the protocol follows.
 
-\paragraph{Elgamal Cryptography}
+\paragraph{ElGamal Cryptography}
 
-The Elgamal scheme includes the following functions:
+The ElGamal scheme includes the following functions:
 
 \begin{itemize}
   \item $Gen(..., g, Z_n^*)$: A generator of keys requiring arbitrary arguments including some $g$, a generator in $Z_n^*$, itself a finite cyclic group of order $n$. Produces some secret key $\alpha$, whereby $0 \le \alpha \le n$, and a public key $g^\alpha$.
@@ -118,9 +118,9 @@ It is based on the Diffie-Helman protocol and relies on the discrete logarithm p
 
 \paragraph{BBS Scheme}
 
-Similar to the standard Elgamal scheme, the Blaze, Bleumer, Strauss (BBS) scheme uses the same parameters but uses them to different effect.
+Similar to the standard ElGamal scheme, the Blaze, Bleumer, Strauss (BBS) scheme uses the same parameters but uses them to different effect.
 
-As part of key generation, we now take $n$ to be of the form $2q + 1$ with $n$ itself prime. The generator is taken as above, with the secret key $a$ in ${0..n - 1}$, i.e. relatively prime to $n$. The inverse is also required for this scheme, so $a^{-1} \text{ mod } 2q$ is also calculated. The public key (published) is calculated as $g^a \text{ mod } n$. Encryption and decryption differ slightly to the standard Elgamal scheme:
+As part of key generation, we now take $n$ to be of the form $2q + 1$ with $n$ itself prime. The generator is taken as above, with the secret key $a$ in ${0..n - 1}$, i.e. relatively prime to $n$. The inverse is also required for this scheme, so $a^{-1} \text{ mod } 2q$ is also calculated. The public key (published) is calculated as $g^a \text{ mod } n$. Encryption and decryption differ slightly to the standard ElGamal scheme:
 
 \begin{itemize}
   \item $Encrypt(m, pk)$: Takes a random number, $r \in Z_{2q}^*$. Encrypts a message $m$ using the shared secret represented by $g^r = k$, A's public key to some random power. Outputs the tuple $(pk^r \text{ mod } n, mg^r \text{ mod } n)$.
