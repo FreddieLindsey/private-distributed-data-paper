@@ -1,3 +1,16 @@
 \subsubsection{Healthcare Data}
 
-The notion of completely decentralised healthcare data is certainly an attractive one. Firstly, it doesn't put the onus on any one hospital, doctor's surgery, or sub-contractor to uphold the security of a network, but on the network as a whole. Secondly, there is not a centralised repository of data which could be compromised rather the network's data is contained across multiple sites with many thousands of hosts.
+The notion of completely decentralised healthcare data is certainly an attractive one.
+
+% Private data, public network
+Firstly, from a security standpoint, the onus is not on any one hospital, doctor's surgery, or sub-contractor to uphold the security of a network. Since the network is public by design, all block data transferred through the network needs to be encrypted. The requirement for encryption means that the network security, in terms of data leakage, would never be upheld by a human, but by the cryptography underpinning the encryption scheme chosen.
+
+% Decentralisation
+Secondly, without the existence of a compromisable, centralised data lake, data (which mostly will exist across multiple nodes in the network) must be tampered with or removed from every location where it is stored to in fact remove or compromise it's existence in the network. On evaluation of recent global attacks~\footnote{
+  % TODO: NHS references
+} including to UK NHS hospital trusts, it is evident that providing better security of our data should always remain a high priority. Whilst encrypting our data does nothing to stop a malicious attacker from tampering with data, decentralising data such that copies are maintained in multiple locations, and ensuring that these locations are write-once prevents tampering from compromising existing copies of data.
+
+% Decentralisation
+Thirdly, as expressed above, decentralising healthcare data management (including to patient's themselves) offers unique opportunities in data sharing and asset management.
+% TODO clarify with Daisy
+If we imagine a member of the armed forces who has a disability as a result of their occupation, they are entitled to priority treatment in UK NHS hospitals. However, this treatment is only available if they can prove that their disability was a result of their occupation. Given the bureaucracy present in institutions such as the NHS and the armed forces, solely relying on these two institutions to ensure appropriate health treatment is provided often results in grossly delayed (sometimes non-existent) care. Any opportunity for such members of society to be able to choose to share certain records directly with the relevant parties, maintaining the signature of the verified institution who has created the data, affords a much faster resolution of their problems.
