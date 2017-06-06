@@ -1,33 +1,3 @@
 \subsubsection{Healthcare Data}
 
-\paragraph{Problem specification}
-
 The notion of completely decentralised healthcare data is certainly an attractive one. Firstly, it doesn't put the onus on any one hospital, doctor's surgery, or sub-contractor to uphold the security of a network, but on the network as a whole. Secondly, there is not a centralised repository of data which could be compromised rather the network's data is contained across multiple sites with many thousands of hosts.
-
-\paragraph{Expected user journeys}
-
-The below sequence diagrams show the interactions between the different entities. As part of the design process, the way in which these entities interact is fundamental to the implementation. The interactions between the patient and doctor are assumed to be non-digital (e.g. verbal). There is an assumption that the doctor has the ability to communicate with a local hospital for the purposes of referring treatment on a patient's behalf. The hospital has a 'data gateway' representing some host that has the ability to be communicated with via a RESTful API, and communicates with a patient's chain and off-chain storage directly. The 'data gateway' is intended as an extension to a hospital's current systems to allow the integration of modern technologies. The hospital is also assumed to have a direct connection to an authority to verify the validity of medical personnel, which for doctors is the GMC~\footnote{\href{http://www.gmc-uk.org/}{General Medical Council}}.
-
-\textbf{Doctor requests X-ray}
-
-The first step in the process is assumed to be the doctor request for an X-ray, likely because the patient has an ailment. This process involves the doctor making a request to a hospital which sends an authenticated call to a patient's chain to create a request for an X-ray on the doctor's behalf. Furthermore, the doctor's identification is validated before creating any transactions on the patient's chain and their signature. The data gateway hosts a local version of each patient's chain with the hospital's addresses unlocked (i.e. authenticated to make requests).
-
-\input{tikz/user_stories/01_doctor_requests_xray}
-
-\textbf{Patient has X-ray taken}
-
-The next step in the process is for the X-ray to be taken. The patient visits the hospital where the doctor has referred them and has the X-ray taken, with the data being securely stored in off-chain storage and logged in the patient's chain. Note that this portion of the user journey requires the most transactions to be committed and mined.
-
-\input{tikz/user_stories/02_patient_gets_xray}
-
-\textbf{Doctor views (and discusses) X-ray}
-
-With the X-ray having been taken, processed, and likely somewhat analysed, the doctor now needs to discuss the X-ray with the patient to communicate any further treatment required etc. Through this part of the process the doctor's access is logged before the data is retrieved.
-
-\input{tikz/user_stories/03_doctor_views_xray}
-
-\textbf{Patient views their log}
-
-\input{tikz/user_stories/04a_patient_views_log_logged}
-
-\input{tikz/user_stories/04b_patient_views_log_not_logged}
