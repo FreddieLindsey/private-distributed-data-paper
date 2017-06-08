@@ -1,6 +1,0 @@
-[submodule "implementation/desktop"]
-	path = implementation/desktop
-	url = git@github.com:FreddieLindsey/blockchain-layered-data-access-desktop.git
-[submodule "implementation/core"]
-	path = implementation/core
-	url = git@github.com:FreddieLindsey/blockchain-layered-data-access-core
