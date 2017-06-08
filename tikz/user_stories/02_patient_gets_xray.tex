@@ -3,13 +3,13 @@
   \begin{tikzpicture}[scale = 0.6, every node/.style={scale = 0.85}, every node/.append style={fill = white, rounded corners = 2pt, inner sep = 2pt, align = center}]
 
   % Lines
-  \draw (4, -6) -- (4, 20);
-  \draw (8, -6) -- (8, 20);
-  \draw (12, -6) -- (12, 20);
-  \draw (16, -6) -- (16, 20);
-  \draw (20, -6) -- (20, 20);
-  \draw (24, -6) -- (24, 20);
-  \draw (28, -6) -- (28, 20);
+  \draw (4, 6) -- (4, 20);
+  \draw (8, 6) -- (8, 20);
+  \draw (12, 6) -- (12, 20);
+  \draw (16, 6) -- (16, 20);
+  \draw (20, 6) -- (20, 20);
+  \draw (24, 6) -- (24, 20);
+  \draw (28, 6) -- (28, 20);
 
   % Headings
   \node at (4, 21) { Patient };
@@ -23,71 +23,41 @@
   \node at (18, 19.5) { Views request };
   \draw [ -> ] (12, 19) -- (24, 19);
 
-  \draw[fill = white] (4, 18.5) rectangle (28, 17.5);
-  \node at (16, 10) { $\Delta t$ (X-ray taken) };
+  \node at (18, 18.5) { Request data };
+  \draw [ -> ] (24, 18) -- (12, 18);
 
-  % \node at (14, 18.5) { X-ray requested? };
-  % \draw [ -> ] (12, 18) -- (16, 18);
-  %
-  % \node at (20, 17.5) { X-ray requested? (Logged) : $ID_{H}$ };
-  % \draw [ -> ] (16, 17) -- (24, 17);
-  %
-  % \draw[fill = white] (4, 16.5) rectangle (28, 15.5);
-  % \node at (16, 16) { $\Delta t$ (transaction mined) };
-  %
-  % \node at (20, 14.5) { Logged \checkmark and request : $ID_{D}$ };
-  % \draw [ -> ] (24, 14) -- (16, 14);
-  %
-  % \node at (14, 13.5) { Request : $ID_{D}$ };
-  % \draw [ -> ] (16, 13) -- (12, 13);
-  %
-  % \node at (16, 12.5) { ID Valid? : $ID_{D}$ };
-  % \draw [ -> ] (12, 12) -- (20, 12);
-  %
-  % \node at (16, 11.5) { ID Valid \checkmark };
-  % \draw [ -> ] (20, 11) -- (12, 11);
-  %
-  % \node at (14, 8.5) { Log X-ray taken : $ID_{P}$ };
-  % \draw [ -> ] (12, 8) -- (16, 8);
-  %
-  % \node at (20, 7.5) { Log X-ray taken : $ID_{H}$ };
-  % \draw [ -> ] (16, 7) -- (24, 7);
-  %
-  % \draw[fill = white] (4, 6.5) rectangle (28, 5.5);
-  % \node at (16, 6) { $\Delta t$ (transaction mined) };
-  %
-  % \node at (20, 5) { Log X-ray taken \checkmark };
-  % \draw [ -> ] (24, 4) -- (16, 4);
-  %
-  % \node at (14, 3.5) { Log X-ray taken \checkmark };
-  % \draw [ -> ] (16, 3) -- (12, 3);
-  %
-  % \node at (14, 2.5) { Upload X-ray : $X_{ID_{H}}$ };
-  % \draw [ -> ] (12, 2) -- (16, 2);
-  %
-  % \node at (22, 1.5) { Upload X-ray : $X_{ID_{P}}$ };
-  % \draw [ -> ] (16, 1) -- (28, 1);
-  %
-  % \node at (22, 0.5) { Stored at $H_{P}$ };
-  % \draw [ -> ] (28, 0) -- (16, 0);
-  %
-  % \node at (20, -0.5) { X-ray at $H_{P}$ : $ID_{H}$ };
-  % \draw [ -> ] (16, -1) -- (24, -1);
-  %
-  % \draw[fill = white] (4, -1.5) rectangle (28, -2.5);
-  % \node at (16, -2) { $\Delta t$ (transaction mined) };
-  %
-  % \node at (20, -3.5) { X-ray stored \checkmark };
-  % \draw [ -> ] (24, -4) -- (16, -4);
-  %
-  % \node at (14, -4.5) { X-ray stored \checkmark };
-  % \draw [ -> ] (16, -5) -- (12, -5);
+  \draw[fill = white] (4, 17.5) rectangle (28, 16);
+  \node at (16, 16.75) { $\Delta t$ (X-ray taken) };
+
+  \node at (20, 15.5) { Send X-ray Data };
+  \draw [ -> ] (12, 15) -- (28, 15);
+
+  \node at (20, 14.5) { X-ray stored \checkmark : $H_{\text{X-ray}}$ };
+  \draw [ -> ] (28, 14) -- (12, 14);
+
+  \node at (31, 13) { \textit{Transaction starts} };
+  \draw [ dashed ] (4, 13) -- (28, 13);
+
+  \node at (18, 12.5) { Add X-ray Data : $H_{\text{X-ray}}$, $ID_{H}$ };
+  \draw [ -> ] (12, 12) -- (24, 12);
+
+  \node at (22, 11.5) { ID Valid? : $ID_{H}$ };
+  \draw [ -> ] (24, 11) -- (20, 11);
+
+  \node at (22, 10.5) { ID Valid \checkmark };
+  \draw [ -> ] (20, 10) -- (24, 10);
+
+  \node at (18, 9.5) { Request success };
+  \draw [ -> ] (24, 9) -- (12, 9);
+
+  \node at (31, 8) { \textit{Transaction ends} };
+  \draw [ dashed ] (4, 8) -- (28, 8);
 
   \end{tikzpicture}
   \caption{
     Patient visits hospital to have X-ray taken
   }{
-    The hospital 
+    The hospital views the request made by the doctor (that relates to the appointment). Upon viewing the data, they take the X-ray. The X-ray data is sent to some off-chain storage and the address (potentially the hash of the content) is returned. This hash is then added by the hospital to the patient's record as X-ray data.
   }
   \label{fig:user_story_02}
 \end{figure}
