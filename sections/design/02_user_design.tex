@@ -17,6 +17,8 @@ Assumptions:
 
 The diagrams below are split such that different entity types are represented on each side. The three entities on the left (patient, doctor, hospital) represent people interacting with the system. The three entities on the right (GMC, Patient Chain, Off-chain storage) represent technologies which act autonomously in these scenarios (according to the way they are programmed). Of note, GMC is the identity of some group on a public decentralised ledger and Patient Chain represents some instance of a blockchain of patient transactions unique to each patient.
 
+It is shown when a specific transaction starts and ends, with all content in between occurring on or with the public decentralised ledger technology.
+
 \paragraph{Doctor requests X-ray}
 
 The patient visits the doctor, complaining of extreme pain in their left foot. On evaluation, the doctor requests an X-ray be taken at a local hospital. Furthermore, the doctor's identification is validated before creating any transactions on the patient's chain and their signature. The data gateway hosts a local version of each patient's chain with the hospital's addresses unlocked (i.e. authenticated to make requests).
@@ -27,7 +29,7 @@ The patient visits the doctor, complaining of extreme pain in their left foot. O
 
 \paragraph{Patient has X-ray taken}
 
-The next step in the process is for the X-ray to be taken. The patient visits the hospital where the doctor has referred them and has the X-ray taken, with the data being securely stored in off-chain storage and logged in the patient's chain. Note that this portion of the user journey requires the most transactions to be committed and mined.
+The next step in the process is for the X-ray to be taken. The patient visits the hospital where the doctor has referred them and has the X-ray taken, with the data being securely stored in off-chain storage.
 
 \input{tikz/user_stories/02_patient_gets_xray}
 
