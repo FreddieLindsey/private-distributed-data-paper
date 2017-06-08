@@ -4,13 +4,17 @@ Before any implementation details can be discussed, I must first establish the t
 
 \subsubsection{Blockchain Technology}
 
-As per the architecture criteria, the correct blockchain technology to use for this project is one compatible with an already developed and established public network. The four considered networks were Blockchain (Bitcoin), Ethereum (Ether), Hyperledger, and R3 Corda. Whilst the blockchain technology being used for the project remains as only a proof of concept, the exact technology and it's shortcomings are not completely relevant. For this project, the exact cost of transacting with a particular chain will not be considered, with the ease of use, ability to integrate, and security proving to be the priority.
+As per the architecture criteria, the correct blockchain technology to use for this project is one compatible with an already developed and established public network. The four considered networks were \href{https://bitcoin.org/en/}{Bitcoin Blockchain}, \href{https://www.ethereum.org/}{Ethereum} (Ether), \href{https://www.hyperledger.org/}{Hyperledger}, and \href{https://www.corda.net/}{R3 Corda}. Whilst the blockchain technology being used for the project remains as only a proof of concept, the exact technology and it's shortcomings are not completely relevant. For this project, the exact cost of transacting with a particular chain will not be considered, with the ease of use, ability to integrate, and security proving to be the priority.
 
-With this said, two networks, Ethereum and Hyperledger, appear to be suitable for an application of this nature. The latter even offers a solution to the problem of certain transactions being private, by only existing on chains run by parties authorised to view such a transaction. However, in terms of implementation, Ethereum offers the most attractive developer experience at the time of writing.
+Bitcoin Blockchain, whilst the first widespread use of a public decentralised ledger, is designed as a cryptocurrency network foremost. This means there are strict limitations on the size of data that is contained by a transaction and the scripting language used has requirements to guarantee security during transfer of funds. It is not a blockchain designed with an application layer that is accessible to developers. This does not mean it is not possible to create applications on the Bitcoin Blockchain, but there are more suitable alternatives we can consider.
 
+R3 Corda and Hyperledger both offer approaches engineered towards the demands of business and sharing application data globally. They both state they restrict the viewing of transactions to only those whom the transaction concerns. They both also have development environments available to allow building applications on their respective networks. 
 
+With this said, Ethereum remains the standout choice for an application of this nature. Whilst Ethereum maintains the global transaction history as per the Bitcoin Blockchain, the development environment and ease of creating an application layer built atop the service provided a solution that most closely met the criteria of this project at this stage.
 
 \subsubsection{Off-chain Storage}
+
+
 
 \subsubsection{Client Interface}
 
