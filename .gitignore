@@ -188,3 +188,6 @@ research
 
 # Virtualenv
 paper
+
+.latexmkrc
+.wakatime-project
