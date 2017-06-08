@@ -22,14 +22,20 @@
   \node at (6, 19.5) { Visits };
   \draw [ -> ] (4, 19) -- (8, 19);
 
-  \node at (16, 18.5) { Request data };
+  \node at (16, 18.5) { Get X-ray address : $ID_{D}$ };
   \draw [ -> ] (8, 18) -- (24, 18);
 
-  \draw[fill = white] (4, 17.5) rectangle (28, 16);
-  \node at (16, 16.75) { $\Delta t$ (X-ray taken) };
+  \node at (22, 17.5) { ID Valid? : $ID_{D}$ };
+  \draw [ -> ] (24, 17) -- (20, 17);
 
-  \node at (20, 15.5) { Send X-ray Data };
-  \draw [ -> ] (12, 15) -- (28, 15);
+  \node at (22, 16.5) { ID Valid \checkmark };
+  \draw [ -> ] (20, 16) -- (24, 16);
+
+  \node at (16, 15.5) { X-ray address : $H_{\text{X-ray}} };
+  \draw [ -> ] (24, 15) -- (8, 15);
+
+  \node at (18, 14.5) { Get X-ray Data : $H_{\text{X-ray}} };
+  \draw [ -> ] (8, 14) -- (28, 14);
 
   \node at (20, 14.5) { X-ray stored \checkmark : $H_{\text{X-ray}}$ };
   \draw [ -> ] (28, 14) -- (12, 14);
@@ -54,7 +60,7 @@
 
   \end{tikzpicture}
   \caption{Doctor views X-ray with patient}{
-  	The patient visits the doctor to discuss their X-ray results. The doctor get's the latest version (address / hash) of their X-ray data from their record and using this gets the X-ray data itself from off-chain storage. The doctor is then able to discuss the results with the patient (and make further edits - \textit{not shown}.
+  	The patient visits the doctor to discuss their X-ray results. The doctor gets the latest version (address / hash) of their X-ray data from their record and using this gets the X-ray data itself from off-chain storage. The doctor is then able to discuss the results with the patient (and make further edits - \textit{not shown}.
   }
   \label{fig:user_story_03}
 \end{figure}
