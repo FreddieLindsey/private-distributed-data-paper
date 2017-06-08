@@ -1,0 +1,24 @@
+\subsection{Off-chain storage}
+
+Whilst the storage of data is well researched, since the aim of this project is to evaluate the applicability of new and immature software to solve key social and technological challenges, there is an opportunity to discover up and coming technology in the storage space.
+
+When using blockchain as the central data lake for an application, we must consider where we store the data that it references. Whilst is is possible to store data on blockchain itself, it is impractical and extremely expensive as discussed below. Storing data on the chain, assuming a transaction will be accepted on Ethereum with a gas price of 0.2 microether, at the current prices~\footnote{\$244.96 / ETH as of 4th June 2017. Breakdown of transaction costs at \href{https://www.cryptocompare.com/coins/guides/what-is-the-gas-in-ethereum/}{Crypto Currency}}, correlates to a cost of 263,023.8 USD per GB.
+
+$$
+\begin{aligned}
+5 * 1024^{3} * 0.2 * 10^{-6} &=& 1,073.74 \text{ ETH (2sf)} \\
+&=& 263,023.80 \text{ USD (2sf)}
+\end{aligned}
+$$
+
+Bear in mind that I have ignored other transaction costs, including submitting and storing execution cycles, and indeed a limit on block size exists on Ethereum~\footnote{\href{https://ethstats.net/}{EthStats} showed a gas limit of the order of 4.7 million as of 5th June 2017.}. Henceforth it is trivial that it would be inappropriate to store any data on blockchain other than that which represents state of the application.
+
+To solve this issue, we therefore need to assume that data needs to be stored by some other manner such that it is readily available, but only addressed (not stored) in blockchain. Below are two solutions.
+
+\subsubsection{Centralised data storage}
+
+There are many incumbents in the data storage market offering centralised, redundant data platforms. The most popular at the time include \href{https://aws.amazon.com/s3/}{Amazon Web Services S3}, \href{https://cloud.google.com/storage/}{Google Cloud Storage}, and \href{https://azure.microsoft.com/en-gb/services/storage/}{Microsoft Azure Storage} to name a few. Whilst the specific storage prices for each service are not relevant, each provider offers the storage at a rate of the order of less than 0.1 USD / GB / month. Even if we imagine that the storage offered by Ethereum would remain persistent and accessible for fifty years, the cost of storage on modern centralised data storage platforms is of the order of more than four thousand times cheaper.
+
+\subsubsection{De-centralised data storage}
+
+Decentralised storage, using peer-to-peer networks for data flow, represent 

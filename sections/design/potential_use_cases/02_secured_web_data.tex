@@ -1,0 +1,7 @@
+\subsubsection{Secured Web Data}
+
+At current most authenticated web sessions rely on the use of usernames and passwords. Content is then sent over HTTPS providing a security layer for sensitive content. However, if an attacker can find the session id of a target, they can potentially access and use the session the user has legitimately created for illegitimate purposes.
+
+Let's imagine there were a transport protocol whereby content was sent encrypted such that only the intended recipient would be able to decrypt the page content. Responses can then be encrypted such that the web server is the only entity able to decrypt. Responses might also contain a hash in the packet (pre-encryption) such that the content of the (signed) message can be verified by the recipient.
+
+This transport protocol would imply that only the intended recipient (an authorised and authenticated party) would ever receive the content of a page. As a replacement for usernames and passwords, content must have come from the believed sender and content is only receivable by the intended recipient. 

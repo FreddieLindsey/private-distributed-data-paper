@@ -1,0 +1,32 @@
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+
+  \node at (0, 1)   {message} ;
+  \node at (2, 1)   {$M_a$}   ;
+  \node at (4, 1)   {Proxy}   ;
+  \node at (6, 1)   {$M_b$}   ;
+  \node at (8, 1)   {message} ;
+
+  \draw [very thick, green] (0,0)   -- (2,0)   ;
+  \draw [very thick, red]   (2,0)   -- (6,0)   ;
+  \draw [very thick, blue]  (6,0)   -- (8,0)   ;
+  \draw                     (0,-.2) -- (0, .2) ;
+  % \draw                     (2,-.2) -- (2, .2) ;
+  \draw                     (4,-.2) -- (4, .2) ;
+  % \draw                     (6,-.2) -- (6, .2) ;
+  \draw                     (8,-.2) -- (8, .2) ;
+
+  \node[align=center, below] at (0, -1)%
+    {Message encrypted\\locally with\\$P_a$'s private key};
+  \node[align=center, below] at (4, -1)%
+    {Message re-encrypted\\to be readable only\\using $P_b$'s private key};
+  \node[align=center, below] at (8, -1)%
+    {Message decrypted\\locally with\\$P_b$'s private key};
+
+  \end{tikzpicture}
+  \caption{
+    Example message journey through a proxy re-encryption scheme.
+  }
+  \label{fig:pre_example}
+\end{figure}

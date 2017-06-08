@@ -1,0 +1,46 @@
+\subsection{User Design}
+
+With health care chosen as the project's primary use case, below I consider how users would interact with a potential system and how this affects potential architecture choices. It is important to keep these choices as generic as possible for the purposes of making the project extensible for further use cases and development.
+
+\subsubsection{User Journeys}
+
+The below sequence diagrams show the interactions between the different entities. First I note my assumptions, followed by a specific example interaction between a patient and the health care system (the patient experiences extreme pain in their left foot) and how this might be reflected by internal transactions of information within the health care system.
+
+Assumptions:
+
+\begin{itemize}
+  \item Interactions between the patient and doctor are assumed to be non-digital (i.e. verbal, transfer of physical data).
+  \item The doctor has the ability to communicate (on behalf of a patient) with a local hospital for the purposes of referring a patient for treatment
+  \item The doctor, the hospital and any existing entities represented in the health care system would have an ability to connect with modern technology likely via a connection layer between the new and in-use technology.
+  \item There is a requirement that personel who act as health care professionals must validate their identity against central bodies. For doctors, this body is the GMC~\footnote{\href{http://www.gmc-uk.org/}{General Medical Council}}.
+\end{itemize}
+
+The diagrams below are split such that different entity types are represented on each side. The three entities on the left (patient, doctor, hospital) represent people interacting with the system. The three entities on the right (GMC, Patient Chain, Off-chain storage) represent technologies which act autonomously in these scenarios (according to the way they are programmed). Of note, GMC is the identity of some group on a public decentralised ledger and Patient Chain represents some instance of a blockchain of patient transactions unique to each patient.
+
+It is shown when a specific transaction starts and ends, with all content in between occurring on or with the public decentralised ledger technology.
+
+\paragraph{Doctor requests X-ray}
+
+The patient visits the doctor, complaining of extreme pain in their left foot. On evaluation, the doctor requests an X-ray be taken at a local hospital. Furthermore, the doctor's identification is validated before creating any transactions on the patient's chain and their signature. The data gateway hosts a local version of each patient's chain with the hospital's addresses unlocked (i.e. authenticated to make requests).
+
+\input{tikz/user_stories/01a_doctor_requests_xray}
+
+\input{tikz/user_stories/01b_hospital_accepts_xray}
+
+\paragraph{Patient has X-ray taken}
+
+The next step in the process is for the X-ray to be taken. The patient visits the hospital where the doctor has referred them and has the X-ray taken, with the data being securely stored in off-chain storage.
+
+\input{tikz/user_stories/02_patient_gets_xray}
+
+\paragraph{Doctor views (and discusses) X-ray}
+
+With the X-ray having been taken, processed, and likely somewhat analysed, the doctor now needs to discuss the X-ray with the patient to communicate any further treatment required etc. Through this part of the process the doctor's access is logged before the data is retrieved.
+
+\input{tikz/user_stories/03_doctor_views_xray}
+
+\paragraph{Patient views their log}
+
+\input{tikz/user_stories/04a_patient_views_log_logged}
+
+\input{tikz/user_stories/04b_patient_views_log_not_logged}

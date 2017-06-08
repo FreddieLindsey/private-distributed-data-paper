@@ -1,0 +1,191 @@
+%------------------------------------------------------------------------------
+%  DOCUMENT CONFIGURATION
+%------------------------------------------------------------------------------
+
+\documentclass[twoside, a4paper, titlepage]{article}
+
+%------------------------------------------------------------------------------
+%  PACKAGES
+%------------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{csquotes} % Recommended
+
+\usepackage{natbib}
+\bibliographystyle{agsm}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{rotating} % Required for sideways figure
+\usepackage{parskip} % Required for paragraph styling
+\usepackage{float} % For having figures inline
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref} % For links
+\usepackage{blindtext}
+\usepackage{outlines}
+\usepackage{tabularx}
+\usepackage{minted}
+\usepackage{titlesec} % Used for paragraph subsubsubsection
+
+\usepackage{tikz}
+\restylefloat{figure}
+
+%------------------------------------------------------------------------------
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+% Numbering
+\setcounter{secnumdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Sans Serif Font
+\renewcommand\rmdefault{cmss}
+
+% Line spacing
+\linespread{1.1}
+
+% Images
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.5pt}
+
+\setlength\parskip{1.2em} % Space between paragraphs
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+% Tikz
+\def\checkmark{ \tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle; }
+
+%------------------------------------------------------------------------------
+% TITLE PAGE
+%------------------------------------------------------------------------------
+
+\begin{document}
+
+% Definition of blocks:
+\tikzset{%
+  block/.style    = {draw, thick, rectangle, minimum height = 3em,
+    minimum width = 3em},
+  sum/.style      = {draw, circle, node distance = 2cm}, % Adder
+  input/.style    = {coordinate}, % Input
+  output/.style   = {coordinate} % Output
+}
+
+\pagestyle{empty}
+
+\newcommand{\reporttitle}{Decentralised, private, access-controlled data sharing}
+\newcommand{\reportauthor}{Frederick Lindsey}
+\newcommand{\reportsupervisor}{Dr. William Knottenbelt}
+\newcommand{\reporttype}{BEng. Individual Project Report}
+
+\include{sections/00_a_title_page}
+
+%------------------------------------------------------------------------------
+% CONTENT
+%------------------------------------------------------------------------------
+
+% MOTIVATION
+% CONTRIBUTIONS
+% RESULTS
+
+% APPLICABILITY
+\include{sections/00_b_abstract}
+
+% Acknowledge those who've technically or otherwise helped with completing the project
+\renewcommand{\abstractname}{Acknowledgements}
+\include{sections/00_c_acknowledgements}
+
+% Set up the header and footer
+\pagestyle{fancy}
+\pagenumbering{arabic}
+% \lhead{\docAuthorName} % Top left header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+%------------------------------------------------------------------------------
+% TABLE OF CONTENTS
+%------------------------------------------------------------------------------
+
+\setcounter{tocdepth}{4}
+
+\tableofcontents
+
+%------------------------------------------------------------------------------
+% INTRODUCTION AND PREFACE
+%------------------------------------------------------------------------------
+
+% MOTIVATION
+% OBJECTIVES
+% CONTRIBUTIONS
+\include{sections/01_introduction}
+
+%------------------------------------------------------------------------------
+% BACKGROUND
+%------------------------------------------------------------------------------
+
+\include{sections/02_background}
+
+%------------------------------------------------------------------------------
+% DESIGN
+%------------------------------------------------------------------------------
+
+\include{sections/03_design}
+
+%------------------------------------------------------------------------------
+% IMPLEMENTATION
+%------------------------------------------------------------------------------
+
+\include{sections/04_implementation_considerations}
+
+%------------------------------------------------------------------------------
+% OPTIMISATION
+%------------------------------------------------------------------------------
+
+\include{sections/05_optimisation}
+
+%------------------------------------------------------------------------------
+% CONCLUSION
+%------------------------------------------------------------------------------
+
+\include{sections/06_conclusion}
+
+%------------------------------------------------------------------------------
+% EVALUATION
+%------------------------------------------------------------------------------
+
+\include{sections/07_evaluation}
+
+%------------------------------------------------------------------------------
+% FUTURE EXTENSIONS
+%------------------------------------------------------------------------------
+
+\include{sections/08_future_extensions}
+
+%------------------------------------------------------------------------------
+% BIBLIOGRAPHY AND APPENDICES
+%------------------------------------------------------------------------------
+
+% All sources used for research etc.
+\include{appendices/01_bibliography}
+
+% Appendix
+\include{appendices/02_appendix}
+
+%------------------------------------------------------------------------------
+
+\end{document}
