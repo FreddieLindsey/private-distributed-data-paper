@@ -2,14 +2,31 @@
 
 Fundamental to this project is the underlying end-to-end encryption of data. Without end-to-end encryption this project represents nothing more than a public ledger of the distribution of the files belonging to an identity, readable by any party. Henceforth, choosing a suitable and secure cryptography scheme is critical.
 
-An asymmetric cryptography scheme with a public-private key pair is required in order to facilitate proxy re-encryption. As the most popular scheme~\footnote{As used in SSL encryption globally} RSA~\cite{rsa:1978:article} seemed a suitable candidate. Whilst the proxy re-encryption scheme authored by \cite{afgh:2006:article} meets many more desirable properties than that authored by \cite{ivandodis:2003:inproceedings}, the latter allows the use of different cryptography schemes to support proxy re-encryption. Whilst in a development stage, the priorities of this project lie in progressing implementation before proving security.
+\paragraph{Initial Library Choice}
+
+An asymmetric cryptography scheme with a public-private key pair is required in order to facilitate proxy re-encryption. As the most popular scheme~\footnote{As used in SSL encryption globally} RSA~\cite{rsa:1978:article} seemed a suitable candidate. Whilst the proxy re-encryption scheme authored by \cite{afgh:2006:article} meets many more desirable properties than that authored by \cite{ivandodis:2003:inproceedings}, the latter allows the use of different cryptography schemes to support proxy re-encryption. Whilst in a development stage, the priorities of this project lie in progressing implementation before proving security. With a popular library~\footnote{\href{https://www.npmjs.com/package/node-forge}{`node-forge`} had 1,091,913 downloads between 9th May 2017 and 9th June 2017} having a widely used RSA implementation, and with no other popular cryptography libraries available using other asymmetric cryptography schemes, RSA was chosen for a first attempt.
+
+\paragraph{RSA Unsuitability}
 
 Whilst originally thought that RSA would be a suitable scheme, it became apparent that this was not the case. Fundamentally, the scheme authored by \cite{ivandodis:2003:inproceedings} requires splitting an RSA private key into two halves and distributing these halves to a proxy and end-user separately. The re-encryption and decryption processes are in fact two separate decryptions with each half of the original private key capable of decrypting the original ciphertext.
 
-Understanding that an RSA private key is composed of elements (including but not limited to) $d, n, p, q$ as solutions to the following equations:
+An RSA private key is composed of elements some $e, d, n, p, q$ as solutions to the following equations, where $p, q$ are some large primes, $1 < e < \phi(n)$, and $\text{gcd}$ is some function that calculates the greatest common denominator of two integers.
 
 $$
 \begin{aligned}
-  
+  n &=& pq \\
+  \phi(n) &=& (p - 1)(q - 1) \\
+  \text{gcd}(e, \phi(n)) &=& 1 \\
+  de & \equiv & 1 (\text{mod } \phi(n))
 \end{aligned}
 $$
+
+The $e, d$ elements represent the public key and private key exponents respectively. Therefore, to split the private key, one must find two other numbers which when combined achieve the same exponent as $d$. Let's not make any assumptions about how these two numbers are used, other than that each represents a private key usable with the RSA decryption algorithm.
+
+Given that any one of the two numbers we require is representative of an RSA private key, it must have some $d^\prime$ that is a function of $d$. Given this, it must be possible to calculate the two primes $p^\prime, q^\prime$ which compose $d^\prime$. However, the problem of determining such primes is that it is equivalent to finding two primes $a, b$ that compose $d$, i.e. cracking the original RSA encryption. Since this has been proven to be a hard problem, we can safely assume that splitting the RSA private key in this way is at least non-trivial and certainly impractical as a scheme. 
+
+% TODO: Write more about the trapdoor knapsack problem
+
+\paragraph{ElGamal}
+
+Whilst there is no popular ElGamal cryptography library available for JavaScript~\footnote{At the time of writing, only the `elgamal` library was \href{https://www.npmjs.com/package/elgamal}{available}. This library had only 42 downloads in the same period as `node-forge` and was assumed to be unsuitable.}, an implementation of an ElGamal-derived cryptography scheme extended for proxy re-encryption was available in Java~\footnote{\cite{nicscrypto:2012:online} writes that their library `nics-crypto` implements the scheme authored by \cite{afgh:2006:article}. For the purposes of this project, this was assumed correct.}. Whilst contradicting one of the project's objectives to be a completely client-side application, thereby only using JavaScript and JavaScript-transpilable languages, this library provides the necessary solution. It is discussed further below.

@@ -1,0 +1,11 @@
+\begin{figure}[H]
+  \centering
+  \begin{minted}{java}
+	EncryptionPacket encryptionPacket = new EncryptionPacket(keyPair, ciphertext);
+	...
+	byte[] firstLevelDecrypted  = encryptionPacket.getFirstLevelDecryption();
+	byte[] secondLevelDecrypted = encryptionPacket.getSecondLevelDecryption();
+  \end{minted}
+  \caption{Decrypting data with an EncryptionPacket}
+  \label{code:encryption_packet_decryption}
+\end{figure}

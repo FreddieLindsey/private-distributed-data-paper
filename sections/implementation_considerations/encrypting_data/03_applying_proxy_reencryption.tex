@@ -1,0 +1,30 @@
+\subsubsection{Applying Proxy Re-encryption}
+
+Having established the (AFGH) scheme which should be used and how it is applied, the below examples explain the implementation of this scheme in this project. For clarity, an entity sharing content will be referred to as a delegator and an entity with whom content is being shared will be referred to as a delegatee.
+
+\paragraph{Proxy Re-encryption Gateway}
+
+As mentioned above, the proxy re-encryption library that is used by this project is written in Java. Such that we can interface with it from the JavaScript application interface, we require a RESTful API. Since the application is designed to be used in a decentralised manner, we assume that this library will be re-written or otherwise encapsulated into the application interface natively, but accept that for the purposes of this project every client is expected to run this gateway locally. Example interactions with this gateway are presented below, and represent function calls on the Encryption Packet class described.
+
+\paragraph{Encryption Packet}
+
+The Encryption Packet class is designed to be used once per instantiation. It holds input data and an AFGH-compatible key pair (ElGamal). This input data can either be a message that is to be encrypted or a ciphertext to be decrypted. Neither the private key nor public key half of the key pair is explicitly required by the class, such that it allows users without a private key (such as those encrypting a message for another party) or public key to still successfully create an instance. In either case, the appropriate methods will throw an exception if the packet is asked to perform an action for which it does not have appropriate arguments.
+
+The class can be instantiated as follows:
+
+\input{code/EncryptionPacketInstantiation}
+
+Once the instance has been created, the packet should be either encrypted or decrypted:
+
+\input{code/EncryptionPacketEncryption}
+
+\input{code/EncryptionPacketDecryption}
+
+\textit{Note: as per the \cite{afgh:2006:article} scheme, first and second level encryptions/decryptions are not cross-compatible. As shown above, only one decryption will be successful since the input ciphertext is either a first or second level encryption, but cannot be both.}
+
+\paragraph{Delegator encrypting data}
+
+\paragraph{Delegatee encrypting data}
+
+\paragraph{Re-encryption of data}
+
