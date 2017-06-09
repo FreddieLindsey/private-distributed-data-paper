@@ -39,9 +39,16 @@ With the X-ray having been taken, processed, and likely somewhat analysed, the d
 
 \input{tikz/user_stories/03_doctor_views_xray}
 
-
 \subsubsection{Further Design Criteria}
 
-% TODO
-% Viewing logs
-% 
+\textit{All criteria below assume that there is no need for third party involvement~\footnote{Third party involvement is deemed as any need for a centralised service  or the interaction of any other entity over which this user does not have control}.}
+
+\begin{itemize}
+\item \textbf{Client-side encryption and decryption} - the client interface should allow encryption and decryption of content (as a minimum).
+\item \textbf{End-to-end encryption} - content should be encrypted (for some party) from when it enters the network until it leaves the network~\footnote{The network shall be represented by all entities which are public}.
+\item \textbf{Non-interaction} - if a preauthorised party $P_a$ wishes to create and send data to another party $P_b$, party $P_b$ should not be required to interact with $P_a$.
+\item \textbf{Constant-size key storage} - the storage required by an arbitrary user should not increase with the user base of the overall system nor number of delegations nor size of content stored.
+\item \textbf{Transparency} - any arbitrary user should be able to monitor and view history of how their data has been interacted with.
+\item \textbf{Delegation} - as a data owner, I should be able to delegate the right to read or write to any of my files to any party of my choosing.
+\item \textbf{Revoke} - as a data owner, I should be able to revoke any right a party has to read or write to any.
+\end{itemize}

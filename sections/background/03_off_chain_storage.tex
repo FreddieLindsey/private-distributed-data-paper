@@ -17,8 +17,32 @@ To solve this issue, we therefore need to assume that data needs to be stored by
 
 \subsubsection{Centralised data storage}
 
-There are many incumbents in the data storage market offering centralised, redundant data platforms. The most popular at the time include \href{https://aws.amazon.com/s3/}{Amazon Web Services S3}, \href{https://cloud.google.com/storage/}{Google Cloud Storage}, and \href{https://azure.microsoft.com/en-gb/services/storage/}{Microsoft Azure Storage} to name a few. Whilst the specific storage prices for each service are not relevant, each provider offers the storage at a rate of the order of less than 0.1 USD / GB / month. Even if we imagine that the storage offered by Ethereum would remain persistent and accessible for fifty years, the cost of storage on modern centralised data storage platforms is of the order of more than four thousand times cheaper.
+There are many incumbents in the data storage market offering centralised, redundant data platforms. The most popular at the time include \href{https://aws.amazon.com/s3/}{Amazon Web Services S3}, \href{https://cloud.google.com/storage/}{Google Cloud Storage}, and \href{https://azure.microsoft.com/en-gb/services/storage/}{Microsoft Azure Storage} to name a few. Whilst the specific storage prices for each service are not relevant, each provider offers the storage at a rate of the order of less than 0.1 USD / GB / month. Even if we imagine that the storage offered by Ethereum would remain persistent and accessible for fifty years, the cost of storage on modern centralised data storage platforms is of the order of more than four thousand times cheaper. 
 
-\subsubsection{De-centralised data storage}
+It is not within the scope of this report to consider the performance benefits of different cloud providers and their individual architectures. None of the big players in the centralised data storage market offer similarly performant decentralised solutions that would be useful in the context of this project.
 
-Decentralised storage, using peer-to-peer networks for data flow, represent 
+\subsubsection{Decentralised data storage}
+
+Decentralised storage, using peer-to-peer networks for data flow, represents an interesting and novel approach for data storage. Until recently, the only commonly used peer-to-peer data storage was that of torrents. Some software providers~\footnote{Canonical provide images of their Ubuntu operating system available through torrent files. \href{https://www.ubuntu.com/download/alternative-downloads}{Ubuntu Alternative Downloads}} have made free software available through this medium before, although historically the use of torrents for mainstream content sharing has been limited to illegal activities largely involving the use of copyrighted material.
+
+In more recent times, more modern implementations of peer-to-peer storage have arisen. The Inter-planetary File System~\footnote{IPFS is aiming to replace HTTP as the protocol we use to access data. \href{https://ipfs.io/}{\textit{IPFS is the distributed web}}} (IPFS) and Storj~\footnote{Storj aims to provide a decentralised and encrypted platform for sharing data. } are two options that somewhat extent the concept of peer-to-peer sharing through torrenting.
+
+\paragraph{IPFS}
+
+IPFS takes the peer-to-peer nature of torrenting and wraps it in a application and caching layers to provide a high-performance decentralised storage solution with the following benefits.
+
+\begin{itemize}
+	\item 
+    	\textbf{Content-based addressing} \\
+        All content sent to the IPFS network is addressed as part of a Merkle tree (tree of hashes) such that the integrity of the content can be validated by the hash, and that the hash (address) remains constant with the content.
+    \item 
+    	\textbf{Local storage of data (content)} \\
+        An IPFS node caches hashes which are requested such that it can provide them more quickly to nearby peers including repeated requests by the owner of the node for the same hash.
+    \item 
+    	\textbf{Permanent Web} \\
+        Due to the decentralised nature of IPFS, and the above content-based addressing, once a blob is present on the network, it cannot be revoked without all nodes which hold a copy deleting it. For content which has not yet been requested by any other node than the one where it was created, deletion might be possible, but it should be considered that IPFS represents somewhat permanent storage.
+\end{itemize}
+
+\paragraph{Storj}
+
+Pronounced 'storage', Storj leverages it's own  

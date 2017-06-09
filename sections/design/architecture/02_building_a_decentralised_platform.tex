@@ -1,6 +1,6 @@
 \subsubsection{Building A Decentralised Platform}
 
-Before any implementation details can be discussed, I must first establish the technology that will be used in the architecture of the system.
+The criteria established by the user design and the specific requirements and philosophies of the architecture yields the specific technology stack discussed below. This stack provides the backbone upon which the implementation presented is based. No specific packages or implementation details are discussed at this stage.
 
 \paragraph{Blockchain Technology}
 
@@ -14,7 +14,9 @@ With this said, Ethereum remains the standout choice for an application of this 
 
 \paragraph{Off-chain Storage}
 
-Distributed storage, of the likes of 
+Distributed (but centralised) storage, of the likes of Amazon Web Services S3 etc., is not suitable for this application. Whilst highly performant, a single corporation maintains the right to terminate the service at any juncture. This is not compatible with the objectives of this project.
+
+
 
 \paragraph{Client Interface}
 

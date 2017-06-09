@@ -2,4 +2,4 @@
 
 Fundamental to this project is the underlying end-to-end encryption of data. Without end-to-end encryption this project represents nothing more than a public ledger of the distribution of the files belonging to an identity, readable by any party. Henceforth, choosing a suitable and secure cryptography scheme is critical.
 
-Firstly, an asymmetric cryptography scheme with a public-private key pair is required in order to facilitate proxy re-encryption. As the 
+Firstly, an asymmetric cryptography scheme with a public-private key pair is required in order to facilitate proxy re-encryption. As the most popular scheme~\footnote{As used in SSL encryption globally} RSA~\cite{rsa:1978:article} seemed a suitable candidate. Whilst the proxy re-encryption scheme authored by \cite{afgh:2006:article} meets many more desirable properties than that authored by \cite{ivandodis:2003:inproceedings}, the appeal of using a well-studied cryptography scheme to underpin the resulting application was thought to be more important. This was reinforced by the 
