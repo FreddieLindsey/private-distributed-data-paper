@@ -4,4 +4,8 @@ Shown in figure \ref{fig:archi_platform_layers}, the interaction a user has with
 
 In a centralised system, a layer only communicates directly with the layers directly above and below it (as shown in figure \ref{fig:archi_platform_layers_centralised}). This places layers $L_{m+1..n-1}$ as dependencies on accessing any layer $L_{n}$ from a layer $L_{m}$. Since all of the intermediate layers are controlled by some authority over that layer, should any authority over any intermediate layer decide to terminate their service, the entire application no longer functions and access is denied. For a service which has value only in the data it extends this is not a problem, but for any service which holds user data in addition to extending it this is a critical denial of data access for the user. 
 
+\input{tikz/architecture/platform_layers_centralised}
 
+In contrast to the above, a truly decentralised platform communicates such that any one layer can access any other without any intermediaries. This is crucial in stopping any denial of data access, and is one of the core goals of this project.
+
+\input{tikz/architecture/platform_layers_decentralised}
