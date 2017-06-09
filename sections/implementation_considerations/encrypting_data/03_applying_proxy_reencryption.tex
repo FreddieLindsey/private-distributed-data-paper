@@ -22,9 +22,27 @@ Once the instance has been created, the packet should be either encrypted or dec
 
 \textit{Note: as per the \cite{afgh:2006:article} scheme, first and second level encryptions/decryptions are not cross-compatible. As shown above, only one decryption will be successful since the input ciphertext is either a first or second level encryption, but cannot be both.}
 
-\paragraph{Delegator encrypting data}
+\paragraph{Encrypting data}
 
-\paragraph{Delegatee encrypting data}
+\input{code/EncryptDataJson}
+
+When the user sends the above JSON to the API the following function is performed to encrypt the data.
+
+\input{code/EncryptData}
+
+\paragraph{Decrypting data}
+
+\input{code/DecryptDataJson}
+
+When the user sends the above JSON to the API the following function is performed to decrypt the data.
+
+\input{code/DecryptData}
 
 \paragraph{Re-encryption of data}
+
+\input{code/ReencryptDataJson}
+
+When the user sends the above JSON to the API the following function is performed to re-encrypt the data.
+
+\input{code/ReencryptData}
 

@@ -1,0 +1,21 @@
+% \begin{figure}[H]
+%   \centering
+%   \begin{minted}{java}
+% 	public byte[] getEncryption() {
+% 		// Generate a symmetric key and symmetrically encrypt data
+% 		bytes[] symmetricKey = encrypt();
+
+% 		// Encrypt the symmetric key
+% 		firstLevelEncrypted = AFGHProxyReEncryption.firstLevelEncryption(
+% 			symmetricKey,
+% 			publicKey,
+% 		);
+
+% 		// Return the result of concatenating the encrypted symmetric key
+% 		// and the data encrypted with the symmetric key
+% 		return mergeByteArrays(firstLevelEncrypted, symmetricEncryption);
+% 	}
+%   \end{minted}
+%   \caption{Generating encrypted data}
+%   \label{code:encrypt_data}
+% \end{figure}
