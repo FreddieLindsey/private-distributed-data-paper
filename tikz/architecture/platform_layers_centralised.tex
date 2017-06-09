@@ -6,12 +6,14 @@
   \draw [rounded corners, fill=blue!10] (-5, 5) rectangle (5, 3);
   \node [fill=blue!10] at (0, 4) { Application Layer };
   
-  
+  \draw [ -> , dotted] (-0.5, 3) -- (-0.5, 1);
+  \draw [ -> , dotted] (0.5,  1) -- (0.5,  3);
   
   \draw [rounded corners, fill=green!10] (-5, 1) rectangle (5, -1);
   \node [fill=green!10] at (0, 0) { Permissions Layer };
   
-  
+  \draw [ -> , dotted] (-0.5, -1) -- (-0.5, -3);
+  \draw [ -> , dotted] (0.5,  -3) -- (0.5,  -1);
   
   \draw [rounded corners, fill=red!10] (-5, -5) rectangle (5, -3);
   \node [fill=red!10] at (0, -4) { Storage Layer };

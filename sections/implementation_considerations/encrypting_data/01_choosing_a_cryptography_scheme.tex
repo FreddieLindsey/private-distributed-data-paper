@@ -2,4 +2,14 @@
 
 Fundamental to this project is the underlying end-to-end encryption of data. Without end-to-end encryption this project represents nothing more than a public ledger of the distribution of the files belonging to an identity, readable by any party. Henceforth, choosing a suitable and secure cryptography scheme is critical.
 
-Firstly, an asymmetric cryptography scheme with a public-private key pair is required in order to facilitate proxy re-encryption. As the most popular scheme~\footnote{As used in SSL encryption globally} RSA~\cite{rsa:1978:article} seemed a suitable candidate. Whilst the proxy re-encryption scheme authored by \cite{afgh:2006:article} meets many more desirable properties than that authored by \cite{ivandodis:2003:inproceedings}, the appeal of using a well-studied cryptography scheme to underpin the resulting application was thought to be more important. This was reinforced by the 
+An asymmetric cryptography scheme with a public-private key pair is required in order to facilitate proxy re-encryption. As the most popular scheme~\footnote{As used in SSL encryption globally} RSA~\cite{rsa:1978:article} seemed a suitable candidate. Whilst the proxy re-encryption scheme authored by \cite{afgh:2006:article} meets many more desirable properties than that authored by \cite{ivandodis:2003:inproceedings}, the latter allows the use of different cryptography schemes to support proxy re-encryption. Whilst in a development stage, the priorities of this project lie in progressing implementation before proving security.
+
+Whilst originally thought that RSA would be a suitable scheme, it became apparent that this was not the case. Fundamentally, the scheme authored by \cite{ivandodis:2003:inproceedings} requires splitting an RSA private key into two halves and distributing these halves to a proxy and end-user separately. The re-encryption and decryption processes are in fact two separate decryptions with each half of the original private key capable of decrypting the original ciphertext.
+
+Understanding that an RSA private key is composed of elements (including but not limited to) $d, n, p, q$ as solutions to the following equations:
+
+$$
+\begin{aligned}
+  
+\end{aligned}
+$$
