@@ -4,7 +4,7 @@ The criteria established by the user design and the specific requirements and ph
 
 \input{tikz/architecture/platform_layers}
 
-The above layers shown in \ref{fig:archi_platform_layers} are discussed below in order of design importance, i.e. the permissions layers is at the centre of the application and somewhat defines the design of the other two layers.
+The above layers shown in figure \ref{fig:archi_platform_layers} are discussed below in order of design importance, i.e. the permissions layers is at the centre of the application and somewhat defines the design of the other two layers.
 
 \paragraph{Permissions Layer}
 
@@ -26,4 +26,10 @@ Whilst still in its infancy, a JavaScript implementation of an IPFS client \href
 
 \paragraph{Application Layer}
 
+As part of this project's intentions to create a proof of concept demonstration, a reference implementation of a client interface is necessary. This interface should be completely visual, require no special knowledge from any user, and be intuitive and as simple as possible. It should be as accessible as possible with current technology, allowing any prospective user to experiment with the capabilities of the platform.
 
+Staying in the vein of a completely decentralised platform, it would be the intention that the application is deployed to a form of decentralised storage (as discussed above) and that it once again requires no third party or centralised endpoint.
+
+For these reasons, the reference interface will be created using client-side routing, built entirely in browser-compatible JavaScript, and usable on any web browser. This will allow the user to navigate as they usually would on any other web-based application, but without the need to make any further requests~\footnote{The user will need to make an initial request to download the application and load it into the browser. Assuming that the application is cached locally using a local storage node, the time to load the application will be negligible.}. The only user-trigger requests that will be made will be to the permissions and storage layers of the platform, which are themselves decentralised.
+
+% TODO: Maybe talk about Webpack / React / ES6

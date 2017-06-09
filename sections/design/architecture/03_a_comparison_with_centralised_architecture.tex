@@ -1,1 +1,7 @@
 \subsubsection{A Comparison With Centralised Architecture}
+
+Shown in figure \ref{fig:archi_platform_layers}, the interaction a user has with the layers in the platform is radically different to that of a centralised system.
+
+In a centralised system, a layer only communicates directly with the layers directly above and below it (as shown in figure \ref{fig:archi_platform_layers_centralised}). This places layers $L_{m+1..n-1}$ as dependencies on accessing any layer $L_{n}$ from a layer $L_{m}$. Since all of the intermediate layers are controlled by some authority over that layer, should any authority over any intermediate layer decide to terminate their service, the entire application no longer functions and access is denied. For a service which has value only in the data it extends this is not a problem, but for any service which holds user data in addition to extending it this is a critical denial of data access for the user. 
+
+
