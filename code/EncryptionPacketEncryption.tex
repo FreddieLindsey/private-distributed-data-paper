@@ -6,6 +6,10 @@ EncryptionPacket encryptionPacket = new EncryptionPacket(keyPair, message);
 byte[] firstLevelEncrypted  = encryptionPacket.getFirstLevelEncryption();
 byte[] secondLevelEncrypted = encryptionPacket.getSecondLevelEncryption();
   \end{minted}
-  \caption{Encrypting data with an EncryptionPacket}
+  \caption{
+    Encrypting data with an EncryptionPacket
+  }{
+  	A message is encrypted (using either first or second level encryption) with the public key of the key pair.
+  }
   \label{code:encryption_packet_encryption}
 \end{figure}

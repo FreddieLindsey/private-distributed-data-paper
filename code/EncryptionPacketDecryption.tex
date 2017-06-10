@@ -6,6 +6,10 @@ EncryptionPacket encryptionPacket = new EncryptionPacket(keyPair, ciphertext);
 byte[] firstLevelDecrypted  = encryptionPacket.getFirstLevelDecryption();
 byte[] secondLevelDecrypted = encryptionPacket.getSecondLevelDecryption();
   \end{minted}
-  \caption{Decrypting data with an EncryptionPacket}
+  \caption{
+  	Decrypting data with an EncryptionPacket
+  }{
+  	A cipher text is decrypted (using either first or second level decryption) and the underlying message revealed.
+  }
   \label{code:encryption_packet_decryption}
 \end{figure}
