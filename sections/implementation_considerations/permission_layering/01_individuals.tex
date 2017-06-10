@@ -45,3 +45,15 @@ Given the settings in table it is easy to understand whether any identity has a 
 \input{code/StoragePermissionsCheck.tex}
 
 The function shown in figure \ref{code:storage_permissions_check} is derived from the fact that a permission $n$ is represented by the $n-1^{\text{th}}$ bit, such that if all possible permissions were set for a given user, $x = 2^{n} - 1$. 
+
+\paragraph{Read}
+
+As part of the storage contract deployed, a function must be available returning a reference to the public key of the storage contract owner, which can then be retrieved from off-chain storage. Intuitively, no security is required in terms of the storage of this public key.
+
+When an individual is given read access, it is important to consider how they will read the contents of the encrypted data (only decrypt-able by the storage contract owner). Since the public key of any individual registered is available through their storage contract, the storage contract owner is able to use the individual's public key and their local copy of their private key to generate a re-encryption key. This re-encryption key is added at the point when an individual is granted read access. The reference to this key is available only as long as the individual has read access.
+
+\input{tikz/encryption/individual_read}
+
+\paragraph{Write}
+
+Other than the necessary write permission, an individual needs to possess the public key of the storage contract owner in order to appropriately encrypt all data. Any data which is referenced by the storage contract should be encrypted such that only the data owner is able to decrypt it without further re-encryption.
