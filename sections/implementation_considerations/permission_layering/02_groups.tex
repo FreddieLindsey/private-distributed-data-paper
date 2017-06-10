@@ -1,1 +1,11 @@
 \subsubsection{Group Permissions}
+
+Group permissions extend the above system for individual permissions and require the use of smart contracts. 
+
+Whilst our application is intended to be fully decentralised, the key stakeholders for some applications (such as health care) may require access to the network to administrate. One example of this is the involvement of the GMC in validating doctor identities. If a doctor has not been registered, or has been struck off, they should not have any access to patient data (even if they claim to be a doctor). They should only have access should the GMC validate that they are in fact a valid doctor.
+
+The idea of a group administrator, such as the GMC, conflicts with the idea of the data owner maintaining full access control and administration. However, should the data owner decide that the group should no longer have any access or wishes to change group permissions, they are able to do so.
+
+To facilitate this, let's take a look at the architecture of a group's interactions with a particular identity's contract.
+
+

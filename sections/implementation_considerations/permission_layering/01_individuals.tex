@@ -15,3 +15,33 @@ There are several considerations to make when giving another identity permission
     \textbf{Write} \\
     The ability of an individual to write the contents of a file, correctly.
 \end{itemize}
+
+\paragraph{Access Control}
+
+A simple permissions system based on basic UNIX ACL (access control list) permissions is used, allowing a number $x$ in the range of $[0..2^n)$ where $n$ represents the number of permission types available (read, write, etc.). $x$ models the permissions for a given identity. This project only requires primitive permissions to show proof of concept, those permissions being only 'read' and 'write'. Given these two possibilities there are four possible permission settings per identity:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ | l | c | c | }
+    \hline
+    Number & Read & Write \\
+    \hline
+    0 & & \\
+    1 & \checkmark & \\
+    2 & & \checkmark \\
+    3 & \checkmark & \checkmark \\
+    \hline
+  \end{tabular}
+  \caption{
+  	Identity permission modeling
+  }{
+    The four possible permissions settings an identity could have at any given time. Each setting is mutually exclusive of any other.
+  }
+  \label{table:pre_properties}
+\end{table}
+
+Given the settings in table it is easy to understand whether any identity has a given permission. Let's imagine a system that has $n = 20$, and we wish to understand if a particular identity, with permissions $x$, has permission $14$ set. We apply the following function:
+
+\input{code/StoragePermissionsCheck.tex}
+
+The function shown in figure \ref{code:storage_permissions_check} is derived from the fact that a permission $n$ is represented by the $n-1^{\text{th}}$ bit, such that if all possible permissions were set for a given user, $x = 2^{n} - 1$. 

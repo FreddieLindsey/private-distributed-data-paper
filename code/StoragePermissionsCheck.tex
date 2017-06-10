@@ -1,0 +1,15 @@
+\begin{figure}[H]
+  \centering
+  \begin{minted}{haskell}
+hasPermission :: (Num a, Bool b) => a -> a -> b
+hasPermission 0 _                = false
+hasPermission x p | x < 2**(p-1) = false
+                  | otherwise    = x mod (2**p) > (2**(p - 1))
+  \end{minted}
+  \caption{
+  	Permissions check for a given $n$
+  }{
+  	$x$ represents the permissions for a given user. $p$ represents the permissions bit we wish to check for.
+  }
+  \label{code:storage_permissions_check}
+\end{figure}
