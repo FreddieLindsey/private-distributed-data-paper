@@ -2,18 +2,17 @@
   \centering
   \begin{minted}{java}
 	public byte[] getEncryption() {
-		// Generate a symmetric key and symmetrically encrypt data
-		bytes[] symmetricKey = encrypt();
+		// Generate a tuple of the symmetric key and the symmetrically encrypted data
+		Tuple<bytes> symmetricKeyData = symmetricEncrypt(message);
 
 		// Encrypt the symmetric key
-		firstLevelEncrypted = AFGHProxyReEncryption.firstLevelEncryption(
-			symmetricKey,
-			publicKey,
-		);
+		bytes[] encryptedKey = asymmetricEncrypt(symmetricKeyData.getFirst(), publicKey);
 
-		// Return the result of concatenating the encrypted symmetric key
+		// Generate ciphertext from the encrypted symmetric key
 		// and the data encrypted with the symmetric key
-		return mergeByteArrays(firstLevelEncrypted, symmetricEncryption);
+		bytes[] ciphertext = mergeByteArrays(encryptedKey, symmetricKeyData.getSecond());
+        
+		return ciphertext;
 	}
   \end{minted}
   \caption{Generating encrypted data}

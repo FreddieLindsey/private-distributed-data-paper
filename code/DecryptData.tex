@@ -1,21 +1,19 @@
-% \begin{figure}[H]
-%   \centering
-%   \begin{minted}{java}
-% 	public byte[] getEncryption() {
-% 		// Generate a symmetric key and symmetrically encrypt data
-% 		bytes[] symmetricKey = encrypt();
+\begin{figure}[H]
+  \centering
+  \begin{minted}{java}
+	public byte[] getDecryption() {
+		// Split the input data into the encrypted key and encrypted data
+		Tuple<bytes> dataPackets = splitPackets();
 
-% 		// Encrypt the symmetric key
-% 		firstLevelEncrypted = AFGHProxyReEncryption.firstLevelEncryption(
-% 			symmetricKey,
-% 			publicKey,
-% 		);
-
-% 		// Return the result of concatenating the encrypted symmetric key
-% 		// and the data encrypted with the symmetric key
-% 		return mergeByteArrays(firstLevelEncrypted, symmetricEncryption);
-% 	}
-%   \end{minted}
-%   \caption{Generating encrypted data}
-%   \label{code:encrypt_data}
-% \end{figure}
+		// Decrypt the symmetric key
+		bytes[] symmetricKey = asymmetricDecrypt(dataPackets.getFirst(), publicKey);
+        
+		// Decrypt the underlying data
+		bytes[] message = symmetricDecrypt(dataPackets.getSecond(), symmetricKey);
+        
+		return message;
+	}
+  \end{minted}
+  \caption{Decrypting message from ciphertext}
+  \label{code:decrypt_data}
+\end{figure}
