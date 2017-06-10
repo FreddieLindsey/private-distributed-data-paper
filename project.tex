@@ -30,7 +30,13 @@
 \usepackage{tabularx}
 
 \usepackage{minted}
-\usemintedstyle{monokai}
+
+\definecolor{bg}{rgb}{0.95, 0.95, 0.95}
+\usemintedstyle{borland}
+\usepackage{tcolorbox}
+\usepackage{etoolbox}
+\BeforeBeginEnvironment{minted}{\begin{tcolorbox}}%
+\AfterEndEnvironment{minted}{\end{tcolorbox}}%
 
 \usepackage{titlesec} % Used for paragraph subsubsubsection
 

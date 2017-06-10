@@ -1,19 +1,19 @@
 \begin{figure}[H]
   \centering
   \begin{minted}{java}
-	public byte[] reencrypt() {
-		// Split the input data into the encrypted key and encrypted data
-		Tuple<bytes> dataPackets = splitPackets();
+public byte[] reencrypt() {
+  // Split the input data into the encrypted key and encrypted data
+  Tuple<bytes> dataPackets = splitPackets();
 
-		// Reencrypt the symmetric key using the given re-encryption key
-		bytes[] encryptedKey = asymmetricReencrypt(dataPackets.getFirst(), reencryptionKey);
+  // Reencrypt the symmetric key using the given re-encryption key
+  bytes[] encryptedKey = asymmetricReencrypt(dataPackets.getFirst(), reencryptionKey);
 
-		// Generate ciphertext from the encrypted symmetric key
-		// and the data encrypted with the symmetric key
-		bytes[] ciphertext = mergeByteArrays(encryptedKey, symmetricKeyData.getSecond());
-        
-		return ciphertext;
-	}
+  // Generate ciphertext from the encrypted symmetric key
+  // and the data encrypted with the symmetric key
+  bytes[] ciphertext = mergeByteArrays(encryptedKey, symmetricKeyData.getSecond());
+
+  return ciphertext;
+}
   \end{minted}
   \caption{Reencrypting data}
   \label{code:reencrypt_data}

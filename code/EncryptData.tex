@@ -1,19 +1,19 @@
 \begin{figure}[H]
   \centering
   \begin{minted}{java}
-	public byte[] getEncryption() {
-		// Generate a tuple of the symmetric key and the symmetrically encrypted data
-		Tuple<bytes> symmetricKeyData = symmetricEncrypt(message);
+public byte[] getEncryption() {
+  // Generate a tuple of the symmetric key and the symmetrically encrypted data
+  Tuple<bytes> symmetricKeyData = symmetricEncrypt(message);
 
-		// Encrypt the symmetric key
-		bytes[] encryptedKey = asymmetricEncrypt(symmetricKeyData.getFirst(), publicKey);
+  // Encrypt the symmetric key
+  bytes[] encryptedKey = asymmetricEncrypt(symmetricKeyData.getFirst(), publicKey);
 
-		// Generate ciphertext from the encrypted symmetric key
-		// and the data encrypted with the symmetric key
-		bytes[] ciphertext = mergeByteArrays(encryptedKey, symmetricKeyData.getSecond());
-        
-		return ciphertext;
-	}
+  // Generate ciphertext from the encrypted symmetric key
+  // and the data encrypted with the symmetric key
+  bytes[] ciphertext = mergeByteArrays(encryptedKey, symmetricKeyData.getSecond());
+
+  return ciphertext;
+}
   \end{minted}
   \caption{Generating encrypted data}
   \label{code:encrypt_data}

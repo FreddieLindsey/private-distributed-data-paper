@@ -1,18 +1,18 @@
 \begin{figure}[H]
   \centering
   \begin{minted}{java}
-	public byte[] getDecryption() {
-		// Split the input data into the encrypted key and encrypted data
-		Tuple<bytes> dataPackets = splitPackets();
+public byte[] getDecryption() {
+  // Split the input data into the encrypted key and encrypted data
+  Tuple<bytes> dataPackets = splitPackets();
 
-		// Decrypt the symmetric key
-		bytes[] symmetricKey = asymmetricDecrypt(dataPackets.getFirst(), publicKey);
-        
-		// Decrypt the underlying data
-		bytes[] message = symmetricDecrypt(dataPackets.getSecond(), symmetricKey);
-        
-		return message;
-	}
+  // Decrypt the symmetric key
+  bytes[] symmetricKey = asymmetricDecrypt(dataPackets.getFirst(), publicKey);
+
+  // Decrypt the underlying data
+  bytes[] message = symmetricDecrypt(dataPackets.getSecond(), symmetricKey);
+
+  return message;
+}
   \end{minted}
   \caption{Decrypting message from ciphertext}
   \label{code:decrypt_data}
