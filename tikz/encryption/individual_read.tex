@@ -1,0 +1,25 @@
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[scale = 0.6, every node/.style={scale = 0.85}, every node/.append style={fill = white, rounded corners = 2pt, inner sep = 2pt, align = center}]
+
+  \draw [rounded corners, fill=green!10] (6, 1) rectangle (10, -1);
+  \node [fill=green!10] at (8, 0) { $\text{Data}_{\text{I}}$ };
+
+  \draw [ -> , dotted] (2, 0) -- (6, 0);
+
+  \draw [rounded corners, fill=blue!10] (-2, 1) rectangle (2, -1);
+  \node [fill=blue!10] at (0, 0) { $\text{Re}_{\text{SCO} \rightarrow \text{I}}$ };
+
+  \draw [ -> , dotted] (-6, 0) -- (-2, 0);
+
+  \draw [rounded corners, fill=red!10] (-6, 1) rectangle (-10, -1);
+  \node [fill=red!10] at (-8, 0) { $\text{Data}_{\text{SCO}}$ };
+
+  \end{tikzpicture} \\
+  \caption{
+  	Individual Read Re-encryption
+  }{
+    The process of taking data encrypted for a storage contract owner, re-encrypting it from the storage contract owner to the individual, and then processing the resulting data as the individual (decryption).
+  }
+  \label{fig:encryption_individual_read}
+\end{figure}
