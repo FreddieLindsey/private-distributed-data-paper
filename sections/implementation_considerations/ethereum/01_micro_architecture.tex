@@ -4,16 +4,16 @@ Distributed ledger technology is at the very core of any decentralised project. 
 
 It is trivial that every identity, every user of the proposed system, needs to have their own state representative of files they own and associated metadata. It is also trivial that every group that exists on the network must exist as a collection of identities and this should exist as some state along with associated metadata. We therefore need two contracts, as a minimum, each representative of some state. These will be called the 'Storage' contract and the 'Group' contract.
 
-However, these two contracts will be instantiated in arbitrary sizes. Upon launch of a system, there would be zero of either, but contract instantiation is expected to follow user adoption. Since this is a decentralised application, a static reference is required to the root of the project's compute such that it can always be found. In a production environment this might be represented by a versioning contract which would hold the contract address of a root contract against a version number, an example contract can be found in Program Code \ref{code:ethereum_versioning} (Appendix). For a proof of concept this versioning contract is unnecessary. 
+However, these two contracts will be instantiated in arbitrary sizes. Upon launch of a system, there would be zero of either, but contract instantiation is expected to follow user adoption. Since this is a decentralised application, a static reference is required to the root of the project's compute such that it can always be found. In a production environment this might be represented by a versioning contract which would hold the contract address of a root contract against a version number, an example contract can be found in Program Code \ref{code:ethereum_versioning} (Appendix). For a proof of concept this versioning contract is unnecessary. However, the root contract is not.
+
+As the main contact point for any user the root contract has to hold information about all available contracts in the system and associated metadata. We will call it the 'Registry' contract. The architecture of the three contracts discussed is shown in figure \ref{fig:ethereum_micro_architecture}.
+
+\input{tikz/architecture/ethereum_micro_architecture}
+
+A more thorough examination of each contract is available below.
 
 \paragraph{Storage Contract}
 
 \paragraph{Group Contract}
 
 \paragraph{Registry Contract}
-
-% TODO: Get to the below diagram
-
-\input{tikz/architecture/ethereum_micro_architecture}
-
-Figure \ref{fig:ethereum_micro_architecture}
