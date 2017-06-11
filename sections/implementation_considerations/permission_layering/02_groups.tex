@@ -26,7 +26,7 @@ If we were to extend the process of reading as an individual to a group, the res
 
 Given the non-transitive nature of the proxy re-encryption scheme we are using, the process shown in figure \ref{fig:encryption_group_read_theoretical} doesn't allow end-to-end encryption. After the first stage of re-encryption, $\text{Data}_{G}$ represents a first-level encryption under the group $G$'s public key. Since the proxy re-encryption scheme being used only allows re-encryption from a second-level encryption to a first-level encryption (to eliminate transitivity), no further action is possible. Another process is required to facilitate group read.
 
-Given only one re-encryption is possible, we look to the identity that the re-encryption is for. We ask ourselves whether the original (individual) scheme could work here, and indeed it could, although it comes with many flaws including:
+If only one re-encryption is possible, the identity we re-encrypted for becomes the main priority. We ask ourselves whether the original (individual) scheme could work here, and indeed it could, although it comes with many flaws described below.
 
 \begin{itemize}
   \item 
@@ -35,8 +35,10 @@ Given only one re-encryption is possible, we look to the identity that the re-en
   % TODO: Need more here    
 \end{itemize}
 
-As an improvement to individual keys, let's take a look at the viability of the theoretical group read process. Assume that there is a group key pair, for which any data received by a member of the group from a storage contract is encrypted. Now all data is encrypted such that the group private key is required to decrypt it. The group private key is encrypted using the group public key such that it can only be decrypted by itself. The administrator of the group must therefore hold the re-encryption key from the group private key to their public key in order to read, and therefore administer, the group. When a member joins the group, the administrator creates a re-encryption key for them such that they are able to decrypt the group's private key when re-encrypted. However, when a member leaves the group, the reference to their re-encryption key is removed from the group contract.
+As an improvement to individual keys, let's take another look at the viability of the theoretical group read process. Let's assume that there is a group key pair, for which any data received by a member of the group from a storage contract is encrypted. Now all data is encrypted such that the group private key is required to decrypt it. The group private key is encrypted using the group public key such that it can only be decrypted by itself. The administrator of the group must therefore hold the re-encryption key from the group private key to their public key in order to read, and therefore administer, the group. When a member joins the group, the administrator creates a re-encryption key for them such that they are able to decrypt the group's private key when re-encrypted. However, when a member leaves the group, the reference to their re-encryption key is removed from the group contract.
 
 In contrast to figure \ref{fig:encryption_group_read_theoretical}, the process of receiving data as a member of the group now follows a process similar to that shown in figure \ref{fig:encryption_group_read_practical}.
 
 \input{tikz/encryption/group_read_practical}
+
+
