@@ -1,3 +1,19 @@
 \subsubsection{Micro Architecture}
 
 Distributed ledger technology is at the very core of any decentralised project. In this project, it provides the compute backbone, the only non-local, stateful system in the project architecture. Whilst this compute backbone has, until now, been observed as a monolithic module, we now consider it's implementation and own micro-architecture.
+
+It is trivial that every identity, every user of the proposed system, needs to have their own state representative of files they own and associated metadata. It is also trivial that every group that exists on the network must exist as a collection of identities and this should exist as some state along with associated metadata. We therefore need two contracts, as a minimum, each representative of some state. These will be called the 'Storage' contract and the 'Group' contract.
+
+However, these two contracts will be instantiated in arbitrary sizes. Upon launch of a system, there would be zero of either, but with user adoption will come contract instantiation. 
+
+\paragraph{Storage Contract}
+
+\paragraph{Group Contract}
+
+\paragraph{Registry Contract}
+
+% TODO: Get to the below diagram
+
+\input{tikz/architecture/ethereum_micro_architecture}
+
+Figure \ref{fig:ethereum_micro_architecture}
