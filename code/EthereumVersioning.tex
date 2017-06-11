@@ -1,0 +1,43 @@
+\begin{figure}[H]
+  \centering
+  \begin{minted}{javascript}
+contract Application {
+
+  address administrator;
+
+  string latest;
+  mapping (string => address) version_mappings;
+
+  modifier administratorAccess() {
+    if (msg.sender != administrator) throw;
+    _;
+  }
+
+  modifier notExist(string version) {
+    if (version_mappings[version] != 0) throw;
+    _;
+  }
+
+  function Application () {
+    administrator = msg.sender;
+  }
+
+  function addVersion(string version_name, address root)
+    administratorAccess notExist(version_name) {
+    latest = version_name;
+    version_mappings[version_name] = root;
+  }
+
+  function getLatestVersion() constant returns (string, address) {
+    return (latest, version_mappings[latest]);
+  }
+
+  function getVersion(string version) constant returns (address) {
+    return version_mappings[version];
+  }
+
+};
+  \end{minted}
+  \caption{Ethereum Versioning}
+  \label{code:ethereum_versioning}
+\end{figure}
