@@ -3,14 +3,14 @@
   \begin{minted}{java}
 public byte[] reencrypt() {
   // Split the input data into the encrypted key and encrypted data
-  Tuple<bytes> dataPackets = splitPackets();
+  Tuple<byte[]> dataPackets = splitPackets();
 
   // Reencrypt the symmetric key using the given re-encryption key
-  bytes[] encryptedKey = asymmetricReencrypt(dataPackets.getFirst(), reencryptionKey);
+  byte[] encryptedKey = asymmetricReencrypt(dataPackets.getFirst(), reencryptionKey);
 
   // Generate ciphertext from the encrypted symmetric key
   // and the data encrypted with the symmetric key
-  bytes[] ciphertext = mergeByteArrays(encryptedKey, symmetricKeyData.getSecond());
+  byte[] ciphertext = mergeByteArrays(encryptedKey, symmetricKeyData.getSecond());
 
   return ciphertext;
 }

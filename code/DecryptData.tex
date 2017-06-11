@@ -1,15 +1,15 @@
-\begin{figure}[H]
+\begin{listing}[H]
   \centering
   \begin{minted}{java}
 public byte[] getDecryption() {
   // Split the input data into the encrypted key and encrypted data
-  Tuple<bytes> dataPackets = splitPackets();
+  Tuple<byte[]> dataPackets = splitPackets();
 
   // Decrypt the symmetric key
-  bytes[] symmetricKey = asymmetricDecrypt(dataPackets.getFirst(), publicKey);
+  byte[] symmetricKey = asymmetricDecrypt(dataPackets.getFirst(), publicKey);
 
   // Decrypt the underlying data
-  bytes[] message = symmetricDecrypt(dataPackets.getSecond(), symmetricKey);
+  byte[] message = symmetricDecrypt(dataPackets.getSecond(), symmetricKey);
 
   return message;
 }
@@ -20,4 +20,4 @@ public byte[] getDecryption() {
   	A ciphertext is passed as data. The data is then arbitrarily decrypted and the underlying message returned.
   }
   \label{code:decrypt_data}
-\end{figure}
+\end{listing}

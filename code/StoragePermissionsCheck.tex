@@ -1,4 +1,4 @@
-\begin{figure}[H]
+\begin{listing}[H]
   \centering
   \begin{minted}{haskell}
 hasPermission :: (Num a, Bool b) => a -> a -> b
@@ -12,4 +12,4 @@ hasPermission x p | x < 2**(p-1) = false
   	$x$ represents the permissions for a given user. $p$ represents the permissions bit we wish to check for.
   }
   \label{code:storage_permissions_check}
-\end{figure}
+\end{listing}
