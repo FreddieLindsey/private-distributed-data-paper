@@ -1,1 +1,15 @@
 \subsection{Data Layering}
+
+We have a system which is able to support end-to-end encryption of data with permissions and access control. As an extension of this, we briefly consider how this data might be layered such that different parties see different views of data.
+
+As an example, take the following JSON object in program code \ref{code:patient_record_json}. Let's assume this represents a record of a patient visiting a general practitioner.
+
+\input{code/PatientRecordJson}
+
+Now let's split the JSON object into three further JSON objects corresponding to the "doctor", "metadata", and "notes" properties. We could also do the same to the "doctor" and "metadata" objects. This would result in five separate JSON objects which, when combined, form the original JSON object. This is a recursively applied process.
+
+\subsubsection{Storing data chunks}
+
+
+
+\subsubsection{Permissions for data chunks}
