@@ -1,0 +1,43 @@
+\subsubsection{Contracts}
+
+Outlined below are the main contracts that form the computer layer of the decentralised system. Various properties of each function are shown in parentheses, signaling access level required or a property of the result.
+
+\paragraph{Storage Contract}
+
+The Storage contract's main functions are:
+
+\begin{itemize}
+  \item Get storage contract owner identity
+  \item Get public key reference
+  \item Give permissions (r/w, admin-only)
+  \item Revoke permissions (admin-only)
+  \item Add path (authorised)
+  \item Retrieve reference for a path (authorised)
+  \item Retrieve index of available paths (authorised)
+  \item Add group (admin-only)
+  \item Add re-encryption key reference (admin-only)
+  \item Retrieve re-encryption key reference (authorised)
+\end{itemize}
+
+\paragraph{Group Contract}
+
+The Group contract is an important but simple construction. It's main functions are:
+
+\begin{itemize}
+  \item Set key pair references (admin-only)
+  \item Add members (admin-only)
+  \item Remove members (admin-only)
+  \item Invalidate members (admin-only, permanent)
+  \item Reveal public key reference
+  \item Reveal private key reference (authorised, encrypted)
+  \item Reveal re-encryption key reference (authorised)
+\end{itemize}
+
+\paragraph{Registry Contract}
+
+The Registry contract has the following functions:
+
+\begin{itemize}
+  \item Add storage contract reference (authorised)
+  \item Get storage contract reference
+\end{itemize}
