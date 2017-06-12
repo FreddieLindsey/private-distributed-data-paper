@@ -12,6 +12,10 @@ Now let's split the JSON object into three further JSON objects corresponding to
 
 Since the structure of a JSON object is representative of a tree, when evaluated as above, we can use this property to visualise the data as a file system:
 
-\includegraphics[width = 4cm]{images/json_file_structure.png}\\[0.5cm]
+\input{figures/json_file_structure}
+
+The use of the suffix '.part' hints at an file representing a property of the parent JSON object. We can transform the tree in figure \ref{fig:json_file_structure} into a Merkle tree by taking the hash of each file. Given the file content in program code \ref{code:patient_record_json} the resulting Merkle tree is shown in figure \ref{tikz:json_merkle_tree}.
+
+\input{tikz/json_merkle_tree}
 
 \subsubsection{Permissions for data chunks}
