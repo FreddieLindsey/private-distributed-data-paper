@@ -1,18 +1,33 @@
 \begin{figure}[H]
   \centering
-  \begin{tikzpicture}[scale = 0.6, every node/.style={scale = 0.6}, every node/.append style={fill = white, rounded corners = 2pt, inner sep = 2pt, align = center}]
+  \begin{tikzpicture}[scale = 0.45, every node/.style={scale = 0.65}, every node/.append style={fill = white, rounded corners = 2pt, inner sep = 2pt, align = center}]
 
   \node at (0, 0) { QmVkd...hYAv8 (file.json) };
+  
+  \draw (0, -0.5) -- (0, -1.5);
+  \draw (-10, -1.25) -- (10, -1.25);
+  \draw (-10, -1.25) -- (-10, -1.5);
+  \draw (10, -1.25) -- (10, -1.5);
 
-  \node at (-4, -2) { QmUQy...hxK83 (doctor.json.part) };
-  \node at (0, -2) { QmR5A...AybMz (metadata.json.part) };
-  \node at (4, -2) { QmWys...MUFQk (notes.json.part) };
+  \node at (-10, -2) { QmUQy...hxK83 (doctor.json.part) };
+  \node at (0, -2) { QmWys...MUFQk (notes.json.part) };
+  \node at (10, -2) { QmR5A...AybMz (metadata.json.part) };
+  
+  \draw (-10, -2.5) -- (-10, -3.25);
+  \draw (-15, -3.25) -- (-5, -3.25);
+  \draw (-15, -3.25) -- (-15, -3.5);
+  \draw (-5, -3.25) -- (-5, -3.5);
+  
+  \draw (10, -2.5) -- (10, -3.25);
+  \draw (15, -3.25) -- (5, -3.25);
+  \draw (15, -3.25) -- (15, -3.5);
+  \draw (5, -3.25) -- (5, -3.5);
 
-  \node at (-6, -4) { QmZy6...khDCr (id.json.part) };
-  \node at (-2, -4) { QmUU5...fsKim (name.json.part) };
+  \node at (-15, -4) { QmZy6...khDCr (id.json.part) };
+  \node at (-5, -4) { QmUU5...fsKim (name.json.part) };
 
-  \node at (2, -4) { QmP7T...V2Anu (created.json.part) };
-  \node at (6, -4) { QmTsd...EKdYr (modified.json.part) };
+  \node at (5, -4) { QmP7T...V2Anu (created.json.part) };
+  \node at (15, -4) { QmTsd...EKdYr (modified.json.part) };
 
   \end{tikzpicture}
   \caption{
