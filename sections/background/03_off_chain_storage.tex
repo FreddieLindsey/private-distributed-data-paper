@@ -6,8 +6,8 @@ When using blockchain as the central data lake for an application, we must consi
 
 $$
 \begin{aligned}
-5 * 1024^{3} * 0.2 * 10^{-6} &=& 1,073.74 \text{ ETH (2sf)} \\
-&=& 263,023.80 \text{ USD (2sf)}
+5 * 1024^{3} * 0.2 * 10^{-6} &=& 1,073.74 \text{ ETH (2 d.p.)} \\
+&=& 263,023.80 \text{ USD (2 d.p.)}
 \end{aligned}
 $$
 
@@ -17,7 +17,7 @@ To solve this issue, we therefore need to assume that data needs to be stored by
 
 \subsubsection{Centralised data storage}
 
-There are many incumbents in the data storage market offering centralised, redundant data platforms. The most popular at the time include \href{https://aws.amazon.com/s3/}{Amazon Web Services S3}, \href{https://cloud.google.com/storage/}{Google Cloud Storage}, and \href{https://azure.microsoft.com/en-gb/services/storage/}{Microsoft Azure Storage} to name a few. Whilst the specific storage prices for each service are not relevant, each provider offers the storage at a rate of the order of less than 0.1 USD / GB / month. Even if we imagine that the storage offered by Ethereum would remain persistent and accessible for fifty years, the cost of storage on modern centralised data storage platforms is of the order of more than four thousand times cheaper. 
+There are many incumbents in the data storage market offering centralised, redundant data platforms. The most popular at the time include \href{https://aws.amazon.com/s3/}{Amazon Web Services S3}, \href{https://cloud.google.com/storage/}{Google Cloud Storage}, and \href{https://azure.microsoft.com/en-gb/services/storage/}{Microsoft Azure Storage} to name a few. Whilst the specific storage prices for each service are not relevant, each provider offers the storage at a rate of the order of 0.01 USD / GB / month. Even if we imagine that the storage offered by Ethereum would remain persistent and accessible for fifty years, the cost of storage on modern centralised data storage platforms is of the order of more than forty thousand times cheaper. 
 
 It is not within the scope of this report to consider the performance benefits of different cloud providers and their individual architectures. None of the big players in the centralised data storage market offer similarly performant decentralised solutions that would be useful in the context of this project.
 
