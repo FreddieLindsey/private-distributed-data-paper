@@ -189,5 +189,7 @@ research
 # Virtualenv
 paper
 
+# Overleaf invalid
 .latexmkrc
 .wakatime-project
+.python-version
