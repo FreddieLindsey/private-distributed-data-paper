@@ -194,5 +194,11 @@ In terms of the proxy re-encryption properties discussed above, both schemes fai
 
 % \subsubsection{Unidirectional Chosen-Ciphertext Secure Proxy Re-Encryption}
 
+\subsubsection{Post-Quantum Cryptography}
+
+An area of rising concern for cryptography is that of a post-quantum world. Whilst not a key consideration for this project, it highlights the need to make software and architecture that is adaptable and flexible to its own vulnerability.
+
+Post-quantum cryptography largely concerns the use of Shor's algorithm (public key cryptography) and Grover's algorithm (symmetric key cryptography) on a quantum computer to solve problems that are intractable on non-quantum computers. Whilst symmetric cryptography is largely unaffected, since an increase in key size offsets the benefits afforded by the change in architecture, popular public key cryptography schemes are thought to be insecure when challenged with a quantum computer with sufficient qubits.
+
 % TODO
 \cite{lv11:2011:article}
