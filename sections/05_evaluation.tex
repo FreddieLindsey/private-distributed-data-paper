@@ -1,10 +1,60 @@
 \section{Evaluation}
 
+This section of the thesis follows a technical evaluation of the implementation described. Furthermore, an evaluation of the technical choices made and how these would change the output. Finally, a consideration of whether the project has been successful by evaluating its assumptions with regards to security, scalability and appropriateness of how it solves the problem laid out.
+
+\subsection{Technical}
+
+\subsubsection{Key safety}
+
+At the heart of the security model of this application lies the underlying security of Ethereum's (and more generally blockchain) security model and the security of the cryptography scheme used for encryptions.
+
+\paragraph{User keys}
+
+A fundamental issue with creating a decentralised system, certainly under the proposed implementation, is the issue of private key storage. Without a central authority managing the identities within the system each user is expected to securely store their keys. Failure to do so will result in account compromises possibly including corruption of data, changing of permissions, and taking control of an identity's contract. Owing to the transaction history available through a blockchain, previous data references are recoverable in the event of a compromise.
+
+However, if a user loses either of their keys (identity or encryption) there are serious consequences.
+
+If a user loses their identity key, it is impossible to prove that they own the address. This means that they would no longer have any control over their contract(s) with current permissions remaining and irrevokable. The user would not be able to share any further content or upload any references to content that they owned. Only a local (non-blockchain) record of all their data references would allow them to retrieve their data.
+
+If a user loses their encryption key, they are unable to directly decrypt data. With the implementation proposed there is no mechanism for them to recover their data other than through collusion with other identities with whom they have shared their data.
+
+\paragraph{Ethereum Authentication}
+
+Under the current implementation, access to one's storage contracts or group contracts are determined by the identity of their key. Every account (address) on an Ethereum network is a 20 byte value. These 20 bytes represent the last 20 bytes of the SHA-3 (Keccak) hash of the public key of the account holder. This public key is the counterpart to a 256-bit ECDSA private key which is used to unlock the account and sign transactions. An example of this derivation is found in table \ref{table:ethereum_ecdsa_address_derivation}.
+
+\input{figures/ethereum_ecdsa_address_derivation}
+
+The major concern for this system is identity spoofing. If a party has access to the private key associated with a specific ethereum address
+
+Given that the ethereum address associated with any private key is 20 bytes, this gives $2^{160}$ possible addresses in the system. This means the probability of
+guessing your address is extremely low ($6.8 \times 10^{-49}$). Whilst an identity's address can be public, this in itself provides a layer of obscurity.
+
+With the public key is hashed, unless the user chooses reveal it, the public key remains private under the security provided by the given hash function. Therefore, no attacker gains (with respect to the challenge of acquiring the private key associated with an address) from knowing your address.
+
+The 256-bit private key provides the main layer of security for an identity. With $2^{256}$ possible key values, the challenge of determining the private key corresponding to a public key (or identity's address) is hard. For each key possibility, the key must be used to generate a public key, which is hashed and the last 20 bytes compared. This is what will be referred to as a key check. Using a python script~\footnote{10,000 iterations of checking a private key against an address. Uses script in program code \ref{code:secp256k1_benchmark} (Appendix)} on a modern laptop~\footnote{MacBook Pro 13-inch. OS X 10.12.5. Intel(R) Core(TM) i5-5257U CPU @ 2.70GHz. 8GB RAM.} with floating point performance of the order of 3.46 GFLOPS/s per core, a rate of 120 key checks per second can be achieved. On average $2^{255}$ tries will be required to produce the correct key.
+
+$$
+2^{255} \div (120 \times 3600 \times 24 \times 365) = 1.53 \times 10^{67} \text{ years}
+$$
+
+As of June 2016~\footnote{China builds world's fastest supercomputer.  \href{http://www.computerworld.com/article/3085483/high-performance-computing/china-builds-world-s-fastest-supercomputer-without-u-s-chips.html}{\textit{Computer World}}}, the fastest supercomputers in the world have a potential of roughly 100 PFLOPS ($10^8$ GFLOPS). Even so, using current chipsets it would still take $10^{59}$ years to find the private key.
+
+$$
+1.53 \times 10^{67} \div (10^8 \div 3.46) = 5.29 \times 10^{59} \text{ years}
+$$
+
+Given the unoptimised nature of the script used on commodity hardware, it is highly likely that the above estimates are grossly overstated. However, they illustrate that the cryptography used in an elliptic curve scheme is sound and likely secure for years to come.
+
+\subsubsection{Encryption Keys}
+
+
+
 % TOPICS:
 % - Key safety (accounts)
 % - Key safety (encryptions)
 %   - Security of the scheme, likelihood of finding the key
 %   - Security of the use of one key per identity
+%   - Quantum attacks on ElGamal / RSA
 % - Using second-level decryptions
 % - Security by obscurity
 % - Ethereum transaction costs
@@ -14,3 +64,6 @@
 % - Ease of use
 
 
+% Remind reader the reasons for using certain components and drawbacks
+% Use thesis not paper
+% Bring Merkle DAG

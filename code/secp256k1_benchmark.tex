@@ -1,0 +1,44 @@
+\begin{listing}[H]
+  \centering
+  \begin{minted}{python}
+#!/usr/bin/env python
+
+import secp256k1
+import time
+import hashlib
+
+private_key = secp256k1.PrivateKey()
+
+def address_comparison(iteration):
+    global private_key, address
+    key = private_key.tweak_add(iteration.to_bytes(32, byteorder='big'))
+    key = secp256k1.PrivateKey(privkey=key)
+    public = key.pubkey.serialize()
+    k = hashlib.sha256()
+    k.update(public)
+    result = k.hexdigest()[:-20]
+    return (result, address == result)
+
+def main():
+    global iterations, address
+    iterations = 10000
+    address = bytes(32)
+    address_comparison(iterations + 1)
+
+    start = time.time()
+    for i in range(iterations):
+        address_comparison(i)
+    finish = time.time()
+
+    total_time = finish - start
+    print('No. of keys checked:\t' + str(iterations))
+    print('Total time:\t' + str(total_time))
+    print('Time per check:\t' + str(total_time / iterations))
+    print('Checks per second:\t' + str(iterations / total_time))
+
+if __name__ == '__main__':
+    main()
+  \end{minted}
+  \caption{Python (3.5.2) script to determining key checks per second}
+  \label{code:secp256k1_benchmark}
+\end{listing}
