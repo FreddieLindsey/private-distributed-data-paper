@@ -8,7 +8,7 @@ This section of the thesis follows a technical evaluation of the implementation 
 
 At the heart of the security model of this application lies the underlying security of Ethereum's (and more generally blockchain) security model and the security of the cryptography scheme used for encryptions.
 
-\paragraph{User keys}
+\paragraph{User-held keys}
 
 A fundamental issue with creating a decentralised system, certainly under the proposed implementation, is the issue of private key storage. Without a central authority managing the identities within the system each user is expected to securely store their keys. Failure to do so will result in account compromises possibly including corruption of data, changing of permissions, and taking control of an identity's contract. Owing to the transaction history available through a blockchain, previous data references are recoverable in the event of a compromise.
 
@@ -16,7 +16,9 @@ However, if a user loses either of their keys (identity or encryption) there are
 
 If a user loses their identity key, it is impossible to prove that they own the address. This means that they would no longer have any control over their contract(s) with current permissions remaining and irrevokable. The user would not be able to share any further content or upload any references to content that they owned. Only a local (non-blockchain) record of all their data references would allow them to retrieve their data.
 
-If a user loses their encryption key, they are unable to directly decrypt data. With the implementation proposed there is no mechanism for them to recover their data other than through collusion with other identities with whom they have shared their data.
+At this point I consider a possible solution to the problem of losing the identity key. If a future implementation allowed the user to delegate certain identities as privileged on their contract(s) it might be possible to regain access. These privileged identities would be able to form a quorum which would allow the transfer of a contract's properties to another, new, contract with a new identity. The practical implementation of this would be difficult, and it is likely that the transaction history of the original contract could not be maintained by the new contract.
+
+If a user loses their encryption key, they are unable to directly decrypt data. With the implementation proposed there is no mechanism for them to recover their data other than through collusion with other identities with whom they have shared their data. Taking a similar stance to the identity key loss problem above, creating backup encryption keys which are given full access to the data in one's contract, and allowing the use of these under a quorum of privileged users would be a possible solution to the encryption key loss problem. In this scenario, there is a slight security loss, but this is negligible in practice.
 
 \paragraph{Ethereum Authentication}
 
@@ -45,7 +47,9 @@ $$
 
 Given the unoptimised nature of the script used on commodity hardware, it is highly likely that the above estimates are grossly overstated. However, they illustrate that the cryptography used in an elliptic curve scheme is sound and likely secure for years to come.
 
-\subsubsection{Encryption Keys}
+\subsubsection{Encryption Security}
+
+\subsubsection{Post-Quantum Cryptography}
 
 
 
