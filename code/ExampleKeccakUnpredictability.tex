@@ -1,0 +1,17 @@
+\begin{listing}[H]
+  \centering
+  \begin{minted}{bash}
+> hash('keccak256').update('Hello World!0').digest().toString('hex')
+'2c6e6992915d52790a3625b459a0e7a1540a7770a6582f926d0119266b6f9f51'
+> hash('keccak256').update('Hello World!1').digest().toString('hex')
+'4d880de6488218d7153abeacff100608191ea63cccdd9894a602e8b3c959a276'
+> hash('keccak256').update('Hello World!3').digest().toString('hex')
+'f016006873889f59798ff191de74c0953892b38f77dbefc67b45af5ac705fcff'
+  \end{minted}
+  \caption{
+    Variance between hashes of similar values
+  }{
+    Three similar values, shown to have very different hashes using the Keccak 256-bit hash function.
+  }
+  \label{code:example_keccak_unpredictability}
+\end{listing}
