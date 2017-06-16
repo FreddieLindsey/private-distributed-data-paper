@@ -73,10 +73,12 @@ In the original blockchain, underpinning Bitcoin, a portion of every transaction
 
 \paragraph{Decentralised Applications}
 
+With the EVM summarised above, we move to understanding the architecture of applications hosted by the Ethereum network and run on the EVM. A decentralised application (DApp) is an application whose's logic is hosted on the Ethereum network (through the medium of smart contracts) and interacting with the logic is done through a decentralised interface.
 
+\subsubsection{Merkle Trees}
 
-% TODO: Unsure of the relevance of merkel trees for this application
+The importance of Merkle trees in the architecture and implementation of decentralised systems cannot be underestimated. When discussing the hashing of blocks above, the hash at the core of the block is that representing the integrity value of the transactions the block contains. As will be evidenced in the discussion of decentralised storage platforms, Merkle trees are at the very core of hashing the transactions in a block.
 
-% \subsubsection{Merkel Trees}
+\cite{merkle:1988:inbook} authored a scheme to build trees where the content of a node could be validated as a function of the hash of other nodes. First one chooses a suitable hash function, and applies this to all leaf nodes in a possible tree. Then, one must apply the same hash function applied to the leaf nodes to the parent nodes such that every parent's hash is the hash of the sum of it's own value and the hashes of it's direct children. This structure results in a tree as in figure \ref{fig:example_merkle_tree}.
 
-% Merkel Dag is the network of objects, pointing to each other using the hash of each object (Merkel)
+\input{tikz/example_merkle_tree}
