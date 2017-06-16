@@ -22,7 +22,7 @@ A few of the most popular methods of achieving consensus in a blockchain, and th
     \textit{The majority of compute power in the network is held by honest members.~\footnote{Used by Bitcoin and Ethereum (pre-Serenity). \href{https://en.bitcoin.it/wiki/Proof_of_work}{Bitcoin Wiki}}}
   \item
     \textbf{Proof Of Stake (PoS)}
-    \textit{The majority of stake (currency) in the network is held by honest members.~\footnote{Planned to be used by Ethereum (Serenity and beyond). \href{https://www.cryptocompare.com/coins/guides/the-ethereum-releases-of-frontier-homestead-metropolis-and-serenity/}{Crypto Compare}}}
+    \textit{The majority of stake (currency) in the network is held by honest members.~\footnote{Planned to be used by Ethereum (Serenity release and beyond). \href{https://www.cryptocompare.com/coins/guides/the-ethereum-releases-of-frontier-homestead-metropolis-and-serenity/}{Crypto Compare}}}
   % \item
   %   \paragraph{Byzantine Agreement (BA)}
   % \item
@@ -45,9 +45,33 @@ The proof-of-work model summarised above is used in the Bitcoin and Ethereum cry
 
 \paragraph{Proof of Stake}
 
+Intended as an alternative consensus mechanism to Proof of Work (PoW), Proof of Stake (PoS) uses a party's stake in the network to determine it's voting rights to the new block. This is in direct constrast to PoW which uses a party's compute power.
+
+Neither Ethereum nor Bitcoin currently use proof of stake, although Ethereum is intending to use it in future releases. It remains a controversial consensus method, and as such is only summarised here.
+
+As described by Ethereum~\footnote{Ethereum's proof of stake \href{https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ}{wiki page} details different proof of stake protocols.}, there are two major consensus algorithms within the PoS category, \textbf{chain-based} and \textbf{Byzantine Fault Tolerance (BFT-style)}.
+
+Within both of the major algorithms is the concept of a validator. A validator is someone who locks their ether as a deposit for a period of time. During this time, they are a current validator. In order to propose a block a party must be a current validator.
+
+A chain-based algorithm uses a pseudo-random selection picking a current validator who is able to propose a block for a short time period. After this time period the validator changes. As in PoW the block proposed must point to some previously mined block, assuring a continuous chain is formed.
+
+The BFT-style algorithm extends the idea behind the chain-based algorithm but over multiple rounds. In each round random validators are chosen to propose blocks. Over the rounds a consensus on a canonical block is reached, extending the chain.
+
+% \paragraph{Byzantine}
+
+% \paragraph{Stellar Consensus Protocol}
+
+% \paragraph{Tendermint}
+
 \subsubsection{Ethereum}
 
-\paragraph{DApps}
+Ethereum extends the blockchain's uses beyond the direct exchange of currency and into the world whereby autonomous and publicly verifiable organisations and parties can live on the blockchain. By allowing the creation of so-called 'smart contracts', entities are established as part of the blockchain which can receive transactions from external parties (you and I). Through these transactions, the state of the contract is updated allowing the contract to function as a state transition system.
+
+\paragraph{Ethereum Virtual Machine}
+
+
+
+\paragraph{Decentralised Applications}
 
 
 
