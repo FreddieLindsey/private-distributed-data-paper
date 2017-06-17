@@ -86,9 +86,13 @@ Firstly, it's easy to see that the requirement of a proxy, a centralised service
 
 It is important to note that a denial of service on a blockchain is not impossible, and in fact flooding the network with transactions has this effect. It is however less potent since the compute power is distributed across many hundreds and thousands of completely independent nodes.
 
-Considering the benefits of a proxy, a system whereby the proxy is authenticated and authorised with special privileges stops the re-encryption key (and the encrypted, stored data) from needing to exist publicly. Such a proxy would be authorised to perform re-encryption and check the permissions of an identity against a storage contract. The proxy would take a request from an identity, and assuming they had the necessary permissions and provided sufficient proof-of-identity, would return the requested data as a first-level encryption under the identity's public key.
+Considering the benefits of a proxy, a system whereby the proxy is authenticated and authorised with special privileges stops the re-encryption key (and the encrypted, stored data) from needing to exist publicly. Such a proxy would be authorised to perform re-encryption and check the permissions of an identity against a storage contract. The proxy would take a request from an identity, and assuming they had the necessary permissions and provided sufficient proof-of-identity, would return the requested data as a first-level encryption under the identity's public key. By performing in this way the proxy would prevent the re-encryption key or the storage reference ever being revealed and therefore removes the issue presented above with regards to overuse of the re-encryption key.
 
 \paragraph{Is re-encryption possible client-side?}
+
+Through the project a difficult choice had to be made. It was possible to use a scheme predating the AFGH scheme such as the scheme authored by \cite{bbs:1998:book}, rather than using the AFGH scheme for which there is no suitable javascript implementation. However, in using such a scheme, the security properties of the AFGH scheme would be lost, rendering the implementation of the project old fashioned and out of date before it could be improved. Instead of using an unsuitable scheme, an API which, at present, must be run on the client device was implemented using the existing Java library.
+
+The use of this API is a key barrier to the decentralisation and global adoption across devices and should be thought of as a major issue. However, it also allowed the conclusion of a successful investigation into the project viability. An implementation of a client-side (likely JavaScript) library is required for future iterations.
 
 \paragraph{Alternatives to proxy re-encryption}
 
