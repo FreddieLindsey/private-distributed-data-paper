@@ -20,7 +20,7 @@ At this point I consider a possible solution to the problem of losing the identi
 
 If a user loses their encryption key, they are unable to directly decrypt data. With the implementation proposed there is no mechanism for them to recover their data other than through collusion with other identities with whom they have shared their data. Taking a similar stance to the identity key loss problem above, creating backup encryption keys which are given full access to the data in one's contract, and allowing the use of these under a quorum of privileged users would be a possible solution to the encryption key loss problem. In this scenario, there is a slight security loss, but this is negligible in practice.
 
-\paragraph{Ethereum Authentication}
+\paragraph{Identity Spoofing}
 
 Under the current implementation, access to one's storage contracts or group contracts are determined by the identity of their key. Every account (address) on an Ethereum network is a 20 byte value. These 20 bytes represent the last 20 bytes of the SHA-3 (Keccak) hash of the public key of the account holder. This public key is the counterpart to a 256-bit ECDSA private key which is used to unlock the account and sign transactions. An example of this derivation is found in table \ref{table:ethereum_ecdsa_address_derivation}.
 
@@ -47,4 +47,17 @@ $$
 
 Given the unoptimised nature of the script used on commodity hardware, it is highly likely that the above estimates are grossly overstated. However, they illustrate that the cryptography used in an elliptic curve scheme is sound and likely secure for years to come.
 
-\subsubsection{Encryption Security}
+\paragraph{Breaking Data Encryption}
+
+Stored on IPFS, the so-called 'permanent web', the quality of the encryption of personal data is of pivotal importance. The scheme uses a randomly generated symmetric key to encrypt the underlying data, which is itself encrypted by a user-specific public key. In this regard, a malicious attacker would have to either find the symmetric key or find the public key that unlocks the encrypted symmetric key. These challenges are defined by the security of the cryptography scheme and the key size used. For this project a 256-bit AES key and a 256-bit ElGamal key.
+
+We assume that the underlying encryption is secure and that vulnerabilities are concerned with key leaks. This means that we do not consider cryptographic 'breaks', only that a key is found by brute force.
+
+Fundamentally, there are $2^{256}$ possible keys to check for either the symmetric or asymmetric cryptography schemes. Assuming no information is given away by the public key of the asymmetric scheme, both schemes are equally secure requiring $2^{255}$ or $~5.8 \times 10^{76}$ trials to determine the key on average. Assuming a supercomputer has 100 petaflops and that this is a suitable measure of performance, it can generate $10^{17}$ keys per second. It will take $1.84 \times 10^{52}$ years on average to find the key for a 256-bit scheme.
+
+$$
+\begin{aligned}
+  10^{17} \times 3.6 \times 10^{3} \times 24 \times 365 &=& 3.1536 \times 10^{24} \text{ keys per year} \\
+  \frac{2^{255}}{3.1536 \times 10^{24}} &=& 1.84 \times 10^{52} \text{ years}
+\end{aligned}
+$$
