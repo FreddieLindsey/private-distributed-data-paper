@@ -1,7 +1,5 @@
 \section{Evaluation}
 
-This section of the thesis follows a technical evaluation of the implementation described. Furthermore, an evaluation of the technical choices made and how these would change the output. Finally, a consideration of whether the project has been successful by evaluating its assumptions with regards to security, scalability and appropriateness of how it solves the problem laid out.
-
 \subsection{Technical}
 
 \subsubsection{Key safety}
@@ -61,3 +59,31 @@ $$
   \frac{2^{255}}{3.1536 \times 10^{24}} &=& 1.84 \times 10^{52} \text{ years}
 \end{aligned}
 $$
+
+\subsubsection{Non-transitivity of a Re-encryption scheme}
+
+In order to facilitate giving permissions to other parties the scheme only uses second-level encryptions. The most significant security implication of using second-level encryptions instead of a first-level encryption is that of re-encryption and delegation. With a second-level encryption, since the underlying data is encrypted using a public key, a suitable pairing and a suitable re-encryption key provides the means for any second-level encryption to be re-encrypted as a first-level encryption. Since a first-level encryption uses a bi-linear pairing of keys to encrypt the underlying data, this is not re-pairable and as such re-encryption cannot be performed. Given that a second-level encryption can be re-encrypted to a first-level encryption, and that a first-level encryption is not re-encryptable, the AFGH scheme used is shown to be non-transitive.
+
+Non-transitivity is an extremely important property of this scheme. An entity $A$ encrypts their data $d$ with their public key such that it becomes $d_A$. $A$ produces a re-encryption key $re_{A \rightarrow B}$ for some other entity $B$. $B$ has previously created a re-encryption key $re_{B \rightarrow C}$ such that another entity $C$ is able to read their data. We assume both re-encryption keys are public, or at least both available to $C$ (possibly through collusion with the proxy). With a transitive scheme, entity $C$ would be able to use $re_{A \rightarrow B}$ and $re_{B \rightarrow C}$ to re-encrypt any $d_A$ to $d_C$, bypassing the permission of $A$ entirely.
+
+In the non-transitive scheme, revealing $re_{A \rightarrow B}$ to $C$ bears no security implication. Whilst $C$ is able to create a first-level encryption for $B$, $C$ is none-the-wiser to the underlying data that $A$ has encrypted in $d_A$.
+
+\subsubsection{Data security given public re-encryption keys}
+
+
+
+\subsubsection{The need for a proxy}
+
+
+
+\subsubsection{Ethereum as a blockchain candidate}
+
+\subsubsection{Privacy of contract information and state}
+
+\subsubsection{Monetisation}
+
+\subsubsection{Security by obscurity}
+
+\subsection{Scalability}
+
+\subsection{Development Stage}
