@@ -39,13 +39,13 @@ $$
 2^{255} \div (120 \times 3600 \times 24 \times 365) = 1.53 \times 10^{67} \text{ years}
 $$
 
-As of June 2016~\footnote{China builds world's fastest supercomputer.  \href{http://www.computerworld.com/article/3085483/high-performance-computing/china-builds-world-s-fastest-supercomputer-without-u-s-chips.html}{\textit{Computer World}}}, the fastest supercomputers in the world have a potential of roughly 100 PFLOPS ($10^8$ GFLOPS). Even so, using current chipsets it would still take $10^{59}$ years to find the private key.
+As of June 2016, the fastest supercomputers in the world have a potential of roughly 100 PFLOPS ($10^8$ GFLOPS)~\footnote{China builds world's fastest supercomputer.  \href{http://www.computerworld.com/article/3085483/high-performance-computing/china-builds-world-s-fastest-supercomputer-without-u-s-chips.html}{\textit{Computer World}}}. Even so, using current chipsets it would still take $10^{59}$ years to find the private key.
 
 $$
 1.53 \times 10^{67} \div (10^8 \div 3.46) = 5.29 \times 10^{59} \text{ years}
 $$
 
-Given the unoptimised nature of the script used on commodity hardware, it is highly likely that the above estimates are grossly overstated. However, they illustrate that the cryptography used in an elliptic curve scheme is sound and likely secure for years to come.
+Whilst computed using commodity hardware and an unoptimised script, the calculations shown illustrate the difficulty of determining and checking a 256-bit ECDSA (secp256k1) key against a known Ethereum address.
 
 \paragraph{Breaking Data Encryption}
 
@@ -53,7 +53,7 @@ Stored on IPFS, the so-called 'permanent web', the quality of the encryption of 
 
 We assume that the underlying encryption is secure and that vulnerabilities are concerned with key leaks. This means that we do not consider cryptographic 'breaks', only that a key is found by brute force.
 
-Fundamentally, there are $2^{256}$ possible keys to check for either the symmetric or asymmetric cryptography schemes. Assuming no information is given away by the public key of the asymmetric scheme, both schemes are equally secure requiring $2^{255}$ or $~5.8 \times 10^{76}$ trials to determine the key on average. Assuming a supercomputer has 100 petaflops and that this is a suitable measure of performance, it can generate $10^{17}$ keys per second. It will take $1.84 \times 10^{52}$ years on average to find the key for a 256-bit scheme.
+Fundamentally, there are $2^{256}$ possible keys to check against either the symmetric or asymmetric cryptography schemes. Assuming no information is given away by the public key of the asymmetric scheme, both schemes are equally secure requiring $2^{255}$ or $~5.8 \times 10^{76}$ trials to determine the key on average. Assuming a supercomputer has 100 petaflops and that this is a suitable measure of performance, it can generate $10^{17}$ keys per second. It will take $1.84 \times 10^{52}$ years on average to generate a suitable key for an encryption under a 256-bit scheme~\footnote{Not including the time taken to perform a decryption on a suitably small test encryption.}.
 
 $$
 \begin{aligned}
