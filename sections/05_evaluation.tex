@@ -70,9 +70,23 @@ In the non-transitive scheme, revealing $re_{A \rightarrow B}$ to $C$ bears no s
 
 \subsubsection{Data security given public re-encryption keys}
 
+Having considered why re-encryption keys can be public in terms of the security of single data blobs, we must evaluate the effects of this over multiple data blobs.
 
+One criticism of the implemented scheme is that should an identity $I$ have read access to a storage contract owner's file $F_A$, they have the means to read any of said storage contract owner's files encrypted under the same key. They achieve this by finding a reference to the file they wish to read and, using the re-encryption key $re_{\text{SCO} \rightarrow \text{I}}$ that they already possess, they are able to re-encrypt the file into a first-level encryption under their own public key.
+
+It is my opinion that this is one of the greatest flaws of the project's current implementation and represents a challenge in terms of resolution. Assuming that proxy re-encryption is secure and allows public re-encryption keys for singular stores, expanding this over multiple stores or stores with multiple data blobs might imply that a separate key is required for each data blob. If this is the case, the storage required to store keys and the responsibility on the user at a practical level makes for an application unlikely to succeed.
+
+Crucially, a user of the application doesn't not want to hold their own keys. The application enforces that they must hold at least two keys (identity and encryption keys) for the system to function. Any need for a user to hold more keys than this is a problem. At present, there is no way to store secrets within the public blockchain, and with this restriction the security implications as discussed above are likely to remain in a completely decentralised system.
 
 \subsubsection{The need for a proxy}
+
+As the name would suggest proxy re-encryption is designed to be used by three parties, Alice, Bob, and a semi-trusted proxy. The role of the proxy is to perform re-encryption. Given that the AFGH scheme is both collusion-safe and non-transitive, we must consider the benefit that a proxy would give us, and also the compromise it requires.
+
+Firstly, it's easy to see that the requirement of a proxy, a centralised service no less, somewhat inhibits the idea of a fully decentralised system. In fact, if a proxy is required for read access by every party other than the storage contract owner, then should the proxy cease to exist or be inoperable, access is denied to all persons other than the storage contract owner. Given the use case of the NHS, this might imply that doctors would be unable to access patient records or other data when a denial of service attack is taking place.
+
+It is important to note that a denial of service on a blockchain is not impossible, and in fact flooding the network with transactions has this effect. It is however less potent since the compute power is distributed across many hundreds and thousands of completely independent nodes.
+
+Considering the benefits of a proxy, a system whereby the proxy is authenticated and authorised with special privileges stops the re-encryption key (and the encrypted, stored data) from needing to exist publicly. Such a proxy would be authorised to perform re-encryption and check the permissions of an identity against a storage contract. The proxy would take a request from an identity, and assuming they had the necessary permissions and provided sufficient proof-of-identity, would return the requested data as a first-level encryption under the identity's public key.
 
 \paragraph{Is re-encryption possible client-side?}
 
@@ -81,6 +95,10 @@ In the non-transitive scheme, revealing $re_{A \rightarrow B}$ to $C$ bears no s
 \subsubsection{Ethereum as a blockchain candidate}
 
 \subsubsection{Privacy of contract information and state}
+
+Since this project's core goal is to reinstate the privacy so many honest actors in society have lost through corporate activity, it would be irresponsible to conclude without discussing the public nature of all data placed on Ethereum. Using any public, and permission-less, blockchain technology implies that all transactional data is exposed and made public. Program code \ref{code:view_storage_data} (Appendix) shows this by creating a contract, setting a value, and then exposing that value through a transaction.
+
+Clearly the nature of data being public implies that one can be tracked through their transactions. For our purposes, this transparency exposes corporations interacting with the blockchain. Whether it benefits individuals overall or not is ambiguous. However, the privacy of the underlying data exchanged on a blockchain doesn't have to be compromised, provided no actual data itself is stored on the blockchain in an unencrypted form. Furthermore, only providing references on the blockchain implies that the permissions associated with a given data blob are decided, to some extent, off the chain and there is little to no benefit to having the reference public (to an attacker or scraper).
 
 \subsubsection{Monetisation}
 

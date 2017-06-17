@@ -1,0 +1,57 @@
+\begin{listing}[H]
+  \centering
+  \begin{minted}{javascript}
+import Web3 from 'web3'
+import contract from 'truffle-contract'
+import Registry from './Registry.json'
+import IPFSStorage from './IPFSStorage.json'
+
+let web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'))
+const contractArtifacts = { Registry, IPFSStorage }
+let contracts = {};
+for (const k in contractArtifacts) {
+  const contract_ = contract(contractArtifacts[k])
+  contract_.setProvider(web3.currentProvider)
+  contracts[k] = contract_
+}
+
+const accounts = web3.eth.accounts
+let contractInstances = {}
+
+async function createRegistry() {
+  try {
+    contractInstances.registry = await contracts.Registry.new({
+      from: accounts[0], gas: 3000000, gasPrice: 10000000
+    })
+  } catch(err) {
+    console.log(err)
+  }
+  return !!contractInstances.registry
+}
+
+async function createIPFS() {
+  const store = await contracts.IPFSStorage.new('0x0000', '0x0000', {
+    from: accounts[0], gas: 3000000, gasPrice: 10000000
+  })
+  return store
+}
+
+async function main() {
+  const result = await createRegistry()
+  const storage = await createIPFS()
+  console.log('IPFS Storage created at:\t' + storage.address)
+  const transaction = await contractInstances.registry.addStore(storage.address, {
+    from: accounts[0]
+  })
+  console.dir(web3.eth.getTransaction(transaction.receipt.transactionHash))
+}
+
+main()
+  \end{minted}
+  \caption{
+    Script to see permission-less transaction data
+  }{
+    Using contracts Registry and IPFSStorage as dummies, the script shows that any data sent to the chain is public and can be viewed.
+  }
+  \label{code:view_storage_data}
+\end{listing}
