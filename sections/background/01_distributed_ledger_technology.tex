@@ -2,11 +2,11 @@
 
 \subsubsection{Introduction to Distributed Ledger Technology}
 
-Distributed ledger technology (DLT) is a recent invention which endeavours to make data publicly accessible through a decentralised system, providing no single point of failure. A DLT provides transparency where traditional centralised systems fall short and allows any willing and able party to be a part of the decentralised network. Furthermore, a DLT provides no easy way for any network moderator or specific party to control or override the network without the consensus of a significant number of the network's members. Combined, this technology introduces an entirely new way of dealing with transactional data and, as implemented below, any sort of data having a lifecycle.
+Distributed ledger technology (DLT) is a recent invention which endeavours to make data publicly accessible through a decentralised system, providing no single point of failure. A DLT provides transparency where traditional centralised systems fall short and allows any willing and able party to be a part of the decentralised network. Furthermore, a DLT provides no easy way for any network moderator or specific party to control or override the network without the consensus of a significant number of the network's members. Combined, this technology introduces an entirely new way of dealing with transactional data.
 
 \subsubsection{Blockchain}
 
-The Blockchain~\footnote{\href{https://www.blockchain.com/}{Blockchain (https://www.blockchain.com)}} is the underlying technology that is used by cryptocurrencies such as Bitcoin~\footnote{\href{https://bitcoin.org/en/}{Bitcoin (https://bitcoin.org)}}. Since Blockchain was the first widely-available distributed ledger technology, most distributed ledger technologies since have chosen to adopt the blockchain name to refer to this architecture.
+The Blockchain is the underlying technology that is used by cryptocurrencies such as Bitcoin (authored by \cite{bitcoin:2008:misc}). Since Blockchain was the first widely-available distributed ledger technology, most distributed ledger technologies since have chosen to adopt the blockchain name to refer to this architecture.
 
 A traditional database is implemented such that it only maintains one current state for a given dataset~\footnote{Some databases have features allowing the user to view state (not transactions) over time (e.g. \href{https://www.postgresql.org/docs/6.3/static/c0503.htm}{PostgreSQL's Time Travel}) but these are not common and often deprecated} rather than transactions. In contrast, a blockchain, as the name would suggest, maintains a 'chain' of blocks of transactions that are agreed by the network forming a history of the chain's life. These blocks are formed of groups of transactions and are totally ordered across nodes in the network. It follows therefore that every node needs to have the entire history of the network, and that the provenance and origin of any given commodity, the unit of measure of a transaction, is maintained.
 
@@ -19,10 +19,10 @@ A few of the most popular methods of achieving consensus in a blockchain, and th
 \begin{itemize}
   \item
     \textbf{Proof Of Work (PoW)}
-    \textit{The majority of compute power in the network is held by honest members.~\footnote{Used by Bitcoin and Ethereum (pre-Serenity). \href{https://en.bitcoin.it/wiki/Proof_of_work}{Bitcoin Wiki}}}
+    \textit{The majority of compute power in the network is held by honest members.~\footnote{Used by Bitcoin and Ethereum (pre-Serenity), \cite{bitcoinwiki:2017:online}, \cite{cryptocompare:2017:online}.}}
   \item
     \textbf{Proof Of Stake (PoS)}
-    \textit{The majority of stake (currency) in the network is held by honest members.~\footnote{Planned to be used by Ethereum (Serenity release and beyond). \href{https://www.cryptocompare.com/coins/guides/the-ethereum-releases-of-frontier-homestead-metropolis-and-serenity/}{Crypto Compare}}}
+    \textit{The majority of stake (currency) in the network is held by honest members.~\footnote{Planned to be used by Ethereum (Serenity release and beyond), \cite{cryptocompare:2017:online}}}
   % \item
   %   \paragraph{Byzantine Agreement (BA)}
   % \item
@@ -33,13 +33,13 @@ A few of the most popular methods of achieving consensus in a blockchain, and th
 
 \paragraph{Proof of Work}
 
-Originally proposed as a method for countering denial of service attacks, Hashcash, authored by \cite{hashcash:1997:misc} and re-evaluated in \cite{hashcash:2002:online}, is the original proof of work scheme. The idea is that using cost-functions~\footnote{A cost-function should be parametrically expensive to compute, but efficiently verifiable. \cite{hashcash:2002:online}}, the hash of some $x$ is computed such that the left-most $n$ bits are equal to $0$. Since the hash of any two similar values is very different, as shown in program code \ref{code:example_keccak_unpredictability}, a cost-function designed in this way is difficult to compute.
+Originally proposed as a method for countering denial of service attacks, Hashcash, authored by \cite{hashcash:1997:misc} and re-evaluated in \cite{hashcash:2002:misc}, is the original proof of work scheme. The idea is that using cost-functions~\footnote{A cost-function should be parametrically expensive to compute, but efficiently verifiable. \cite{hashcash:2002:misc}} the hash of some $x$ is computed such that the left-most $n$ bits are equal to $0$. Since the hash of any two similar values is very different, as shown in program code \ref{code:example_keccak_unpredictability}, a cost-function designed in this way is difficult to compute.
 
 \input{code/ExampleKeccakUnpredictability}
 
 As stated in the original Bitcoin paper (\cite{bitcoin:2008:misc}), the cryptocurrency uses Hashcash to provide block validation and to chain blocks of transactions together. As per Hashcash, the hash of the next (proposed) block must have the top $n$ bits set to zero. This value is how the network self-manages, adjusting $n$ according to a moving average of the number of blocks per hour. The hash of any particular block is computed by hashing the previous block's hash, the content of the block, and some nonce (a random value). As the nonce is incremented the hash of the block varies hugely and with sufficient iterations, the block will match the requirements of the next block.
 
-Given the nonce we have a function difficult to compute but easy to verify, providing integrity to the underlying transactions, and ensuring that should any block be changed that's been verified, all child blocks (recursively) must be recomputed. If we assume that $51+\%$ of the compute power in the network is on honest nodes, then the longest chain will also be honest. Any malicious party would need to outpace the honest nodes in the network in order to take control and re-write the chain. The so-called $51\%$ attack is the most significant security threat to the proof-of-work model.
+Given the nonce, we have a parametric requirement difficult to compute, but easy to verify. This provides integrity to the underlying transactions, and ensures that should any block be changed that's been verified, all child blocks (recursively) must be recomputed. If we assume that $51+\%$ of the compute power in the network is on honest nodes, then the longest chain will also be honest. Any malicious party would need to outpace the honest nodes in the network in order to take control and re-write the chain. The so-called $51\%$ attack is the most significant security threat to the proof-of-work model.
 
 The proof-of-work model summarised above is used in the Bitcoin and Ethereum cryptocurrency systems for their main networks as of 15th June 2017.
 
@@ -65,7 +65,7 @@ The BFT-style algorithm extends the idea behind the chain-based algorithm but ov
 
 \subsubsection{Ethereum}
 
-Ethereum extends the blockchain's uses beyond the direct exchange of currency and into the world whereby autonomous and publicly verifiable organisations and parties can live on the blockchain. By allowing the creation of so-called 'smart contracts', entities are established as part of the blockchain which can receive transactions from external parties (you and I). Through these transactions, the state of the contract is updated allowing the contract to function as a state transition system. Documentation and a Wiki page are the main sources of information on the Ethereum ecosystem~\footnote{\href{http://ethdocs.org/en/latest}{\textit{Read the Docs}, http://ethdocs.org/en/latest}}.
+Ethereum extends the blockchain's uses beyond the direct exchange of currency and into the world whereby autonomous and publicly verifiable organisations and parties can live on the blockchain. By allowing the creation of so-called 'smart contracts', entities are established as part of the blockchain which can receive transactions from external parties (you and I). Through these transactions, the state of the contract is updated allowing the contract to function as a state transition system.
 
 \paragraph{Ethereum Virtual Machine}
 
@@ -73,12 +73,14 @@ In the original blockchain, underpinning Bitcoin, a portion of every transaction
 
 \paragraph{Decentralised Applications (DApps)}
 
-With the EVM summarised above, we move to understanding the architecture of applications hosted by the Ethereum network and run on the EVM. A decentralised application (DApp) is an application whose's logic is hosted on the Ethereum network (through the medium of smart contracts) and interacting with the logic is done through a decentralised interface.
+On summarising the EVM, we move to understanding the architecture of applications hosted by the Ethereum network and which run on the EVM. A decentralised application (DApp) is an application whose's logic is hosted on the Ethereum network (through the medium of smart contracts) and interaction with this logic is handled by a decentralised interface.
 
 \subsubsection{Merkle Trees}
 
-The importance of Merkle trees in the architecture and implementation of decentralised systems cannot be underestimated. When discussing the hashing of blocks above, the hash at the core of the block is that representing the integrity value of the transactions the block contains. As will be evidenced in the discussion of decentralised storage platforms, Merkle trees are at the very core of hashing the transactions in a block.
+The importance of Merkle trees in the architecture and implementation of decentralised systems cannot be underestimated. When hashing a block on a DLT, the hash at the core of the block is a value which represents the integrity of the transactions the block contains and executes.
 
 \cite{merkle:1988:inbook} authored a scheme to build trees where the content of a node could be validated as a function of the hash of other nodes. First one chooses a suitable hash function, and applies this to all leaf nodes in a possible tree. Then, one must apply the same hash function applied to the leaf nodes to the parent nodes such that every parent's hash is the hash of the sum of it's own value and the hashes of it's direct children. This structure results in a tree as in figure \ref{fig:example_merkle_tree}.
 
 \input{tikz/example_merkle_tree}
+
+Crucially, Merkle trees allow the validation of the integrity of data in a tree structure through a single hash.

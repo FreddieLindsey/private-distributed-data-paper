@@ -4,7 +4,7 @@ With health care chosen as the project's primary use case, below I consider how 
 
 \subsubsection{User Journeys}
 
-The below sequence diagrams show the interactions between the different entities. First I note my assumptions, followed by a specific example interaction between a patient and the health care system (the patient experiences extreme pain in their left foot) and how this might be reflected by internal transactions of information within the health care system. Finally, I discuss other important criteria of a model design.
+The below sequence of diagrams show the interactions between the different entities. First I note my assumptions, followed by a specific example interaction between a patient and the health care system (the patient experiences extreme pain in their left foot) and how this might be reflected by internal transactions of information within the health care system. Finally, I discuss other important criteria of a model design.
 
 Assumptions:
 
@@ -19,6 +19,8 @@ The diagrams below are split such that different entity types are represented on
 
 It is shown when a specific transaction starts and ends, with all content in between occurring on or with the public decentralised ledger technology.
 
+\vfill
+
 \paragraph{Doctor requests X-ray}
 
 The patient visits the doctor, complaining of extreme pain in their left foot. On evaluation, the doctor requests an X-ray be taken at a local hospital. Furthermore, the doctor's identification is validated before creating any transactions on the patient's chain and their signature. The data gateway hosts a local version of each patient's chain with the hospital's addresses unlocked (i.e. authenticated to make requests).
@@ -27,11 +29,15 @@ The patient visits the doctor, complaining of extreme pain in their left foot. O
 
 \input{tikz/user_stories/01b_hospital_accepts_xray}
 
+\vfill
+
 \paragraph{Patient has X-ray taken}
 
 The next step in the process is for the X-ray to be taken. The patient visits the hospital where the doctor has referred them and has the X-ray taken, with the data being securely stored in off-chain storage.
 
 \input{tikz/user_stories/02_patient_gets_xray}
+
+\vfill
 
 \paragraph{Doctor views (and discusses) X-ray}
 
