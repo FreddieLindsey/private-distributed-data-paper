@@ -94,20 +94,46 @@ Through the project a difficult choice had to be made. It was possible to use a 
 
 The use of this API is a key barrier to the decentralisation and global adoption across devices and should be thought of as a major issue. However, it also allowed the conclusion of a successful investigation into the project viability. An implementation of a client-side (likely JavaScript) library is required for future iterations.
 
-\paragraph{Alternatives to proxy re-encryption}
-
-\subsubsection{Ethereum as a blockchain candidate}
-
 \subsubsection{Privacy of contract information and state}
 
 Since this project's core goal is to reinstate the privacy so many honest actors in society have lost through corporate activity, it would be irresponsible to conclude without discussing the public nature of all data placed on Ethereum. Using any public, and permission-less, blockchain technology implies that all transactional data is exposed and made public. Program code \ref{code:view_storage_data} (Appendix) shows this by creating a contract, setting a value, and then exposing that value through a transaction.
 
-Clearly the nature of data being public implies that one can be tracked through their transactions. For our purposes, this transparency exposes corporations interacting with the blockchain. Whether it benefits individuals overall or not is ambiguous. However, the privacy of the underlying data exchanged on a blockchain doesn't have to be compromised, provided no actual data itself is stored on the blockchain in an unencrypted form. Furthermore, only providing references on the blockchain implies that the permissions associated with a given data blob are decided, to some extent, off the chain and there is little to no benefit to having the reference public (to an attacker or scraper).
+Clearly the nature of data being public implies that one can be tracked through their transactions. For our purposes, this transparency exposes corporations interacting with the blockchain. Whether it benefits individuals overall or not is ambiguous. However, the privacy of the underlying data exchanged on a blockchain doesn't have to be compromised, provided no actual data itself is stored in an unencrypted form. Furthermore, only providing references on the blockchain implies that the permissions associated with a given data blob are decided, to some extent, off the chain and there is little to no benefit to having the reference if you have no permissions or ability to read the underlying content.
 
 \subsubsection{Monetisation}
 
+At present, the transaction costs associated with using Ethereum have not been considered. During development of an example implementation these were ignored wherever possible. In a production environment this would not be possible, and it's important to consider how the project would work from this point of view.
+
+An important part of any chain's development is how transactions are funded as a means of market making between the transaction producer and consumer, the buyer and seller respectively. Most blockchains choose to either provide their own currency or tokenise one already available. For this application it must be evaluated further, given user data, to determine user trends and how might be best to optimise the contracts to reduce excessive transaction costs.
+
+It may be possible to use a mixture of current chains and arbitrate between their differing transaction costs, using a service such as Polkadot, authored by \cite{polkadot:2017:online}. In this way, two chains offering different transaction costs could be used such that transactions are committed on the chain with the least cost, and transfers are handled by the chain arbitration technology. The technology to be able to do this is not yet available, but is likely to be available within the next few years.
+
 \subsubsection{Security by obscurity}
+
+Data stored on IPFS is permission-less, i.e. it is accessible by anyone~\footnote{Anyone can access any hash, such as QmWATWQ7fVPP2EFGu71UkfnqhYXDYH566qy47CnJDgvs8u, from the gateway or an IPFS client. \href{https://gateway.ipfs.io/ipfs/QmWATWQ7fVPP2EFGu71UkfnqhYXDYH566qy47CnJDgvs8u}{\textit{IPFS Gateway}}}. There are two components to keeping the data secure, obscurity and encryption. The latter is the responsibility of the IPFS user, but the former is decided by the hash function.
+
+IPFS uses a multi-hash system, with SHA-256 being used at present (hence Qm prefixing any current base58 IPFS hash). IPFS is mostly concerned with avoiding collision hashes such that a history of all data is maintained, but this has a secondary security effect of preventing guessing where data lives unless you know what the data is. Assuming a SHA-256 hash function, guessing the location of the data is wholly improbable as noted above (the likelihood is the same as guessing a 256-bit key). Partial data does not give any knowledge of the location of the data provided a good hash function is used, i.e. every extra byte assumes a radically different resulting hash.
+
+It is important to be mindful that this security is not upheld when all useful hashes are published to a public blockchain. The underlying encryption remains the only barrier, which does not exist if someone has a suitable re-encryption key.
 
 \subsection{Scalability}
 
+As a proof of concept, scalability is of a lesser priority. At present, the use of IPFS and local nodes provide no immediate scalability issues~\footnote{Given that IPFS requires no consensus to be formed on object references in the distributed web.}. The compute layer, Ethereum, is the main barrier to any scalability.
+
+Ethereum is intended as a platform for autonomous financial instruments. It's use as an application backbone in this project is clearly in conflict with it's intended purpose. Ethereum, on it's main network, has an aim of processing transactions within 15 seconds on average. If we assume that 1000 users are connected and interacting on the network, and there are therefore 1000 storage contracts, it is trivial to understand how the network could be flooded with transactions which it is unable to process is a suitable time period, particularly given this application and it's contracts are one of many.
+
 \subsection{Development Stage}
+
+Without considering the specifics of the accompanying implementation to this thesis, we evaluate the state of the project's development and how this reflects in its usability at present. The current barriers to entry are the nodes that a user must run locally for the system to function.
+
+\begin{itemize}
+  \item IPFS node
+  \item Ethereum node
+  \item Proxy Re-encryption node
+\end{itemize}
+
+As discussed, the proxy re-encryption node will cease to exist in future as the library required to perform encryption/re-encryption/decryption becomes available for client-side use. A Java client would make this possible now.
+
+Dependency on a local IPFS node will be removed should the application choose to provide global IPFS nodes where users can add data~\footnote{Reading data does not require a local IPFS node as this can be handled by the IPFS gateway, https://gateway.ipfs.io.}. Alternatively, the ability to use a lightweight IPFS node as part of the client process would alleviate this issue.
+
+The most significant barrier to entry comes from the dependency on a local Ethereum node. The alternative to this is to run a Mist browser or to use the Metamask extension to a current browser. The former is an entirely different browser environment and requires the user to move way from the environment they currently choose to work in. The latter requires the user to be using a suitable browser, and be using that browser on a device that is compatible with the installation of extensions. Metamask allows anyone to connect to live networks globally.
