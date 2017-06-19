@@ -60,7 +60,7 @@ $$
 \end{aligned}
 $$
 
-\subsubsection{Non-transitivity of a Re-encryption scheme}
+\subsubsection{Non-transitivity of a re-encryption scheme}
 
 In order to facilitate giving permissions to other parties the scheme only uses second-level encryptions. The most significant security implication of using second-level encryptions instead of a first-level encryption is that of re-encryption and delegation. With a second-level encryption, since the underlying data is encrypted using a public key, a suitable pairing and a suitable re-encryption key provides the means for any second-level encryption to be re-encrypted as a first-level encryption. Since a first-level encryption uses a bi-linear pairing of keys to encrypt the underlying data, this is not re-pairable and as such re-encryption cannot be performed. Given that a second-level encryption can be re-encrypted to a first-level encryption, and that a first-level encryption is not re-encryptable, the AFGH scheme used is shown to be non-transitive.
 
@@ -122,7 +122,9 @@ It is important to be mindful that this security is not upheld when all useful h
 
 As a proof of concept, scalability is of a lesser priority. At present, the use of IPFS and local nodes provide no immediate scalability issues~\footnote{Given that IPFS requires no consensus to be formed on object references in the distributed web.}. The compute layer, Ethereum, is the main barrier to any scalability.
 
-Ethereum is intended as a platform for autonomous financial instruments. It's use as an application backbone in this project is clearly in conflict with it's intended purpose. Ethereum, on it's main network, has an aim of processing transactions within 15 seconds on average. If we assume that 1000 users are connected and interacting on the network, and there are therefore 1000 storage contracts, it is trivial to understand how the network could be flooded with transactions which it is unable to process is a suitable time period, particularly given this application and it's contracts are one of many.
+Ethereum is intended as a platform for autonomous financial instruments. Using it as an application backbone in this project is clearly in conflict with its intended purpose. Ethereum, on it's main network, has an aim of processing transactions within 15 seconds on average. This is acceptable for financial instruments where a small delay in the transaction being accepted is commonplace. In a user-facing application however, the user expects the state to be updated very quickly and reliably. Whilst a local test node can be configured for 100\% transaction acceptance and real-time interaction, the main network cannot. Without a guarantee that a transaction has gone through, afforded by eventually synchronous systems, the user may be left puzzled as to why delays in state changes exist, and why they sometimes may not even be processed.
+
+If we assume that 1000 users are connected and interacting on the network, and there are therefore 1000 storage contracts, it is trivial to understand how the network could be flooded with transactions which it is unable to process is a suitable time period, particularly given the nature of the application and the number of deployed contracts.
 
 \subsection{Development Stage}
 

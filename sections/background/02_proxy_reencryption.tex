@@ -81,7 +81,7 @@ Let's suppose we have a cryptography scheme whereby the following functions are 
 
 \begin{itemize}
   \item $Gen(...)$: A generator of keys requiring arbitrary arguments
-  \item $Encrypt(m, k)$: Allows the encryption of a message $m$ using the $k$ such that it is only decryptable by it's counterpart (or itself, if symmetric)
+  \item $Encrypt(m, k)$: Allows the encryption of a message $m$ using key $k$ such that it is only decryptable by it's counterpart (or itself, if symmetric)
   \item $Decrypt(m, k)$: Allows the decryption of some encrypted message $m$ using the key $k$. Successful only if the message $m$ was encrypted (and intended for) the owner of the key $k$.
   \item $\Pi(m, rek_{a \rightarrow b})$: Allows the re-encryption of some encrypted message $m$ intended for the owner of key $a$ such that it is decryptable by the owner of key $b$.
   \item $ReGen(..., SK_a, PK_b)$: A generator of re-encryption keys requiring arbitrary arguments including keys required to decrypt
@@ -143,9 +143,18 @@ Given the reencryption key shown above ($g^{a^{-1}} \times g^{b}$), bilateral tr
 
 \subsubsection{Proxy Cryptography Revisited}
 
-\cite{ivandodis:2003:inproceedings} authored a scheme aiming to address some of the shortcomings of the original BBS scheme. Crucial improvements include the scheme being unidirectional and non-transitive. The former is important for this project's goal of layered access, implying that some parties will be involved unknown to the delegator individually. Non-transitivity is equally important allowing the publishing of re-encryption keys without risk of any malicious attacker delegating themselves rights to content for which the original delegator has not delegated access to them.
+\cite{ivandodis:2003:inproceedings} authored a scheme aiming to address some of the shortcomings of the original BBS scheme. Crucial improvements include the scheme being unidirectional and non-transitive. However, the scheme does not allow true re-encryption as the delegatee is unable to decrypt the re-encryption with their self-generated private key.
 
-% TODO: Scheme
+\begin{itemize}
+  \item $Gen(...)$: A generator of keys requiring arbitrary arguments
+  \item $Encrypt(m, k)$: Allows the encryption of a message $m$ using key $k$ such that it is only decryptable by it's counterpart (or itself, if symmetric)
+  \item $Decrypt(m, k)$: Allows the decryption of some encrypted message $m$ using the key $k$. Successful only if the message $m$ was encrypted (and intended for) the owner of the key $k$.
+  \item $ReGen(..., SK_a)$: A generator of re-encryption keys requiring arbitrary arguments including the secret key of the delegator
+\end{itemize}
+
+Whilst the Ivan-Dodis (ID) scheme adds uni-directionality and non-transitivity to the original BBS scheme, it does so by compromising the very principle of re-encryption. \cite{ivandodis:2003:inproceedings} presents a generic scheme that can be applied to any asymmetric cryptography scheme. This is possible by allowing the key generation, encryption, and decryption algorithms to be the same as the underlying cryptography scheme. The algorithm to generate re-encryption keys relies on the idea that the private key, corresponding to the public key that was used to encrypt the data, can be split into two secrets. It is suggested by the author that the scheme is compatible with identity-based cryptography, RSA cryptography, and ElGamal cryptography. However, the practical use of RSA would require an algorithm for prime factorisation which does not exist for classical computers. Identity-based cryptography would rely on the use of a centralised identity provider and is therefore irrelevant to this project.
+
+Furthermore, the two secrets composing the private key do not facilitate true re-encryption nor allow the delegatee to use their own self-generated key pair. The re-encryption process relies on the proxy to first decrypt the encryption using the first secret, and the delegatee is expected to use the second secret to perform a second decryption, i.e. $\text{Dec}_2(\text{Dec}_1(\text{Enc}, \text{secret}_1), \text{secret}_2) = m$. Clearly this is not collusion-safe and would forbid the publication of re-encryption keys.
 
 \subsubsection{Improved Proxy Re-encryption Schemes with Applications to Secure Distributed Storage}
 

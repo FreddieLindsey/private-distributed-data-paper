@@ -1,0 +1,41 @@
+% \begin{listing}[H]
+%   \centering
+%   \begin{minted}{bash}
+%                                     (Wait til `CommmitTime+timeoutCommit`)
+%                          +-------------------------------------+
+%                          v                                     |
+%                    +-----------+                         +-----+-----+
+%       +----------> |  Propose  +--------------+          | NewHeight |
+%       |            +-----------+              |          +-----------+
+%       |                                       |                ^
+%       |(Else, after timeoutPrecommit)         v                |
+% +-----+-----+                           +-----------+          |
+% | Precommit |  <------------------------+  Prevote  |          |
+% +-----+-----+                           +-----------+          |
+%       |(When +2/3 Precommits for block found)                  |
+%       v                                                        |
+% +--------------------------------------------------------------------+
+% |  Commit                                                            |
+% |                                                                    |
+% |  * Set CommitTime = now;                                           |
+% |  * Wait for block, then stage/save/commit block;                   |
+% +--------------------------------------------------------------------+
+%   \end{minted}
+%   \caption{
+%     Tendermint algorithm.
+%   }{
+%     Sourced from \href{https://tendermint.com/docs/internals/byzantine-consensus-algorithm}{Tendermint GitHub}, \textit{https://tendermint.com/docs/internals/byzantine-consensus-algorithm}.
+%   }
+%   \label{figure:tendermint_algorithm}
+% \end{listing}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width = 10cm]{images/tendermint_consensus.png} \\
+  \caption{
+    Tendermint algorithm
+  }{
+    Sourced from \href{https://tendermint.com/intro/consensus-overview}{Tendermint}, \textit{https://tendermint.com/intro/consensus-overview}.
+  }
+  \label{figure:tendermint_algorithm}
+\end{figure}
