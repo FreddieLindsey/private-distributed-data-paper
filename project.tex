@@ -12,6 +12,9 @@
 \usepackage[english]{babel}
 \usepackage{csquotes} % Recommended
 
+\usepackage{afterpage}
+\newcommand\blankpage{\null\newpage}
+
 \usepackage{natbib}
 \bibliographystyle{agsm}
 
@@ -135,6 +138,8 @@
 
 \tableofcontents
 
+\afterpage{\blankpage}
+
 %------------------------------------------------------------------------------
 % INTRODUCTION AND PREFACE
 %------------------------------------------------------------------------------
@@ -149,6 +154,8 @@
 %------------------------------------------------------------------------------
 
 \include{sections/02_background}
+
+\afterpage{\blankpage}
 
 %------------------------------------------------------------------------------
 % DESIGN
@@ -167,6 +174,8 @@
 %------------------------------------------------------------------------------
 
 \include{sections/05_evaluation}
+
+\afterpage{\blankpage}
 
 %------------------------------------------------------------------------------
 % CONCLUSION
