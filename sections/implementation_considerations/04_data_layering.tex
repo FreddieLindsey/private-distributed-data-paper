@@ -18,7 +18,7 @@ We can transform the tree in figure \ref{fig:json_file_structure} into a Merkle 
 
 \input{tikz/json_merkle_tree}
 
-Since IPFS is built on the notion of Merkle DAGs, this tree can be made by creating the "file.json" object on IPFS and recursively linking the aforementioned chunks.
+Since IPFS is built on the notion of Merkle DAGs (Directed Acyclic Graph), this tree can be made by creating the "file.json" object on IPFS and recursively linking the aforementioned chunks.
 
 Whilst a JSON file has been used in the above transformation, this extends well to any file type or encoding which is representable as a base64 (or similar) string. For example, if properties within the JSON were containers for binary data, the binary data needs to be converted to a base64 string prior to transforming the JSON to a Merkle tree.
 
@@ -26,10 +26,8 @@ Whilst a JSON file has been used in the above transformation, this extends well 
 
 Whilst splitting a file into chunks is relatively simple, permissioning the underlying data is more difficult.
 
-Take the example whereby a storage contract owner uploads "file.json". This file is composed of three references to other files (it's properties), and two of those reference another two files each (their properties). This requires the storage of five hashes, which (assuming directories are shown iff their underlying files are visible) results in $2^5$ possible permissions possibilities.
+Take the example whereby a storage contract owner uploads "file.json". This file is composed of three references to other files (it's properties), and two of those reference have another two files each (their properties). This requires the storage of five hashes, which (assuming directories are shown iff their underlying files are visible) results in $2^5$ possible permissions possibilities.
 
 Unlike normal files where we want to observe the highest level of granularity (i.e. view individual files not clusters of files), we want to observe a very low level of granularity with file chunks (i.e. we want to see the parts of the file we can see compiled into a single file). The difficulty of this in terms of storage contracts is that we are unable to compose a complete file from file chunks within the compute layer (Ethereum) with present technology, given the inability for the computer layer to interact with non-deterministic services (side-effects).
 
-We therefore need to assume that the client will rebuild the file on receipt of all it's (visible) parts. In doing so, we need an efficient way for the client to understand what it has access to when an individual requests a file. 
-
-% TODO: Expand and decide if include
+We therefore need to assume that the client will rebuild the file on receipt of all it's (visible) parts. In doing so, we need an efficient way for the client to understand what it has access to when an individual requests a file. A function must be available on the storage contract which allows an identity to request the file paths contained within that file, and then use this to retrieve the individual data chunks.

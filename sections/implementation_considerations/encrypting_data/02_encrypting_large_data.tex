@@ -1,7 +1,7 @@
 \subsubsection{Encrypting Large Data}
 
-\textit{Using an asymmetric cryptography scheme, 'large data' refers to data larger than 385 bytes.}
+When applying the cryptography schemes mentioned above, which have been specifically designed to sign and encrypt short messages and data, we must be aware of the problem of encrypting large data such that it remains decryptable using an asymmetric cryptography scheme. The AFGH scheme being used is unable to encrypt 'large data', i.e. it is only able to encrypt data less than 385 bytes.
 
-When applying the cryptography schemes mentioned above, which have been specifically designed to sign and encrypt short messages and data, we must be aware of the problem of encrypting large data such that it remains decryptable using an asymmetric cryptography scheme. 
+To solve this issue, the encryption process is proxied by a symmetric cryptography scheme. Rather than encrypt the underlying data, public-key cryptography is used to encrypt a symmetric key used to encrypt and decrypt the data. The symmetric cryptography scheme used is AES (Advanced Encryption Standard) as used by governments worldwide.
 
-% TODO: Work on explaining this problem
+A 256-bit symmetric key is 32 bytes. This is much lower than the 384 byte cap on the use of the public key for encryption. The structure of encrypted data will therefore be the symmetric key encrypted under the public key, merged with the underlying data encrypted using that symmetric key.
