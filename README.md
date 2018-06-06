@@ -19,4 +19,4 @@ The challenge for you would be to build a prototype blockchain-mediated data con
 ## Project Components
 
 - [Web-based client and infrastructure](/FreddieLindsey/decent-data-client)
-- [Java-based proxy re-encryption gatway](/FreddieLindsey/decent-data-client)
+- [Java-based proxy re-encryption gatway](/FreddieLindsey/decent-data-gateway)
