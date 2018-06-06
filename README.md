@@ -1,4 +1,6 @@
-# Blockchain-mediated Layered Access to Data
+# Decent Data
+
+## Blockchain-mediated Layered Access to Data Project
 
 BEng Computing, Imperial College London - 3rd Year Individual Project Report
 
