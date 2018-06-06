@@ -15,3 +15,8 @@ It is apparent that privacy of data (especially of a personal nature and especia
 The challenge for you would be to build a prototype blockchain-mediated data control system which allows such layered access to data. Researchers in the Centre for Cryptocurrency Research and Engineering have a few ideas as to how such a scheme could be made to work; we would be happy to discuss them with you. If successful, this project has very high potential impact.
 
 > As written by [William Knottenbelt](https://www.doc.ic.ac.uk/~wjk/)
+
+## Project Components
+
+- [Web-based client and infrastructure](/FreddieLindsey/decent-data-client)
+- [Java-based proxy re-encryption gatway](/FreddieLindsey/decent-data-client)
