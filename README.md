@@ -1,5 +1,7 @@
 # Blockchain-mediated Layered Access to Data
 
+BEng Computing, Imperial College London - 3rd Year Individual Project Report
+
 Final year project submitted as part of BEng Computing studied at Imperial College London.
 
 [![Build Status](https://travis-ci.com/FreddieLindsey/blockchain-layered-data-access.svg?token=2txBfbss4toxp7qpR4fW&branch=master)](https://travis-ci.com/FreddieLindsey/blockchain-layered-data-access)
