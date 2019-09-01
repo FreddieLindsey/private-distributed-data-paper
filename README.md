@@ -1,4 +1,4 @@
-# Decent Data
+# Private Distibuted Data
 
 ## Blockchain-mediated Layered Access to Data Project
 
